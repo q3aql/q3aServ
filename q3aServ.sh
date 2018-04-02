@@ -6,7 +6,7 @@
 # Licensed by GPL v.3                        |
 # Last update: 02-04-2018                    |
 # --------------------------------------------
-VERSION="4.1.1"
+VERSION="4.2"
 
 # Path with binary and game files
 RUN_PATH="/opt/Games/quake3"
@@ -78,7 +78,7 @@ function custom_game_menu() {
 	echo "Available options:"
 	echo ""
 	echo "* map-selection -> 1-5"
-	echo "* gametype -> CTF/FFA/TD/TOU/FT/CTFI/TDI/FFAI"
+	echo "* gametype -> CTF/FFA/TD/TOU/FT/CTFI/TDI/FFAI/CA/CAI"
 	echo "* minplayers -> 0-10"
 	echo "* bot-level -> 1-5"
 	echo "* time-limit -> 0-999"
@@ -94,6 +94,8 @@ function custom_game_menu() {
 	echo "- CFTI = Capture The Flag Instagib (OSP)"
 	echo "- TDI  = Team Deatchmatch Instagib (OSP)"
 	echo "- FFAI = Free For All Instagib (OSP)"
+	echo "- CA   = Clan Arena (OSP)"
+	echo "- CAI  = Clan Arena Instagib (OSP)"
 	echo ""
 }
 
@@ -115,6 +117,10 @@ function check_gametype() {
 		echo "Gametype selected = TDI"
 	elif [ "$1" == "FFAI" ] ; then
 		echo "Gametype selected = FFAI"
+	elif [ "$1" == "CA" ] ; then
+		echo "Gametype selected = CA"
+	elif [ "$1" == "CAI" ] ; then
+		echo "Gametype selected = CAI"
 	elif [ -z "$1" ] ; then
 		echo "Empty" > /dev/null
 	else
@@ -284,6 +290,10 @@ CG|cg|custom)
 		elif [ "$3" == "TDI" ] ; then
 			./${RUN_BINARY} +set fs_game osp +exec basic.cfg +exec server${3}.cfg +exec levels${3}-${2}.cfg +exec bots.cfg
 		elif [ "$3" == "FFAI" ] ; then
+			./${RUN_BINARY} +set fs_game osp +exec basic.cfg +exec server${3}.cfg +exec levels${3}-${2}.cfg +exec bots.cfg
+		elif [ "$3" == "CA" ] ; then
+			./${RUN_BINARY} +set fs_game osp +exec basic.cfg +exec server${3}.cfg +exec levels${3}-${2}.cfg +exec bots.cfg
+		elif [ "$3" == "CAI" ] ; then
 			./${RUN_BINARY} +set fs_game osp +exec basic.cfg +exec server${3}.cfg +exec levels${3}-${2}.cfg +exec bots.cfg
 		else
 			./${RUN_BINARY} +exec basic.cfg +exec server${3}.cfg +exec levels${3}-${2}.cfg +exec bots.cfg
