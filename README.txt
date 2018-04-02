@@ -55,7 +55,7 @@ Syntax: q3aServ.sh CG [map-selection] [gametype] [minplayers] [bot-level] [time-
 Available options:
 
 * map-selection -> 1-5
-* gametype -> CTF/FFA/TD/TOU/FT/CTFI/TDI/FFAI
+* gametype -> CTF/FFA/TD/TOU/FT/CTFI/TDI/FFAI/CA/CAI
 * minplayers -> 0-10
 * bot-level -> 1-5
 * time-limit -> 0-999
@@ -71,6 +71,9 @@ Abbreviations:
 - CFTI = Capture The Flag Instagib (OSP)
 - TDI  = Team Deatchmatch Instagib (OSP)
 - FFAI = Free For All Instagib (OSP)
+- CA   = Clan Arena (OSP)
+- CAI  = Clan Arena Instagib (OSP)
+
 
 
 
