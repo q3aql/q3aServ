@@ -232,7 +232,7 @@ case ${1} in
 		echo ""
 		echo "<<[Error: Bot-level must be specified]>>"
 		custom_game_menu
-	elif [ $botLevel -ne 0 ] ; then
+	elif [ ${botLevel} -ne 0 ] ; then
 		echo ""
 		echo "<<[Error: Bot-level only must be numbers between 1 and 5]>>"
 		custom_game_menu
