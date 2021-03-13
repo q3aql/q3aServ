@@ -1,0 +1,52 @@
+
+Challenge ProMode Arena: Demo Playing
+-------------------------------------
+Date: 25 Jun 03
+
+This document explains some of the Demo Playback features of CPMA.
+It will never be as current as the changelog, so you should always
+check that with each new release.
+
+
+Key Operations
+==============
+Keystrokes and mouse clicks no longer abort demos.  If you have binds
+that you wish to use, press ESC once.  However there are a standard
+set of keys for most common demo functions:
+
+ .:Standard Demo
+	TAB brings up the scoreboard
+	PGUP / PGDN adjusts playback speed by +-0.25
+	HOME sets playback speed to 1.0
+	KP_5 toggles third-person rendering
+	KP_UPARROW / KP_DNARROW moves camera to / from player
+	KP_LEFT / KP_RIGHT moves camera around player
+	KP_HOME resets camera distance and angle
+	F11 takes a screenshot
+
+ .:MultiViewDemo only
+	SPACE/MOUSE2 switches to next player
+	ALT switches to previous player
+	MOUSE1 in a coachview zooms in to that player
+	MOUSE1 in a main view switches to coachview
+	MOUSE1 on a subview switches to that player
+	B - Blue Flag, i.e. *red* FC (CTF duh!)
+	R - Red Flag, i.e. *blue* FC
+	F - either FC
+	I - Invis player
+	Q - Quad player
+	S - Batsuit player
+	P - any player with a real PU (i.e. not Regen/Flight/Speed)
+	for F and P, if there's more than one PU/flag in play
+	each keypress will cycle to the next one
+
+Note that cg_followpowerup and team overlay work during MVD playback
+
+
+Demo Browser
+============
+CPMA supports directory trees of demos.  Hitting ESC in a demo menu 
+tree pops you up one level rather than straight back to the main menu 
+- that annoys me. "Back" still jumps all the way out just in case you 
+like it.  Once you find the demo you desire, you can hit ENTER to
+launch it or select Play.

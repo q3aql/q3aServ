@@ -1,0 +1,4707 @@
+
+This changelog is the canonical source of information for CPMA.
+Any document that disagrees with it is almost certainly wrong.
+
+See the end of this file for known issues.
+
+
+Notes for version 1.48 (27 Jul 10)
+
+add: r_unreferee/unreferee referee's command
+
+add: ch_gauntlet 1/0 in hud(WeaponList)
+
+add: cg_crosshairSize can set the width and height of the crosshair (format "WxH").
+    For example, cg_crosshairSize '32x48'
+
+add: cg_simpleItems can vary from 0.1 to 2.0 as a multiplier size of an item icons.
+	For exmaple, cg_simpleItems 1.5 will increase the size of icons to 50%
+
+add: cg_noAmmoChange 2 does not switch to another weapon if no ammo
+
+add: invalid characters in cg_altlightning value disable LG beam
+
+add: cq3/dev crouchsliding
+
+add: color code ^8(LtGrey) and ^9(Violet), except console messages
+
+chg: votesystem
+	always ignore speconly
+	in 1V1 mode ignore specs except remove or kick votables
+	in 1V1 mode do not ignore specs for map, gameplay, match, mode or restart votables during non-warmup
+	in 1V1 mode make a decision by timer, if vote counts are not equal and more than two
+	in TEAM-based modes ignore specs while teams have players
+	do not ignore specs for referee votable, only spec can be elected referee
+
+chg: referee drops his status when joining the match
+
+chg: remove vote windelay, vote_allow_windelay
+
+chg: 'players' command can show packetlost
+
+chg: 'players' command for rcon always show ready/notready status
+
+chg: values mode_idletime may change only in the range of 1 to 60
+
+chg: increase sv_fps maximum value to 40 for cnq3
+
+chg: ban the 'kill' command to CTFS
+
+chg: cq3 RL speed 950, splash radius 110
+
+chg: DEV use PM2 RG (remove scaling damage)
+
+chg: cq3 RG fixed damage 80 and scaling knockback from 125% to 75%. fastrail on.
+
+chg: cq3 items height is 50
+
+chg: cq3 tweak doublejumps
+
+chg: player stats resets to the beginning of the match for CA/CTFS/FTAG
+
+chg: fix roundwarmup
+
+chg: CTFS can use roundwarmup
+
+chg: remove warnings for empty s_announcer
+
+fix: a few bot ai bugs
+
+fix: cg_altlightning enemy color equal mates color
+
+fix: armorbar, ammobar, healthbar cannot display big value (400 health or 400 armor)
+
+fix: don't count suicide in warmup
+
+fix: commands referee, including the options, available in the server console
+
+fix: PM_CmdScale '-128/127 bug'
+
+fix: ancient callvote security exploit (id bug)
+	i thought we fixed these years ago, but one case snuck through  :(
+
+
+Notes for version 1.47 (22 Apr 09)
+
+add: roundwarmup for CA/DA
+
+add: negative cg_trueLightning is no beam
+
+add: cq3 new hitsounds
+
+add: voulcaine's maps layouts: pro-q3dm6cq3, q3tourney2cq3, pro-q3tourney4cq3,
+     nodm9acq3, hub3aeroq3cq3, ztn3tourney1cq3, q3dm7cq3
+
+add: LG impact texture (thanks voulcaine)
+
+add: gp as an alias for gameplay for callvote command
+
+add: wr as an alias for weaponrespawn for callvote command
+
+add: duration match to xml stats
+
+chg: 'tell' without player number agrument sent message to all spectators
+
+chg: remove tell_target and tell_attacker
+
+chg: #N use client netname when nick is empty
+
+chg: Coaches are able to use the SuperHUD (for MVD)
+
+chg: Ignore spec votes in teamplay modes (Teams must have players).
+
+chg: The chat macro #I ignore own flag
+
+chg: Silent ref kicks of specs
+
+chg: fastrail back
+
+chg: increase max players in player_file/filter_file to 100
+
+chg: use KISS32 random generator
+
+chg: cg_altlightning is string('123' or '12' or '1'). First character is player lightning,
+     Second character is enemy lightning. Third character is mates lightning. 
+     First character is default for enemy and mates lightning if not specified.
+
+chg: cg_altlightning 3 with 1.44 render system
+
+chg: cg_drawgun 0 is static(no bobbing)
+
+chg: health and armour votes allow up to 400
+
+chg: DA defaults to 250/250 spawns
+
+chg: a few tweak cq3 ground friction and acceleration
+
+chg: add micro-dj for cq3
+
+chg: (1v1, 2v2, ctf, ftag) cq3 player respawn with ammo. 2 SSG, 2 RL, 20 LG, 3 GL, 3 RG
+
+chg: cq3 items height is 46
+
+chg: cq3 dead player drop ammo like CPM
+
+chg: cq3 respawns are biased away from corpse (except nearest spawnpoint)
+
+chg: cq3 gauntlet knockback is 0.5
+
+chg: cq3 MG - ammo 60/10/80; reload time 90ms; increase spread
+
+chg: cq3 SSG - new pattern; ammo 8/5/25
+
+chg: cq3 PG ammo 40/20/80
+
+chg: cq3 GL use PM2 settings, ammo 7/5/25
+
+chg: cq3 RL speed 1000 ups, splash radius 100, knockback  110%, ammo 8/5/25
+
+chg: cq3 LG scaling knockback from 125% to 75%. ammo 60/40/140
+
+chg: cq3 RG damage (100,90,80); scaling knockback (100%-50%). ammo 7/5/25
+
+chg: cq3 BFG ammo 10/10/25; damage 125; knockback 150%; BFG shots are "fat"
+
+chg: cq3 increase knockback for rj/gj and plasmaclimbing
+
+chg: cq3 different protection (0.5/0.66/0.75) and different decay (0.5/1/1.5) for GA/YA/RA
+
+fix: wrong ammo and flag weight after cv gameplay or cv mode(mode file with gameplay) 
+
+fix: gameplay initialization refresh current game mode 
+
+fix: file handle leaks
+
+fix: CA/FTAG startrespawn 1 
+
+fix: "humming" weapons could pan and crackle on stairs sometimes
+
+fix: flagrun times weren't properly adjusted for pauses
+
+fix: stupidly long text decorations could crash the hud parser
+
+
+Notes for version 1.46 (26 Apr 08)
+
+chg: mode_current tagged as serverinfo for MAXBrowse / ASE / etc
+
+chg: FFA mode uses 5s weapon respawns
+
+chg: reverted to 1.43 cg_altLightning
+
+chg: removed hemostick's RL explosions
+	they're derived from something other than Q3 apparently
+
+chg: removed uriel's wings - they're annoyingly defective
+
+fix: listen servers hanging sometimes on map load
+
+fix: loud LG impact sounds with correctly-functioning Q3 clients
+
+
+Notes for version 1.45 (18 Feb 08)
+
+add: callvote remove is back
+
+chg: RG low ammo warning
+
+chg: CQ3 pg/sg ammobox
+
+chg: CQ3 RG scaling from 100 to 80
+
+chg: CQ3 hitsound from CPM
+
+fix: finally, hopefully, the @#$%ing TA bugs with rocket splash
+	only took seven years to track the damn thing down...
+
+fix: IDs bot stuck
+
+fix: PMC ctfs/ctf heavy flag 
+
+fix: CPM ctfs heavy flag 
+
+
+Notes for version 1.44 (19 Dec 07)
+
+Yes, I know the menus look like ass
+
+add: new icons for just about everything, thanks to vamp1re  <3
+
+add: log_xmlstats (default "stats")
+	directory to save endgame stats to, "" to disable
+
+add: END pauses demos (needs CNQ3)
+
+add: Digital Graphics Labs "Enter Sansman" font
+	usable in superhud with "font sansman"
+
+add: cg_railCoreWidth (2), cg_railRingWidth (8), cg_railRingStep (32)
+	the r_rail* cvars are now obsoleted
+
+add: cl_noprint works during demo playback and with the SHUD "console"
+
+add: captain actions are logged to the team's consoles
+
+add: show timein caller in team games
+
+add: hud_hide <element>, hud_show <element>
+
+add: info_player_deathmatch support to mapcfgs
+	was only doing info_player_start - doh!
+
+chg: removed dlights from FC's again
+
+chg: PG gun/TDM ammo 100, box 50, speed 2000
+
+chg: MG boxes give 50 ammo, max 100
+
+chg: replaced the RL and GL trail system
+	cg_smokeGrowth_RL and cg_smokeGrowth_GL are obsoleted
+
+chg: beefed up cg_railStyle 2 a fair bit
+
+chg: CTF flags don't flash and only show on the HUD when they're not at base
+
+chg: team overlay expands to show multiple PUs if needed
+
+chg: NTF defaults to flag dropping enabled
+
+chg: servers reject players whose names have bogus characters (<32 or >126)
+
+chg: removed FlagWeight from class files
+
+chg: removed s_occfactor - now always treated as 0
+
+chg: removed fastrail, finally, may it rest in peace
+
+chg: cg_altLightning now just 0 or 1
+	0 is the original (pre-TA) id LG beam
+	1 is the 1.43 altLighting 3 with a new render scheme
+
+chg: CPM tele exit speed is 400, same as VQ3
+
+chg: spawnsystem back to "far half" from killer with no weighting
+
+chg: CQ3 2K8 :P settings - a "better VQ3" without culture shock
+	VQ3 physics, plus rampjumps. PM2 spawnsystem; lava/slime damage;
+		item height; water speed; and LG and BFG settings.
+	RG damage scaling from 100 at point-blank down to 75 (linearly)
+		at 768 units distance (LG range) and beyond. 
+	Ammo limits: MG/LG 150, SG/GL/RL/RG/BFG 25, PG 200. 
+	Smaller ammoboxes: MG 25, SG 5, LG 50.
+	No "cripple" effect for MG/PG/LG.
+
+fix: xml strings need escaping even when quoted
+
+fix: waterjump catapult wasn't triggering properly
+
+fix: simpleitems are actually ITEM_RADIUS (most meaningless id bug ever)
+	finally trumped the RG light fix  :P
+
+fix: rather fascinating bizarre bugs with corpses and weapons
+	e.g. your corpse with LG would actually fire when you fired
+	and if it had a humming weapon, it would play that sound too
+
+fix: item bboxes were asymmetric and misaligned (id bug)
+
+fix: stupid SnapVectorTowards bug from the TA era (id bug)
+
+fix: hunter/pm antlers weren't blended properly
+
+fix: bad math in item bobbing made them jerky for no good reason (id bug)
+	if the server had been up for more than just a couple of days
+
+fix: concretefloor1 and portal_sfx had invalid tcmods (id bugs)
+
+fix: railtrails were often not sent to players near the shooter (id bug)
+
+fix: #E correctly identifies Suited enemies
+
+fix: some edit fields in the ui (e.g. rate) weren't updating their cvars
+
+
+Notes for version 1.43 (18 July 07)
+
+add: DM scoreboard shows weapon shots
+
+add: player pings shown in the server browser
+
+add: Slash's skates are affected by PM skin color
+
+add: \acc <weapon> now sorted
+
+add: "sw" to class files
+
+chg: RL knockback increased to 112.5% 
+
+chg: water speeds are significantly higher
+
+chg: PG gun/TDM ammo 80, box 40
+
+chg: default PU respawn in 2v2 now 120s
+
+chg: removed vote_allow_remove, callvote remove
+	been broken for years and nobody noticed, so it's clearly dead weight
+
+chg: spectator speed increased to 480ups
+
+chg: CA/DA/CTFS modes explicitly set spawn health to 100
+
+chg: BFG is droppable
+
+chg: removed the irrelevant "team color names" crud from many CTF messages
+	(e.g. "PlayerA gets an assist for returning the >XYZ< flag")
+
+chg: server stats are output in XML (same format as Q4Max stats)
+	thanks to cha0ticz, panni, and cmd for their work on this
+
+chg: NTF Heavies use Keel model and get SG instead of MG
+
+chg: NTF Fighters spawn with 5 rockets
+
+chg: NTF backpacks give 25 armor
+
+chg: vote time is 20 seconds
+
+chg: removed support for the very-legacy CPM 1.0 armor system
+
+chg: removed !PreDecorate1-8 and _PostDecorate1-8 superhud elements
+	just "PreDecorate" and "PostDecorate" now, limit 64 total
+
+fix: dying while firing RG caused "ghost" rails on next switch to RG
+
+fix: rebound/OB could still happen on surfaces under shallow water
+
+fix: various AI bits, especially in VQ3
+
+fix: an insanely pathological case to do with traces near patches
+	when q3map has created a poisoned BSP that has non-convex spaces
+	note: this fix makes no sense, it just "works". such maps are broken,
+	and this may well just be moving the fail cases to a different set.
+
+fix: widescreen support should be much better now
+
+DEV: RG is 1500ms reload, with damage scaling from 100 at point-blank
+	down to 75 (linearly) at 768 units distance (LG range) and beyond
+
+DEV: flaglocks are 5s
+
+
+Notes for version 1.40 (19 Dec 06)
+
+add: !PreDecorate5-8 and _PostDecorate5-8 superhud elements
+
+add: AttackerIcon and AttackerName superhud elements
+
+add: WeaponList supports the TIME command
+
+add: MODEL, ANGLES, OFFSET, and DRAW3D commands to the superhud
+	ANGLES are ordered as <pitch> <yaw> <roll> [+pan | -rotate]
+	note that most Q3 models DO NOT WORK PROPERLY if r_vertexlight is on
+
+add: 9 new high res, high quality crosshairs as cg_drawCrosshair 11-19
+
+chg: NTF significantly redesigned: see docs/NTF.txt
+
+chg: removed support for RagePro-specific smoke
+
+chg: be more tolerant of invalid models/enemymodels
+
+chg: FragMessage no longer updates for suicides
+
+chg: GTV can CALL votes, but not CAST them
+	so an unattended GTV doesn't cause problems with vote_percent 100
+
+chg: con_echo doesn't insert newlines between multiple args
+
+chg: chat tokens are disabled for non-mm2
+
+chg: ammo bars scale by weapon capacity
+
+fix: vertical bars didn't scale correctly
+
+fix: the infamous legacy id bug of "callvote; reconnect"
+
+fix: autoAction 1 stats weren't saved properly
+
+fix: grenades always rested axially (id bug)
+
+fix: cg_drawCrosshairNames 2 doesn't draw enemy's name in 1v1
+
+fix: couldn't start CTFS games through the UI
+
+fix: UI ugliness in nonstandard video modes
+
+
+Notes for version 1.39 (12 Nov 06)
+
+add/chg/fix: overhauled a bunch of the UI crud (WIP)
+
+add/chg/fix: overhauled a huge amount of AI (WIP)
+
+add: netgraph shows "SYNC" warning if cg_predict is off
+
+add: low ammo warning sound not played when fast-forwarding demos
+
+add: cv as an alias for callvote
+
+add: smartbots now play VQ3 as well
+
+add: VQ3TDM mode (50 MG ammo, Holdables and BFG disabled)
+
+add: cg_viewAdjustments (0|1, default 0)
+	replaces and unifies cg_run* and cg_bob* (all deleted)
+
+add: custom loc files for q3w1, q3w4, q3wcp17, ctctf1, ctctf2
+
+add: GTV can use cg_autoAction even if unattended/nocamera
+
+chg: autorecord uses underscores for time and date separators
+	dots meant truncated filenames could make the engine sulk
+
+chg: removed \time and \currenttime (is on the scoreboard already)
+
+chg: removed some obsoleted cvars
+	ch_crosshairTeamInfo (is in the superhud as TargetStatus)
+	cg_drawStatus, cg_drawAttacker, cg_drawIcons
+
+chg: removed cg_followPowerup and cg_followKiller
+	these are now cg_autoAction 32 and 64 respectively
+
+chg: removed \followpowerup command (was for GTV, is now redundant)
+
+chg: moved the CPMA console to the superhud as "Console"
+	removed cf_Console, ch_consoleLines, ch_consoleTime, con_disable
+
+chg: scoreplums have been removed completely
+
+chg: votes that are disabled aren't listed by "callvote ?"
+
+chg: gauntlet range lowered from 48 to 44
+
+chg: SG and RL pickups give 10 ammo
+
+chg: BFG reload lowered to 1000ms
+
+chg: no BFG explosion cloud (since it doesn't actually splash)
+
+chg: removed the duplicate spawn near lower RL on CPM1A
+
+chg: cg_marks specifies mark lifetime in ms (default 2500)
+
+chg: removed "color2" cvar - "color" and cg_enemycolors now RHBLX
+	where X is the secondary FX color used for rail rings/spirals
+
+chg: cg_teamchatsOnly controls what text reaches the HUD Chat elements
+	if set, non-team text still shows up in the console area
+
+chg: poked at a bunch of CQ3 settings (WIP)
+
+chg: promode initial spawns are true random
+
+chg: promode respawns are biased away from corpse and killer
+
+chg: cg_damageDraw 1 made less game-breaking
+
+chg: cg_drawCrosshairNames not dependent on cg_drawCrosshair
+
+fix: stats\etc could crash the client if they fired more than 10,000 shots
+	yes, *10000* shots in one game: I smell CA LG-fests!  :P
+
+fix: modes were always overriding match_mutespecs
+
+
+Notes for version 1.38 (22 Sep 06)
+
+chg: 2v2 mode uses 10s weapon respawns
+
+fix: TDM ammo counts were messed up
+
+fix: maplist parsing was messed up
+
+
+Notes for version 1.37 (12 Sep 06)
+
+chg: DEV ammo counts, spawnsystem, and BFG migrated to CPM
+	SG 5, SG box 5; GL 5, GL box 5; RL 5, RL box 5
+	LG 50, LG box 50; RG 5, RG box 5; PG 50, PG box 50; BFG 5, BFG box 5
+	TDM has double ammo for all pickups except LG box 50; PG box 50
+	spawnsystem is "far half" from killer with no weighting
+
+fix: certain HUD elements could be missing in MVD playback
+
+fix: non-MV demos recorded by a third client had POV as enemymodel
+
+
+Notes for version 1.36 (22 Aug 06)
+
+chg: no \kill penalty in VQ3 CTF
+
+chg: updated my sample config
+
+chg: recolored the console background
+
+chg: live H/A pickup stats available to all specs (was ref-only)
+
+chg: use serverside pings at intermission
+
+chg: enable MVD for non-prosound
+	has some subtle side-effects for specs, but is fine for players
+
+fix: fully reset doors on game start
+
+fix: colors of in-eyes player in live MV now always your colors
+
+
+Notes for version 1.35 (2 Aug 06)
+
+add: !PreDecorate1-4 and _PostDecorate1-4 as superhud elements
+	can be used to draw separator bars etc
+
+add: doublebar element command to the superhud
+
+add: Runningman's uberthin LG as cg_altlightning 3
+
+add: weaponlist wraps at the bottom of the screen
+	so you can sneak a multi-column one in
+
+add: AmmoMessage (low/out) to the superhud
+
+add: StatusBar_AmmoBar to the superhud
+
+add: hud7 as a sample hud
+
+chg: cg_ammoWarning ONLY controls the "click"
+	if you don't want the text, remove AmmoMessage from your hud
+
+chg: reimplement the OSP "initial spawns" bug for VQ3
+
+chg: no separators on doublebars: use decorations if you want them
+
+chg: StatusBar_AmmoCount turns red when ammo is low
+
+chg: StatusBar_ArmorCount is not drawn when armor is 0
+
+chg: raised net server browser cap from 128 to 256
+
+chg: raised favorites server browser cap from 16 to 32
+
+chg: BFG explosion is less obnoxious
+
+chg: BFG muzzleflash is blue
+
+chg: uncoupled NetGraphPing from NetGraph in superhud
+
+chg: end of game by timelimit uses buzzer rather than klaxon
+
+chg: use Runningman's improved id font
+
+fix: disabling NetGraph in superhud broke double-sided pings
+
+fix: non-referee timeouts were using "prepare to fight" instead of klaxon
+
+fix: DEV respawns were falling back to CPM respawns in some cases
+
+fix: invis icon was missing an alpha channel
+
+fix: overhauled the projectile splash code
+	should fix the blue moon id bugs from post-1.17
+
+fix: weapprev wouldn't wrap if you had too few weapons
+
+
+Notes for version 1.34 (24 Jul 06)
+
+add: CTF flag icons can be colored in the hud
+
+add: sample huds in hud/
+
+add: Runningman's playershadow and much-improved 3W font, thanks
+
+add: hemostick's RL explosions
+
+add: color T and color E for superhud elements to use red/blue stupidity
+	set *bgcolor* for these, even for images - see hud/old.cfg
+
+chg: cg_teamChatsOnly controls whether or not mm1 reaches the chat window
+	but ALL chat is ALWAYS added to the console buffer regardless
+
+chg: moved the status bar to the superhud
+	deleted cf_Statusbar, ch_statusbarStyle, ch_graphs
+
+chg: moved the weaponlist to the superhud
+	deleted ch_weaponList
+
+chg: moved the netgraph to the superhud
+	deleted cg_lagometer
+
+chg: removed hudstyle, hudnext, hudprev
+
+chg: cg_nomip changes require a vid_restart
+
+chg: cg_nomip 4 affects rocket and grenade explosions
+
+chg: cg_nomip 8 only affects the grenade itself
+
+chg: player settings menu uses cpma colors only
+
+chg: CPM GL self-damage is 50% and uses the 50/50 rule for H/A
+	i.e. is consistent with all other self-damage in CPM
+
+chg: VQ3 is allowed to use inconsistent weapon respawns
+
+chg: VQ3 is allowed to use dlights on FCs
+
+chg: unpause and timein play "prepare to fight" instead of klaxon
+
+chg: \pickplayer renamed to \pick, and is no longer an alias for \invite
+
+chg: \pick automatically adds the player to the team
+
+chg: can't invite or pick speconly players
+
+fix: various superhud nits
+	TextAlign C misbehaved if X was non-zero
+	BGColor was halving Cv
+	fades were starting at white instead of element color
+
+fix: prosound was falling back to PVS for idlers with RG/LG
+
+fix: "drop weapon" wasn't enforcing the reload wait
+
+
+Notes for version 1.33 (2 Jun 06)
+
+IMPORTANT: This release contains ALL the CPMA content except for the maps.
+This is a new (and ongoing) policy. Admins can (and should) delete ALL
+old z-cpma-pakXXX.pk3 files from their servers, INCLUDING z-cpma-pak100.
+
+add: the "superhud" begins...  :D
+	check hud/hud.cfg (and the docs if we've written them yet :P)
+
+add: ch_file (default: "hud") to select the hud file
+	custom huds MUST be in your cpma/hud/ dir, MUST end in .cfg
+	and MUST NOT be called "hud" if you want to customise it
+
+add: reloadHUD command
+
+add: cg_error, so you can actually see why a client fatal'd out
+	the shader debugspew messages id left in always flush the console
+
+add: enabled s_announcer (3 years after originally adding it :)
+
+add: Hellchick's announcer sounds: "s_announcer hellchick"
+
+add: #S chat token - item in sights
+
+add: a bunch of custom loc files for CTF maps, thanks to MassMan
+
+chg: re-generated the PM skins as picmip0
+
+chg: default reload for instagib is the gameplay's RG reload
+
+chg: allow voting for obsoleted maps (cpm3/4/11/13/18)
+
+chg: gauntlet range increased slightly
+	(to compensate for fixing the id muzzlebug in 1.32)
+
+chg: CPM uses "absolutely honest" knockback rules
+	no artificial vertical boost
+
+chg: CPM RL is unbiased
+
+chg: deleted a whole bunch of hud-related cvars
+	cg_drawTimer, cg_drawFPS
+	ch_drawFollow, cf_Following
+	ch_drawSpeed,
+	ch_drawPickup, cf_Pickupstring
+	ch_fragMessage, cf_Fragmsg
+	cf_Vote
+	cf_CrosshairNames
+	ch_consoleTeamChat, cf_Teamchat
+	cg_teamChatHeight, cg_teamChatTime
+	cg_drawTeamOverlay, cf_TeamOverlay, ch_teamBackground
+	ch_powerups, ch_flags
+	ch_scores, ch_skinScores
+
+chg: cg_thirdperson 1 only available in demos
+
+chg: updated the defaults for a few client cvars
+	cg_deadBodyDarken 1
+	cg_enemyColors 2222
+	cg_enemyModel sarge/pm
+	ch_drawWeaponSelect 0
+
+chg: MOTD maximum line length is now 60 chars
+
+chg: MOTD line 3 is now available (lines 1 and 2 are still reserved)
+
+chg: using "use item" with no item (i.e. as a signal) doesn't whine
+
+chg: removed cg_centertime
+	"centerprint" messages ONLY come from the server now
+	and may not be hidden/ignored by players
+
+chg: use a much better RNG for cointosses and "callvote random x"
+
+fix: issues with excessively-sharded GA players picking up YAs
+
+fix: re-enable bot "hunting" in instagib
+
+fix: VQ3 battlesuit was using CPM "alternate spawns"
+
+fix: splash damage could weasel its way through thin non-axial surfaces
+
+fix: scoreboard getting "stuck on" in some MVDs
+
+DEV: weapon ammo and box ammo reduced significantly
+
+DEV: spawn locations are biased by enemy position rather than corpse
+
+DEV: BFG is a 2000ups 100dmg projectile with no splash and 1250ms reload
+
+
+Notes for version 1.32 (22 May 05)
+
+add: ch_crosshairText (go ki11ingtime powah :P)
+
+add: cg_nohitbeep
+
+add: callvote remove, vote_allow_remove
+
+add: 2v2 mode (uses 2v2maps.txt for its maplist)
+
+add: con_disable to mimic engine-hacked "cl_noprint"
+
+add: con_echo to mimic engine-hacked "echo"
+
+add: per-class grapple options
+
+add: MVD automatically stops recording at match end
+
+add: mapcfg for q3wcp15 (adds 2xGA to mid)
+
+add: no "door/rocket/etc epilepsy" during pauses
+
+add: highlight followed player's scorebox in DM MVDs
+
+add: rcon callvote <vote> <value> [arena]
+
+chg: drag only in NTF (tho CTF still has "heavy" flags)
+
+chg: CPM splash weapons use consistent directional knockback rules
+	(baseq3 has completely different behaviour for direct hits vs splash)
+
+chg: RL knockback lowered to 100%
+
+chg: RG knockback increased to 100%
+
+chg: GL reload is 800ms, velocity is 800ups, fuse is 2 seconds
+
+chg: LG is 10 damage per shot, 66ms reload, 150% knockback
+
+chg: PG shots are no longer "fat"
+
+chg: PG knockback increased to 100%
+
+chg: LG ammo is 75 gun, 25 box, 150 max
+
+chg: PG ammo is 50 gun, 25 box, 100 max
+
+chg: max ammo for SG, GL, RL, RG is 25
+
+chg: remove "cripple" effect for MG and PG as well
+
+chg: initial PU spawns are synced
+
+chg: default PU respawn in FFA now 90s
+
+chg: rampjumps and doublejumps enabled in CQ3
+
+chg: disable MVD unless CPMA sound is on
+	there's 3 bugs in the VQ3 sound system that basically cause all players
+	to hear all sounds during MV
+	we allow it in TDM still since you can't really tell in that, and because
+	OSP does too despite the bugs, but it's definitely a no-no in DM.
+
+chg: VQ3 self-damage is always 50%
+
+chg: "unregistered gamesound" is no longer fatal
+	(only happens if you have s_initsound 0 anyway, so...)
+
+chg: chat tokens are disabled for non-playing clients
+
+chg: readying a team requires captain privileges
+
+chg: locking/unlocking a team requires captain privileges
+
+chg: cleaned up the whole "ref cmd x" vs "cmd x" mess
+	"ref blah" is now ONLY used to become a ref
+	and once you are, you just use the commands normally
+
+chg: fall velocity needed to cause damage increased slightly
+	(to match the numbers caused by the pmove bugs of lesser mods :P)
+
+chg: cg_altPlasma always 0 for id's and 1 for cpm's (was too confusing)
+
+chg: VQ3 uses id's "predictable furthest" spawn system
+
+fix: muzzlepoint calculations (id bug)
+	this is why you can't shoot people standing on your head
+
+fix: no playercount checks if a ref uses callvote to elect other refs
+
+fix: an undocumented hack in Q3 blocks ALL connections if g_gametype is 2
+	so it's no longer allowed for "showas"
+
+fix: the lights on top of the RG are the right color (id bug)
+	this may well be the most pointless bugfix ever  :P
+
+fix: connecting clients were being counted towards vote %ages
+
+fix: id bots kept "choosing" gauntlet instead of RG in instagib
+
+fix: id botlib randomly segfaulting with smart bots
+
+fix: PMC ammo counts match CPMA 1.11
+
+fix: hitting [BACK] on a demo list with 200+ demos could segfault
+
+fix: say_teamnl as a spec used regular say rather than say_team
+
+fix: repaired the altPlasma graphics (they'd become JPGs and thus sucked)
+
+fix: armor pickup sound clipping (id bug, thanks skanq for the new wav)
+
+
+Notes for version 1.31 (22 May 04)
+
+This release also contains the files for ALL versions since 1.00.
+This is a new (and ongoing) policy because the number of update paks
+will soon reach irritating levels. Admins can (and should) delete all
+old z-cpma-pakXXX.pk3 files from their servers except for z-cpma-pak100,
+keeping only that and the most recent version (i.e. pak131 right now).
+
+add: support for NTF in the startserver menu
+
+add: support per-class flagweights in NTF
+
+add: support per-class ammo counts (spawn/max/droppack/itempack) in NTF
+
+add: actually support lasery :P on the client (id bug)
+
+add: cg_optimiseBW mask 2 - see docs/client.txt
+
+add: cg_lagHax (-1|0|value, default -1) - see docs/client.txt
+
+add: \control - team stats for PUs, armour, weapons (TDM only)
+
+add: automatically disable client prediction on GTV
+
+add: cg_altPlasma
+
+chg: Fighter speed raised to 270, various other NTF tweaks
+
+chg: lava damage is 10 every 250ms, slime is 4
+	(it's also trivially different depending on sv_fps)
+
+chg: cg_nudge now allows up to -200
+
+chg: cg_nudge now "extra" TN
+	ffs don't use it unless you're GENUINELY HPB
+
+chg: removed callvote promode - use callvote gameplay instead
+
+chg: CPMA bots more tolerant of newb games (CA, IG, etc)
+
+chg+fix: don't check for a map existing before allowing a vote for it
+	it was handy, but it also broke mapcfg votes  :/
+
+fix: can disable the netgraph again
+
+fix: lava damage was just insanely broken (id bug)
+
+
+Notes for version 1.30 (12 May 04)
+
+add: NTF teamplay mode - see docs/NTF.txt for details
+
+add: #E for number of visible enemies
+	also shows "EFC", "Enemy QUAD", etc automatically  :)
+
+add: #N for nearest teammate's nick
+
+add: backpacks to #I #P #L (just item packs, not dropped ones)
+	shows as RA/YA/GA deliberately: it's slightly more info
+
+add: flags to #I #P #L
+
+add: ch_powerups <x y layout size>
+
+add: cf_Statusbar (default 32x48) for ch_statusbarStyle 0
+
+add: disable "connection interrupted" message on gtv
+
+add: enable tab-completion for some gtv commands
+
+add: maplist entries with minplayers -1 are "banned"
+	can't be voted in even with map_restrict 0
+
+add: autoload maps into the maplist if map_restrict is 0
+
+chg: map_restrict defaults to 0
+
+chg: PG self-damage is only 50%
+
+chg: RL knockback lowered by 10% in CPM
+
+chg: #U no longer sucks
+
+chg: cstats no longer shows downstream (S->C) if player is following someone
+	(evil id netcode behaviour makes them unreliable there)
+
+chg: g_smoothClients has been removed (again  :P)
+
+chg: cg_smoothClients renamed to cg_xerpClients (-1|0|1, default 0)
+	this should solve the "config pollution" stupidities but still let
+	people who know what they're doing use it if they really want to
+	all the old notes/warnings/issues/etc still apply
+	so if you don't like it, don't whine about it: just don't USE it ffs
+
+chg: cg_nudge replaces cl_timenudge
+	timenudge definitely DOES do weird things internally to Q3
+	I don't know WHAT, but the difference is clear and unmistakeable
+	timenudge is now forced to 0, and nudging is handled internally
+	by the new cg_nudge variable.
+	the timenudge min/max votes have been removed.
+
+chg: CQ3 respawn window now 1-4s
+
+chg: mapcfgs with the same name as the base map are loaded automatically
+	(i've avoided doing this in the past as it has a fairly high
+	abuse potential, but people keep asking for it so...)
+
+chg: weapon ammo in PM0 and FFA uses the nonsensical id scheme
+	(note: this also lets bad mappers use custom ammo counts there)
+
+
+Notes for version 1.22 (8 Feb 04)
+
+add: bots use \nick
+
+add: rat bot (finally :P)
+
+add: callvote armordecay, vote_allow_armordecay (CA/DA/CTFS)
+	(it's always been in there, but was disabled years ago
+	because clueless CA admins would turn it off
+	which makes CA even more of a campfest than usual)
+
+add: callvote gameplay alias for callvote promode
+
+add: ch_customLoc (default 1)
+	use custom locations for a map if possible
+	loc files are locs/map.cfg, and must have a "v2" header
+	different to OSP: can only replace existing locations
+
+add: /ff for demos ('>' does /ff 30 - handy for skipping pauses)
+
+add: g_smoothclients (0|1, default 0)
+	very annoying to have to do this...
+	cg_smoothclients 1 (especially with timenudge) is the
+	main cause of misleading enemy positions (and the whole
+	"shooting behind people to hit them" whine).
+	although we disable it on the client by default, pollution
+	from baseq3 often enables it again without players noticing.
+	ideally players would fix their configs, but apparently
+	that's too much to hope for so the only option left is to
+	force it off from the server side like OSP does.  :(
+
+chg: RL self-damage is back down to 50%
+	now always split *at least* half H rather than half H half A
+	but still regardless of armour type
+	i.e. a 100/0 player takes 50H total damage
+	a 100/200 player takes 25H *and* 25A total damage
+
+chg: RL self-damage even split is only for CPM and CQ3
+
+chg: drag isn't applied during knockback
+	means you get a few ms of "unlimited boost" on rocket runs
+	to help close the gap better when chasing, then drag kicks in
+	as normal to avoid "rj+permabunny" FC stupidity
+
+chg: FFA doesn't use backpacks
+	they penalise newbs for picking up weapons in the wrong order
+
+chg: maxpacketsmin upper limit raised to 60
+
+chg: maxpacketsmax lower limit raised to 60
+
+chg: maxpacketsmin/maxpacketsmax not changed by modes
+
+chg: server_promode renamed to server_gameplay (default "CPM")
+
+chg: vote_allow_promode renamed to vote_allow_gameplay
+	(default "", behaves like server_availmodes)
+
+chg: removed Q1+Q2 armour systems
+
+chg: shards are 2 in CPM1.0 armour system
+
+chg: PG pickup has 40 ammo
+
+chg: default MH behaviour for CTF is simplemega 0
+
+fix: FC time included pauses
+
+
+Notes for version 1.20 (4 Jan 04)
+
+This release also contains the 1.11 files. Admins can (and should)
+delete the z-cpma-pak111.pk3 and any beta pk3's from their servers,
+leaving only pak100, pak110, and pak120 in the cpma/ dir.
+
+add: PUBCTF mode config (teamdamage A-only, flag dropping on)
+
+add: "locked" command to mapcfg parser
+
+add: cg_nomip bit for in-flight rockets (512) - needs vid_restart
+
+chg: cg_nomip defaults to 1023 (everything)
+
+chg: HS triggered by time until capping rather than fixed distance
+
+chg: specs can talk during warmup even if muting is on
+
+
+Notes for version 1.16 (16 Dec 03)   BETA
+
+add: HoonyMode 1v1 - see docs/HoonyMode.txt for details
+
+add: all sorts of bot stuff (some of it is in 1.11 as well)
+	see docs/bots.txt for details
+
+add: new HUD cvars: ch_flags, ch_shortNames, etc - see docs/HUD.txt
+
+add: \nick - set a short name to use for team chat/overlay
+	limited to 5 visible characters, but allows colours
+
+add: docs/demoplay.txt
+
+add: callvote windelay (ms, CA:4000, DA:2000, HM: 500)
+	vote_allow_windelay (0|1, default 1)
+
+add: \protect - for when you accidentally hit ESC during a demo  :)
+
+add: s_announcer
+
+chg: own muzzleflash always disabled if cg_drawgun is 0
+
+chg: cg_smoothClients defaults to 0
+
+chg: rocket explosion animation lasts 0.5s (was 1s)
+
+chg: a bunch of the HUD cvars - see docs/HUD.txt
+
+chg: HUD health turns red at 33, not 30
+
+chg: moved scoreboard on top of MVWs
+
+chg: removed bot_boost
+
+chg: lifts/doors/etc always crush corpses immediately
+
+chg: removed match_windelayCA and match_windelayDA cvars
+
+chg: thirdpersonrange limit in demos raised to 999
+
+chg: rules for ending intermission
+	if everyone rups (clicks) it ends immediately
+	if nobody rups it stays there forever
+	otherwise it stays for the usual 10s
+
+chg: cg_gunOffset [x,y,z] replaces cg_gunX/Y/Z
+	stupidities in Q3 mean the old vars can't work with GTV
+	note that you MUST use commas (spaces screw up binds)
+
+chg: removed LG "cripple" effect
+
+chg: handicaps only affect damage
+
+chg: weapon/box/max/backpack ammo counts (especially LG)
+
+chg: no consecutive spawns on the same point in TDM
+	note that this *doesn't* mean you can't spawn next
+	to where you just died, just that you won't do it
+	three times in a row
+
+chg: CQ3 and PM1 use PM2 spawn system for DM
+
+chg: CQ3 uses PM2 weapon settings
+
+chg: PM LG knockback increased slightly
+
+chg: PM2 SG reload lowered to 950ms
+
+chg: PM2 RL bias lowered to 10
+
+chg: PM2 PG damage lowered to 18
+
+chg: PM2 PG "fattened" (shots have actual volume)
+
+chg: PM2 PG knockback lowered to 2/3
+
+chg: PM2 RL splash radius lowered to 110 (8% smaller)
+
+chg: PM2 BFG splash radius raised to 120
+
+chg: PM2 out-of-ammo penalty raised to 200ms
+
+chg: PM2 CTF flags are "heavy"
+
+chg: PM2 bunnying at high speeds (700+) actually requires skill
+	or the haste powerup, which is now VERY valuable to FC's
+
+chg: haste gives a 25% boost to base speed and dragpoint
+
+chg: haste does not affect weapon reload times
+
+chg: haste negates flag weight
+
+chg: RL self-damage now 66% (sort of) rather than 50%
+	always split half H and half A
+	regardless of armour type or even armour presence
+	i.e. a 100/0 player takes 33H total damage
+	a 100/200 player takes 33H *and* 33A total damage
+
+chg: remove viewpos, com_buildScript, cg_drawsnapshot, cg_stats
+	(debug cruft that's just been hanging around)
+
+chg: lock cl_anglespeedkey, cl_pitchspeed, cl_yawspeed
+
+chg: teamed PUs default to sequenced, not random
+
+fix: unspawned teamed PUs play pickup sound with cg_predictItems 1
+
+fix: unspawned teamed PUs confuse bots
+
+fix: railtrail positions and RG flashes (4! id bugs)
+
+fix: drawgun 0 only affects the gun itself (id bug)
+	used to have side effects on LG beam etc
+
+
+Notes for version 1.11 (26 May 03)   Server-only release
+
+add: nameteam/r_namered/r_nameblue commands
+	\mvd and \autorecord will use these to name TDM/CTF demos
+	cleared on map changes or when a team has no players
+	only refs and "real" captains can use this
+	(to avoid stupidities when allcaptain is set)
+
+add: log players stats so far if they drop mid-game
+
+add: force-throttle scoreboard updates to GTV
+	30s in TDM/CTF now - the scoreboard is such a bandwidth pig
+	that it really hurts live MV if everyone keeps hitting TAB
+
+chg: tweaked some bot stuff
+	skill is 1-100 now: 1-5 is id AI, 6+ is CPMA AI
+	it's basically an aim modifier, i.e. 80 ~= HC aim
+
+chg: no "player joined the game/spectators" message in non-team games
+
+fix: q3dm6ffa and cpm16b mapcfgs
+
+
+Notes for version 1.1 (20 Mar 03)
+
+Old CTF demos may produce some weird/incorrect messages and sounds,
+since I changed the behaviour of several things so I could recover
+some of the bandwidth wasted by the "normal" CTF implementation.
+
+add: arQmode :P (server_promode 2, callvote promode 2)
+	see docs/arQmode.txt for details
+
+add: server_optimiseBW (0|1, default 1)
+	force the optimiseBW algorithm on for all clients
+
+add: mvw_DM enabled outside of demos (great for GTV :P)
+
+add: teamchat bandwidth optimisations
+
+add: boatloads of CTF-specific bandwidth optimisations
+
+add: Flag runs to \scores for CTF
+
+add: cg_oldctfsounds 2 (default)
+	uses mostly the old sounds for YOUR team's actions
+		take enemy flag: four deep "urnks"  :P
+		return our flag: single "knock"
+		cap enemy flag: single fanfare from TA
+	and TA sounds (but not the gay voices) for the enemy's
+		take your flag: bigass alarm
+		return their flag: three "knocks"
+		cap your flag: lower-pitched "duh-duhh" noise  :P
+	so you can actually tell WHICH flag is involved now, without
+	needing to check the hud. note that the sounds are "US" and "THEM"
+	so they're always the same for YOU no matter which team you're on
+
+add: flag status to CTF coachview
+
+add: dlight for Batsuit
+
+add: r_vertexlight 2 (enables dlights)
+
+add: negative wait values on lifts makes them always return
+	positive waits means people can camp-force a lift to stay at top
+
+add: automatically uncensor stats to GTV clients
+	so GTV doesn't have to be ref'd to show armour pickups etc in DM
+
+add: show connecting clients as well on the DM scoreboard spec list
+
+add: cg_itemFX (bitmask, default 7)
+	1 - bob up and down
+	2 - rotate
+	asymmetric items (weapons and armours) will always rotate
+	4 - scale up on respawn
+
+add: BFG stats to \accuracy (15 shots to qualify, same as RL)
+
+add: optimiseBW also disables scoreplums
+
+add: clamp sv_fps to values that the Q3 netcode actually supports
+
+add: match client snaps to sv_fps on map load
+	modemers MIGHT want to lower it to 15 on 30fps servers
+	but otherwise are probably best off leaving it alone
+
+add: cg_autoaction 16 - ignore autoaction ss/demo if you're a spec
+
+add: more entities supported by mapcfgs
+	must specify version 2 in the mapcfg to use them
+	at start of file along with base bsp, e.g. // "cpm10" "2"
+	misc_teleporter_dest, target_speaker
+	team_CTF_redplayer, team_CTF_redspawn
+	team_CTF_blueplayer, team_CTF_bluespawn
+
+add: mapcfgs for CPM1a and CPM3 to fix the teleporters (*cough* jude :P)
+	these are loaded automatically
+
+add: a bunch of new mapcfgs
+	!cpm10a (DM), !cpm18i (TDM), !cpm18ffa, !cpm16ffa
+	!q3dm14ffa, !q3dm8ffa, !q3dm6ffa, !q3dm9ffa, !q3dm5ffa
+
+add: r_coachred/r_coachblue commands - handy if a coach drops midgame
+
+add: log_pergame (0|1, default 0)
+	server logs written to a logs/ dir on a per-game basis
+	implicitly disables the normal g_log logfile
+	does not play nice with MA maps
+
+add: mvw_TDM<1-9> - controls TDM/CTF MV layout when zoomed
+	format is the same as mvw_DM, default is no child windows
+
+add: ch_scores (default "640 400 1")
+
+chg: removed all pmove stuff and just fixed the damn physics
+	fed up with preserving retarded bugs just for "compatibility"
+	physics are now not only more consistent across FPS ranges
+	but also more consistent within themselves AT any fixed FPS
+	interestingly enough, this is also the first time in Q3 history
+	that jumppads have EVER worked correctly and reliably...  :P
+
+chg: removed cg_oversamplemouse - no longer an issue
+
+chg: removed server_realping - always the behaviour of the old "3"
+	now done for all classes of specs as well as players
+
+chg: various cstats things - uses a new scheme
+	window for min/max/avg now ~1.25 seconds instead of ~6
+	now tracks upstream and downstream stats separately
+	if you're seeing large differences between them then
+	either your settings are hosed or you're flooding one side
+	(typically, maxpackets 125 on conns that can't handle it)
+
+chg: #P only tracks "important" items now: weapons, PUs, armours, MH
+	(the same set used by #I/#L)
+
+chg: default MH behaviour for TDM is simplemega 0
+
+chg: tweak the behaviour of LG sounds in coachview
+	should stop them "bleeding over" and crackling
+
+chg: tolerate invalidly interpolate-tagged entities in coachview
+
+chg: successful kick vote sends console message rather than centerprint
+	stops it distracting players if used during a game
+
+chg: show scores immediately on GTV even if we have to use old ones
+	tired of morons whining about how slow GTV is to send them  :P
+
+chg: plasma explosions resized to match the shots properly
+
+chg: max PG ammo now 100
+
+chg: make bots jump when in slime/lava
+	minimises damage and means they actually get OUT of it on cpm3  :)
+
+chg: removed dlights from just about everything, most notably CTF flags
+	they're so buggy and annoying that it's not worth keeping them
+	and built-in EFC wallhacks are not exactly a great idea...
+
+chg: removed cg_swapSkins
+	it's been pointless really ever since we created the PM skins
+
+chg: lava thaws use the normal thaw time value rather than 5s
+	and can be interrupted like normal thaws too
+
+chg: bots are smarter about thaws when there are multiple candidates
+
+chg: make corpsicles a little bit bouncy - more fun that way  :P
+
+chg: ESC in a demo menu tree pops you up one level
+	rather than straight back to the main menu - that annoys me
+	"back" still jumps all the way out just in case you like it
+
+chg: max number of demos on menu reduced to 200
+
+chg: addbot defaults bot skill to g_spSkill (used to just use 4)
+
+chg: addbot on MA maps on a listen server defaults to your arena
+
+chg: enable MVD in CQ3 (no idea if it works now, but ...)
+
+chg: coachview support for up to 9 players
+
+chg: moved the cfg-ra3/ files into cfg-maps/
+
+chg: bot skill now 1-15 (default 10)
+	they still suck pretty hard tho...
+	see docs/bots.txt for details
+
+chg: max bot LG skill reduced a little
+	60%+ is just retarded in CPM because of the knockback
+
+chg: bot_boost upper limit now 2.0
+
+chg: speconly can now take a 0|1 argument
+
+chg: speclock/specunlock are explicit
+	the toggling was stupid and annoying
+
+chg: enable the "teammate" sprite for players with Invis
+
+chg: voodoostats support dropped
+	sorry, but the osp stats format just sucks too much
+	stats are now logged in an almost-sensible format
+	but one enough like VS to make updating parsers trivial
+
+chg: skinned scores use body colour only
+
+chg: teams are automatically unlocked at end of game
+
+fix: duplicated spectators on the DM scoreboard
+
+fix: interval-based messages lost on servers with certain sv_fps values
+	(pause/unpause countdowns, rup reminder, etc - i blame rhea  :P)
+
+fix: mouse movement during pauses messing up view direction on resume
+
+fix: bonus for protecting dropped flags (id bug)
+
+fix: losing ready markers on the scoreboard if you die during warmup
+
+fix: #L misbehaving if a map with shared entities changed modes
+	rather than being started in the "right" mode
+
+fix: #D not working for client 0
+
+fix: direction to look at from intermission points
+
+fix: issues with referees who were in-game DA players
+
+fix: maplists "missing" maps on *nix servers sometimes
+
+fix: Crash PM torso
+
+fix: wait key ignored for lifts (id bug)
+
+fix: distant/low-skill bots had totally borked prediction (id bug)
+
+fix: spastic bot RJs (id bug)
+
+fix: crushers blocked on com_blood 0 servers (id bug)
+
+fix: ui used r_finish instead of r_swapinterval for vsync (id bug)
+
+
+*** Important Note ***
+Server admins upgrading to 1.0 from older versions should,
+BEFORE installing, make sure they delete the following:
+  ALL existing PK3's in cpma/ 
+  The cpma/vm/ and cpma/maps/ subdirectories
+  Any files in cpma/docs/
+
+
+Notes for version *** 1.0 *** (25 Dec 02)
+
+add: cg_optimiseBW (0|1, default 0)  YEAH BABY!  :)
+	enable the old server_optimiseBW code, but on a per-client basis
+	means portals are iffy at times, but everything else is perfect
+	and the bandwidth savings can be HUGE in team games
+
+add: "rescan" button to server browser
+	reSCAN = update ping, map, etc of already-listed servers (fast)
+	reFRESH = purge list and request everything from id master (slow)
+
+add: automatically do full refresh for LAN page of browser if no list
+
+add: \viewall as an alias for \mv
+
+add: team damage, RL eff, RL direct hits to \stats
+
+add: dlight for BFG shots
+
+add: ch_wstatsTime (in seconds, default 10)
+	how long the auto-wstats window stays up
+
+add: several mapcfgs for standard maps
+	!CPM2 - added location markers
+	!CPM2B - YA moved, 2nd YA added, spawns tweaked
+	!CPM4 - updated locations
+	!CPM13A - additional PG and SG
+
+add: cg_noTaunt (0|1, default 1)
+	disable all taunts, not just voicechat ones
+
+add: shortcuts for teamplay MVD POV changes
+	B - Blue Flag, i.e. *red* FC
+	R - Red Flag, i.e. *blue* FC
+	F - either FC
+	I - Invis player
+	Q - Quad player
+	S - Batsuit player
+	P - any player with a real PU (i.e. not Regen/Flight/Speed)
+	for F and P, if there's more than one PU/flag in play
+	each keypress will cycle to the next one
+	note that this is demo-only functionality
+
+add: bot_boost (1.0-1.5, default 1.0)
+	just a little cheat to make them a bit more fun to play  :P
+	note that they're still incredibly stupid
+
+add: sort the map display for the practice menu
+
+add: legomode to the graphics options page
+
+chg: removed the BETA message from the default MOTD  :)
+
+chg: tightened the netcode one last time
+
+chg: enabled coachview for all team games (was just TDM)
+	it's not really suitable for more than 4v4 games tho
+
+chg: unreferee removes specinvites as well
+
+chg: MVD auto-adds (player joins etc) happen instantly
+
+chg: show clients in \players as soon as they connect
+	(so they can be kicked immediately if intruding but DLing)
+
+chg: allow console to use \players on MA maps
+
+chg: remove \viewadd and \viewremove
+
+chg: remove g_speed and g_knockback
+
+chg: vote_allow_falling renamed to vote_allow_fallingdamage
+
+chg: ch_weaponListDrawAll behaviour now actually useful
+	shows cases where you have finite ammo but no weapon,
+	but not cases where you have neither. handy for TDM
+
+chg: ch_weaponList 2 right-justifies weapons and ammo better
+
+chg: removed cg_statscrolltime
+
+chg: no auto-wstats at end of DM games - the scoreboard owns it
+
+chg: powerup autofollow prefers flags over PUs
+
+chg: server_optimiseBW removed rather than just ignored
+
+chg: demo trees can now use up to 256 chars for path+demo
+	democasts still have to be <64 though
+
+chg: no warning message if a democast wav is missing
+
+chg: updated most of the docs, and renamed them
+
+chg: updated the "standard" video configs to something decent
+
+chg: updated the "standard" net configs to something decent
+
+chg: updated the net config screen itself to something useful
+
+chg: increased the number of maps that the practice menu can handle
+
+fix: carried flags flickering into view at times, especially with TN
+
+fix: between-round joins in CA caused "countdown stopped" message
+	and also stopped recording if you had autoaction 4 etc
+	game still continued because only first round of CA needs rups
+
+fix: inaccurate pings on heavy-pl clients
+
+fix: match stats not dumped properly on MA maps
+
+fix: ch_weaponList 1 and 2 didn't show medkit/PT
+
+fix: ch_weaponListFlash was unreliable
+
+fix: backpack model if you die holding the onhand hook is "best ammo"
+	(same as for gauntlet and mg)
+
+fix: direct hits with BFG have no explosion (id bug)
+
+
+Notes for version 99z3 (15 Dec 02)
+
+add: allow MA maps to specify what type they show up as in browsers
+	update cfg-ra3/* accordingly
+
+chg: cg_smoothclients now just (negative | off | positive)
+	mapped to -50, 0, 50 internally
+	default is 1, i.e. positive, i.e. 50 internally
+	too many people just didn't understand it and set it wrong
+	or used vq3 configs that had it at 1
+	which was the worst possible value for y3-z2 builds
+
+fix: arrows on server browser
+
+fix: issues with extreme TN values (-75 to -100)
+
+fix: z2 recalc'd readiness if people join DURING games as well
+	which caused them to abort
+
+pkg: server VM moved into PK3
+
+pkg: standard mapcfgs (CPM13B, Abuse TMP, etc) moved into PK3
+
+
+Notes for version 0.99z2 (12 Dec 02)
+
+add: "+nologo" on command line skips id metalstamp cin at startup
+	(always has, but now without giving an error)
+
+add: "+browser" on command line starts Q3 at the server browser
+
+add: cg_altLightning 2 - 4nTi/voo LG
+
+add: 4nTi's updated BFG media
+
+add: oNyx's updated grapple media
+
+add: offhand crutch can be used to open doors etc
+
+add: re-check ready percentage if players join during countdown
+
+add: browser does a full refresh automatically if it has no servers
+	handy for first-time users
+
+chg: maximum TN upped to -100
+	note that it will artifact like crazy at that point
+	especially with +ve SC
+
+fix: jerkiness with +ve SC on laggy conns
+
+fix: release grapple at intermission, end of CA rounds, etc
+
+
+Notes for version 0.99z1 (8 Dec 02)
+
+add: enable TN (up to -50)
+	(removed by id secretly over a year ago - gg placebos)
+
+chg: CTF \kill penalty lowered to 2.5 sec
+
+fix: final smoothclients tweaks (default 50)
+	the effective range is limited to +-50
+	0 disables
+	negative values sacrifice accuracy for smoothness (99x9)
+	positive values sacrifice smoothness for accuracy (99x8)
+	either one will be jerky sometimes with heavy timenudges
+
+fix: reassign captaincy if captain drops
+
+fix: jerkiness in demos with certain configs
+
+fix: no commentary in democasts that weren't in subdirectories
+
+fix: rank preservation during match_windelayDA period
+	(meant that losers who specfollowed winners weren't removed)
+
+fix: double loss in DA if you specfollow winner
+
+fix: "const violation in G_ParseInfos" on certain maps
+
+
+Notes for version 0.99y3 (2 Dec 02)
+
+add: scorebot helpers for the dominant arena on MA maps
+
+add: caps, assists, defense, returns to CTF/CTFS wstats
+
+add: \mv - enable multiview but don't record (handy for GTV)
+
+add: cg_autoaction 8: enable multiview at match start
+	note that this ONLY enables multiview
+	use cg_autoaction 4 as well if you want to auto-record
+
+add: support democasts natively
+	WAV filename must match DM_xx filename, and start from FIGHT
+
+chg: rewrote the server browser: now MUCH faster, and very usable
+	note: Q3 tends to ping too many servers at the same time
+	so the pings it reports are a bit iffy on lame conns like mine  :/
+	click Refresh to rescan+reping the servers in the list
+	double-click a server for info and playerlist
+	press R to do a "full" refresh (to pick up new servers)
+
+chg: serverinfo screen vars in alphabetical order
+
+chg: more cg_smoothclients tweakage (default 50)
+	negative values use the smoother, less accurate scheme of 99x9
+	(preferred by tn lamers and modemers)
+	positive values use a more accurate but usually jerkier scheme
+	(same concept as pre-99x9, but slightly improved)
+	in both cases, the magnitude determines the max prediction in ms
+
+chg: removed cg_footsteps
+
+chg: show seconds to DM specs
+
+chg: can't hook movers (doors, plats, etc)
+	they still hit though, i.e. will dink and open doors, etc
+
+chg: onhand hook damage now multiplied by quad
+
+chg: update DM/DA W/L/etc immediately at match/round end
+
+chg: rounds column on DA scoreboard replaced with win%
+
+chg: record/screenshot passthrough from GTV ignored
+
+chg: speconly persists across map changes
+
+fix: workaround for LinuxQ3 wildcard bugs (demos menu)
+
+fix: truelightning < 1 with drawgun 0
+
+fix: MA maps with map_rotate 0 didn't reset intermission properly
+
+fix: tightened up force/enemy model/skin/colour for GTV/MVD/follow
+
+fix: flag time column for CTFS wstats had wrong header
+
+fix: bad stats in multi-round DA games
+
+fix: "xxYY" in server_availmodes doesn't also enable "YY" mode
+
+fix: playing unpathed demos from inside pk3's
+
+
+Notes for version 0.99y2 (15 Nov 02)
+
+chg: server_optimiseBW ignored
+	the bugs in the engine wrt to portals are insurmountable  :/
+	in the longer term I'll probably re-enable it selectively
+	based on whether a map has portals or not
+
+chg: bandwidth optimisation still applies to some extent on MA maps
+	can at least optimise away different arenas without problems
+
+chg: don't apply server controls for tn etc if on GTV
+
+chg: show seconds in duels if on GTV
+
+fix: 99y1 broke truelightning < 1
+
+fix: UI startserver screen showed wrong gametype string
+
+fix: FRAGGED/FROZEN messages for CA/FT after death
+
+fix: freefloat specs had problems with bandwidth optimisation on
+	not that it matters any more for now
+
+
+Notes for version 0.99y1 (14 Nov 02)
+
+chg: CTFS mode uses teamdamage 0
+
+chg: server_promode tagged as serverinfo for ASE etc
+
+chg: removed server_footsteps, server_prosound
+
+chg: removed callvote exec, vote_allow_exec
+
+chg: removed the crufty UI cvars when starting a server
+	ui_ffa_fraglimit, ui_ffa_timelimit
+	ui_tourney_fraglimit, ui_tourney_timelimit
+	ui_team_fraglimit, ui_team_timelimit, ui_team_friendly
+	ui_ctf_capturelimit, ui_ctf_timelimit, ui_ctf_friendly
+
+chg: UI startserver sets mode_start
+
+chg: UI startserver defaults teams to 4v4
+	and puts DIFFERENT bots on each team, ffs id...  :)
+
+chg: UI startserver sets pure based on "dedicated"
+	(and since dedicated is always 0, pure will be too)
+	id are never going to fix the bugs of listen servers
+
+chg: client also disables sv_pure if running a listen server
+
+chg: custom modes are case-insensitive matched (*nix needs it)
+
+fix: your muzzle flashes disabled regardless of cg_muzzleflash
+
+
+Notes for version 0.99y (10 Nov 02)
+Getting very close to the end of the alphabet...  :)
+Basically tying up any remaining loose ends.
+This version changes/removes a LOT of server cvars:
+rename cpma/q3config.cfg and let CPMA generate a new one for you
+then add back in ONLY the cvars that exist in both
+or that you're absolutely sure still do something useful
+
+add: docs/cpma-q3-Modes.txt - how to use custom modes
+	*** admins who allow RA3 maps should definitely read this ***
+
+add: the maplist for MA maps is now "mamaps.txt" rather than "camaps.txt"
+
+add: cfg-ra3 subdirectory
+	thanks to whoever gave me the configs (John?) ages ago...
+	just add "+set map_cfgdir cfg-ra3" to the command line
+
+add: fixed the ra3map8 items to be "CPMA-complete" for yuks  :)
+	used by the "Gutteral" arena - I defaulted it to 5-round FT
+	need to use !ra3map8 to load the fixed version
+
+add: map_restrict (0|1, default 1)
+	whether maps other than those in the maplist can be voted for
+
+add: set pb_sv_specname for GTV
+
+chg: TDM mode updated to TTDM settings, TTDM removed
+
+chg: mode_start now a string (default: "1v1") not an int
+
+chg: server_availmodes now a string (default: "" (all))
+	e.g. "1v1 TDM CTF"
+
+chg: CPMA armoursystem now standard for all modes
+
+chg: 90s PU respawns now standard for all modes except FFA
+
+chg: Personal Teleporter disabled in all modes
+
+chg: CTF mode disables Batsuit as well as Invis
+
+chg: removed most gameplay-related server cvars
+	fraglimit
+	timelimit
+	hook_enable
+	instagib_reload
+	match_dropitems
+	match_overtime
+	match_startarmor
+	match_startrespawn
+	match_startweapon
+	match_timeoutcount
+	match_timeoutlength
+	server_armordamageself
+	server_armordamageteam
+	server_fallingdamage
+	server_fastrail
+	server_footsteps
+	server_instagib
+	server_prosound
+	server_thrufloors
+	g_powerupRespawnCTF
+	g_powerupRespawnFFA
+	g_powerupRespawnTDM
+	g_weaponRespawn
+	g_weaponRespawnCTF
+	g_weaponRespawnTDM
+
+chg: the "custom" config parser has been completely removed
+	(previously used by "callvote exec" and per-map cfgs)
+	settings are now just passed to the vote code.
+	some commands are therefore changed or no longer supported
+	"ammo" - format changed
+	"weapons" - use "items -XX"
+	"maxplayers" - no replacement/workaround
+	multi-arena maps can now use "mode XX" rather than "type N"
+	and almost certainly should  :)
+
+chg: g_gametype ignored (remains only for ASE/Q3P/etc)
+
+chg: remove a bunch of unused cvars
+	dmflags, g_warmup, g_listEntity, g_rankings, g_singlePlayer
+	g_podiumDist, g_podiumDrop, g_enableBreath, g_enableDust
+
+chg: removed "HEALTH, ARMOR, RUNES, ITEMS" from +-vote display
+	they still work fine, but they were visually awkward
+
+chg: removed "ALL" from +-vote
+
+chg: giving players MG on spawn can now be disabled
+
+chg: startweapon is a bitmask (0|4-511, default 4:MG)
+	starting ammo for each weapon is one "box"
+	except MG which is 50 bullets
+
+chg: CA mode ammo now 50 PG (was 100) and 50 RL (was 80)
+
+chg: FTEU mode renamed to FTAG
+
+chg: modes IFFA, ITDM, ICTF, ALTCA, FTUS, BFGA are now customs
+
+fix: your gauntlet buzz played from the wrong place
+
+
+Notes for version 0.99x9b (4 Nov 02)
+
+add: callvote simplemega (default 0 in DM, 1 in other modes)
+	vote_allow_mhstyle (0|1, default 1)
+	wearoff vs periodic respawns
+
+add: cg_muzzleflash works in MVDs
+
+fix: use predicted rather than current weapon for hand positions
+	(gets rid of artifacts on certain weapon changes)
+
+fix: cg_useScreenShotJPEG was backwards
+
+
+Notes for version 0.99x9a (30 Oct 02)
+(incredibly, the first double-minor version number)
+
+add: TDM MVDs show PU time remaining
+
+add: TDM MVDs show exact armor type
+
+add: mvw_DM (default "464 48 160 120")
+	x, y, width, height of PiP window for DM games
+
+add: MVD/coach shows PJ icon if player's ping goes over 200
+
+add: ch_shortScoreboard (0|1, default 0)
+	minimal scoreboard in DM (i.e. no stats)
+
+add: cg_useScreenShotJPEG (0|1, default 1) for cg_autoaction 2
+
+chg: coach mode totally overhauled
+
+chg: MVD majorly overhauled
+
+chg: preserve "true" referees across map changes
+
+chg: max 3rd-person range is now 40 in all games, not just CA
+
+chg: torso/legs/weapon are truly invisible for cloaked players
+
+chg: Invis respawns match Batsuit, not Quad
+
+chg: no sprites (carnage, pummel, etc) for players with Invis
+	note that this includes the "lagout" sprite
+	and crucially, the "teammate" sprite
+
+chg: the stupidity of the stolen "cpm1a" is no longer tolerated
+
+chg: new defaults for CA mode
+	self and team armour damage, maxdamage 25
+
+chg: ch_mvdPIP removed
+
+fix: various annoying problems with 1.32 (messed up coach/MVD)
+
+fix: player respawns/teles weren't using ProMode sound
+
+fix: crash when using /ref to make another player a ref
+	(doesn't actually DO anything tho - use vote)
+
+fix: problems with 3rd-person views in MVD
+
+
+Notes for version 0.99x9 (4 Oct 02)
+(otherwise known as the "we love TTimo" build)
+
+add: server_optimiseBW (0|1, default 1)
+	Q3 1.32 and later only
+	optimises bandwidth use, especially in team games
+	uses a tiny bit of extra CPU on the server
+	but CPU is cheap and bandwidth is not
+
+add: s_occfactor is back! and better than ever  :)))
+	it's ignored for coaches/MVD (don't ask...)
+
+add: support dm_66 to dm_68 under Q3 1.32
+
+add: support trees of demos  :P
+	there are several engine-based limitations on this
+	the most important one being a maximum TOTAL path length of 64
+	still, it's a very handy way to organise demos
+	dK owes me lots of beers for this one  :P
+
+add: haste's version of cg_smoothclients (cheers mate)
+	note that it's no more accurate than the old code
+	but it's a LOT less ugly when using -ve tn
+
+add: show fragmessages in MVDs
+
+add: show ping in lagometer 4 in demos
+
+add: cf_PickupString (default 10x14)
+	apparently some players are deaf and need the text message...
+
+add: BFG Arena (mode 13, bitmask 8192)
+	CA with G/MG/BFG only, and infinite ammo. Stupid fun  :P
+
+add: callvote maxdamage (0-200, 0 means no limit, default 0)
+	(controlled by vote_allow_maxdamage, default 1)
+	for CA: sets the max damage you can do to self+team
+	very handy for BFG Arena, as it enables you to play with
+	self-damage on without raping your armour while still
+	avoiding RJ llamafests
+	for simplicity, if health dmg is off and armour dmg is on
+	then 100% of the damage is applied to armour, rather than
+	split between h/a first and then tested for damage flags
+	else you need to use 37 to get 25 off armour, which is ugly
+
+add: +wstats is back
+
+add: Tweaked TDM (mode 14, bitmask 16384)
+	90s Quad, 150 RA
+
+chg: removed server_ospauth (always on)
+
+chg: pain sounds for you always played when you fall in lava
+	used to not hear them if you had YA or RA
+	because you only lose 1H at a time, which Q3 ignores
+	(it thinks it's just health decay from 125H spawns / +5s / MH)
+	but everyone else would hear them correctly
+
+chg: keep "your" model when speccing in-eyes even in GTV
+
+chg: upper limit on maxpackets_max raised to 125
+
+chg: Batsuit respawn time now twice whatever PU respawn time is
+	rather than always 120
+
+chg: moved the connection line of the DM scoreboard to the top
+
+chg: CTF mode defaults to SD OT (used to allow ties)
+
+chg: OT clocks count down as well
+
+chg: \hudstyle no longer changes ch_TeamBackground
+
+chg: stats from previous game stay available until next game starts
+	(used to be denied them after intermission / map change)
+
+chg: don't draw your own shadow - it's annoying
+
+chg: removed old cg_smoothclients 1 behaviour
+	(it's always been crap - i should have pulled it ages ago)
+
+chg: removed g_smoothclients
+
+chg: propogate 999's out to the scoreboard faster
+
+fix: cg_predict 2 jerkiness on lifts
+
+fix: playernames with multiple consecutive dots broke autorecord
+	(Q3 incorrectly thinks they're relative paths)
+
+fix: powerup spawns not always being audible to coaches/MVD
+
+fix: cleaned up a few overlaps with teamchat/overlay/pickup/etc
+	in various hudstyles, notably 3 and 6
+	some are simply not workable for TDM though, e.g. style 5
+
+
+Notes for version 0.99x8 (9 Sep 02)
+
+add: CPM13B map config (PG -> LG)
+
+add: cg_predict (0-2)
+	replaces cg_nopredict
+	0 = off
+	1 = normal
+	2 = optimised
+	the normal prediction path is extremely slow at times
+	(notably around curves) and can cost you 100fps on a GHz machine
+	this new scheme is MUCH faster, but slightly more prone to errors.
+	oddly enough, it's still more accurate than the original
+	id prediction code (i.e. before the CPMA fixes)  :)
+	if you have a slow machine, it's definitely worth trying.
+	* currently very broken on lifts
+	* don't use cg_predictItems 1 with this
+
+add: new scoreboard for DM
+	needs a lot of work still, but is VERY cool for GTV  :)
+	(accuracy icon is for RL skill: effectiveness and direct hits)
+
+add: assorted GTV-awareness (prepping for live MVD)
+
+add: picture-in-picture for MVD  :P
+	(press P to cycle window positions during playback)
+
+add: UPS in MVDs
+
+add: support gametype-specific spawnpoints
+
+chg: allow mappers to specify respawn times for certain types of items
+	not weapons (can't play id "pro" maps with polish rules or in ffa)
+	not powerups (cpm13 becomes awful)
+
+chg: \acc "qualifying" shot count for PG upped from 45 to 50
+
+chg: PickedUp and DiedWith columns renamed to Take and Drop
+	was too much space for something so unimportant
+
+fix: explicitly dropping the current weapon didn't switch from it
+
+
+Notes for version 0.99x7 (15 Aug 02)
+
+chg: only do realpings for non-following players
+
+fix: maxpackets ranges not being reset by mode votes
+
+fix: weirdness on hubaero with x6
+
+
+Notes for version 0.99x6 (12 Aug 02)
+
+add: \cstats [player_id]
+	show connection stats for a client
+	"real" average ping, flux, loss, etc
+
+add: server_realping 2 and 3 (default 3)
+	use the "real" average ping for the scoreboard
+	less susceptible to maxpacket masking etc
+
+add: MVD shows armor types, but only "RA" or "not-RA"
+	i.e. YA and GA both show as YA
+
+add: MVD will reacquire the "chosen" player when possible
+	if it was forced to autocycle away from them
+
+add: match_startarmor (0-200, default 0, Freeze-only)
+
+add: match_startweapon (0|3-8, default 0, Freeze-only)
+
+add: hook_range (default 1800)
+	max distance the hook can reach (0 = no limit)
+
+add: basic OGC 1.6 protection
+	i really hate having to waste time on this crap  :/
+	it's not like i'm short of things to keep me busy...
+
+chg: MVD always uses default viewheight
+	used to adjust if players were crouching
+	but that could flake out under certain conditions
+
+chg: death sounds aren't carried "with" players
+	(it's annoying in ProMode because of the fast respawn)
+
+chg: optimise prediction a bit when hitting multiple brushes
+	it's still pretty bad though. when playing online,
+	the client has to do a LOT of tracing and clipping.
+	it especially hates you strafing along curved walls
+
+chg: CTFS per-round max score is 3 (cap or touch + elim)
+
+chg: hook_speedpull default now 700
+
+chg: tweaked bot weapon selection a bit
+
+chg: defaulted g_spSkill to 5 (nightmare) and bot_challenge to 1
+	bots are still an utter joke regardless
+
+fix: mode_idletime errors with empty maplists
+
+fix: the rebound bug
+
+fix: release the hook when teleported
+
+fix: assorted model problems if you joined a game after MVD'ing
+
+fix: yet another problem case with events
+	if we get backlogged too far on playerstate events,
+	we can never realistically catch up
+	so cut our losses and just skip ahead in the stream
+	(was the cause of gunfire echoes in MVDs)
+
+fix: callvote random would crash in x4 - doh
+
+fix: match_startrespawn was ignored even in non-mode Freeze
+
+
+Notes for version 0.99x4 (14 Jul 02)
+
+add: MVD playback updates player models on POV changes
+
+add: MVD preserves scores for lower right on DM POV changes
+
+add: MVD message when forced to auto-cycle
+	typically only happens when players teleport/respawn
+	and the recording client is lagging
+
+add: ProMode sound option for CQ3
+	server_prosound (0|1, default 0)
+	callvote prosound, vote_allow_prosound
+	typically makes games really slow though
+	unless you turn off footsteps as well
+
+add: Footsteps option for CQ3 (note: NOT dmflags 32)
+	server_footsteps (0|1, default 1)
+	callvote footsteps, vote_allow_footsteps
+
+add: ch_playerNames (0|1, default 0)
+
+chg: don't lock teams on \teamready in unlimited games
+
+chg: no score throttling in DM MVDs
+
+chg: poweruprespawn can be voted to anything from 30 to 120
+	(was just 60/90/120 before)
+
+chg: votes with ranges now display those ranges in the help
+
+chg: removed the pure vote - GTV doesn't need it any more
+
+chg: sample maplists moved to cfg-maps/sample
+	since people keep overwriting theirs when they upgrade
+
+chg: removed "cinematics" and "mods" from the main menu
+
+fix: hit tones would wrap very quickly in instagib
+
+fix: current timenudge/maxpackets limits showed wrong values
+	(if you used callvote with no args to display them)
+	the *behaviour* was right, but in some cases it would
+	show them as disabled when they weren't
+
+
+Notes for version 0.99x3 (25 Jun 02)
+
+add: DM MVDs now show the player's weaponlist, roughly
+	if they have a weapon but no ammo for it, it's not shown
+	and only the current weapon has an ammo count
+
+add: TDM MVDs show the player's current weapon on the weaponlist
+
+add: CPM1B itemconfig and mapconfig files
+	(the Polish CPM1A, but without screwing everything up)
+
+add: show the "real" map name when loading a custom itemset
+	(e.g. Q3DM12CPM rather than Q3DM12)
+
+add: cg_lagometer options are now a bitmask
+	1 - draw the netgraph background
+	2 - colour the background if there's rate delay or PL
+	4 - show your ping at the top
+	8 - don't draw the frame interpolate/extrapolate graph
+
+add: CTFS-aware bot AI
+
+add: con_notifyTime < 0 uses the CPMA "console" overlay instead of id's
+	doesn't affect the console *buffer*, just the text in the top left
+	the default for con_notifyTime is now -1 (i.e. use the CPMA console)
+	cf_Console default is 8x16, and scales the same way as the id console
+	ch_consoleTime default is 3000
+	to disable completely, set con_notifyTime AND ch_consoleTime to -1
+
+add: ch_consoleLines (0-4, default 4)
+	max number of lines for the console overlay
+	(note that carriage returns generally mean it will display
+	one line less than this value)
+
+add: can use ENTER to launch a demo from the menu
+
+add: sv_fps to serverinfo so clients can actually see what it's set to
+	all but the most bandwidth-challenged servers should be using 25
+	and ones with a nice connection should probably use 40
+
+add: F11 in demos does a screenshotjpeg
+
+chg: snaps defaults to 40
+
+chg: now explicitly aware if we're connected through GTV
+	fixes a few problems with GTV, especially on MA maps
+
+chg: use white for "black" (i.e. invisible) rails
+
+chg: tweak the duration of "external" events on players
+	hard to explain but: for players who are not you, Q3 favours
+	external events over player-generated ones for 300ms
+	so if they pick up an item then fire a weapon, it won't
+	actually "send" that weapon fire until that much later
+	and in many cases, it NEVER sends those events because later
+	player activity overwrites them.
+	it's basically yet another variant of Q3's "dropped sounds" bugs
+	and it's been like this forever, but it's only become really
+	obvious since we introduced MVDs.
+	since it HAS been so unremarked and fixing it properly would
+	noticeably increase bandwidth usage, we've cut the lag down to
+	100ms instead (ideally we'd use 50, but this gives us a cushion
+	for a dropped packet or modemers with low snaps)
+
+chg: allow bot-only games without having to ref-allready them
+
+chg: plasma prestep dropped from 50 to 25
+
+chg: ProMode plasma visuals shrunk from 16 to 12
+
+chg: remove a bunch of cheat-only cvars
+	cg_tracerChance, cg_tracerWidth, cg_tracerLength,
+	cg_animSpeed, cg_swingSpeed, cg_noPlayerAnims,
+	cg_debugAnim, cg_debugPosition, com_cameraMode
+
+chg: remove cg_noVoiceChats, cg_noVoiceText, cg_noTaunt
+	since we don't support TA voice rubbish
+
+fix: re-enable the CPM damage-through-floors fix
+	removed it a couple of builds ago because 1.2x supposedly fixed it
+	shows what I get for trusting id's code...  :P
+
+fix: compounded damage downscale when splashing multiple players
+
+fix: muzzle render position was being adjusted twice for railgun
+
+fix: bunch of id bugs in CTF AI code
+	bots couldnt "find" flags on wcp21 and many other maps
+
+fix: bot_minplayers works again (oops)
+	accidentally nuked it in 99x when removing ai deadwood  :)
+
+fix: yet more id bugs - the ingame menus (notably, team orders)
+	would use the wrong client info if you were following someone
+
+
+Notes for version 0.99x1 (14 Jun 02)
+
+add: 3W CTFS (mode 12, bitmask 4096)
+	thanks to Casey and the 3W team for permission
+
+add: reset timescale to 1.0 on listens after watching demos
+
+add: rench's updated docs
+
+chg: the "low" ammo point for SG is 5 rather than 10
+
+chg: enabled armoursystem vote in CQ3
+
+chg: cg_shadows 2 and 3 removed - too buggy and cheaty
+	(both project through walls etc)
+
+chg: stepup events optimized
+
+chg: improved client prediction during djumps
+	CPM3 lower rl is easiest place to see the difference
+
+chg: popsicles refreeze over time if abandoned mid-thaw
+	same rate as for thawing, i.e. if you thaw for 2 secs
+	then leave for 1 sec, there's 2 secs left
+
+chg: unlock cg_gunX/Y/Z and clamp them
+	x: -8 to +8, y: -3 to +9, z: -8 to +2
+	(y is offset because 0 is the player's right hand
+	not the center of their body)
+
+chg: g_doWarmup removed - it's always been pointless
+	setting g_warmup to 0 already turns warmup off
+	and setting it to anything else turns warmup on
+
+chg: end of match stats format changed to work with VoodooStats
+
+chg: default settings for duels are 10 mins with 2-min OT
+
+fix: model-specific custom sounds using the wrong voice
+	(voiding and a couple of others)
+
+fix: time-forced respawns couldn't set a starting weapon reliably
+
+
+Notes for version 0.99x (20 May 02)
+(otherwise known as the "demos" build)
+
+add: Multiview demos!
+	just \mvd and the game will take care of everything.
+	can only be recorded by spectators, and have the same
+	"visibility" rules as normal play, i.e. if teams are
+	speclocked you need a specinvite or referee privileges.
+	since this is ridiculous abuse of an engine that's
+	SO not designed for this sort of thing, you can only
+	(heh: only) MVD up to 12 players, and servers need to
+	have maxclients <= 16 to make sure it works nicely.
+	MVD only works in ProMode ATM - it needs the enhanced
+	event handling code. Not sure yet if it's possible to
+	get it to work reliably in CQ3.
+
+add: keystrokes and mouse clicks no longer abort demos  :)
+	TAB brings up the scoreboard
+	PGUP / PGDN adjusts playback speed by +-0.25
+	HOME sets playback speed to 1.0
+	KP_5 toggles third-person rendering
+	KP_UPARROW / KP_DNARROW moves camera to / from player
+	KP_LEFT / KP_RIGHT moves camera around player
+	KP_HOME resets camera distance and angle
+	MVD-controls  :P
+	SPACE/MOUSE2 switches to next player
+	ALT/MOUSE1 switches to previous player
+	note that binds will no longer work in this mode:
+	to enable them, you need to hit ESC to turn off the
+	crapout protection and return to the id behaviour
+	(which means hitting ESC *twice* will exit)
+
+add: cg_followpowerup works during MVD playback as well
+
+add: team overlay works during MVD playback  :P
+	it doesn't in normal GTV/ref "single follow" demos
+
+add: cf_Console (default 7x12) - only affects demo playback
+	nice bug in the Q3 engine:
+	fixing the "exit demo on ANY keypress" problem
+	causes the console fail to print to the top left corner
+	so we have to mimic it ourselves
+
+add: ch_consoleTime (ms, default 2500)
+	how long "console" messages stay on screen during playback
+
+add: ch_consoleTeamChat (0|1, default 1)
+	add team chat to console
+	note that setting this to 0 removes teamchat COMPLETELY
+	from the console, not just from showing up at top left
+	so if you miss it in the teamchat window, it's lost
+
+add: ch_recordMessage (0|1, default 1)
+	0 gets rid of the sodding "recording blahblah" message
+
+add: ch_selfOnTeamOverlay (0|1, default 1)
+
+add: cg_deadBodyDarken (0|1, default 0)
+
+add: don't show PJ message if timescale is less than 1
+	so you can slomo demos without having that flash constantly
+
+add: \followpowerup as a command - same effect as \cg_followpowerup
+	maybe bif will actually use it now (*cough* :P)
+
+add: func_plat and func_door can now have custom sounds
+	since the standard sounds are so pathetic as to be pointless
+	use this rather than chaining them to a target_speaker:
+	those get ignored by s_ambient 0 clients (which is everyone)
+	done via two new keys for the entities:
+	"sound_start" (the "move" sound)
+	"sound_end" (the "stop" sound)
+	if not specified, the default sounds are used
+
+chg: tweaks to ammo given on weapon pickups
+	TDM, weaponstay, and dropped weapons as before.
+	other cases, the first pickup ALWAYS gives full weapon
+	ammo, so rox+RL is finally 15 rockets, same as RL+rox.
+	later pickups "refill" to weapon ammo as before
+	(i.e. 3 rox => 10 rox) but do NOT give the stupid
+	"one extra round" if you're over the weapon ammo.
+	also, backpack capacity has been reduced a bit.
+
+chg: armor default for team games is back to CPMA's "Team" system
+
+chg: server_CPMA_armor removed - now implicit
+
+chg: CPM1.0 armorsystem replaced with Q1 armorsystem
+	shards at 2 (cointoss, since Q1 didn't have shards)
+
+chg: re-ordered the armorsystems: Duel, Team, Q1, Q2
+
+chg: use the predicted weapon for muzzle flash animations / sounds
+	means +fire 4 when holding LG actually makes a GL noise, etc
+
+chg: tightened up a few aspects of creepcam
+	camera never drifts behind walls now
+	camera swing accelerated if players make 180s to face a target
+
+chg: backpack messages removed
+
+chg: removed long-unused cvars g_friendlyfire and capturelimit
+	(scorelimit is always set by "fraglimit", even for CTF and CA)
+
+chg: removed cg_timescaleFade rubbish
+
+chg: max ammo for BFG is now 25
+
+chg: grenades back to being magically aware of who fired them
+	still do 100% damage, but you can't selfnade any more  :(
+
+chg: heh - noticed one of the effects of defaulting entities to
+	being unmarshalled  :)
+	it completely removes all the lame sound effects on maps
+	like WCP15, regardless of the client's s_ambient setting.
+	that type (target_speaker ents) are now marshalled again
+	for the 0.1% of players who actually use s_ambient 1
+
+chg: #w/#W chat token now shows current weapon and ammo
+	the old "best" weapon meaning was pretty useless
+	#W is red if you have less than one box of ammo, else white
+	#w message doesn't change any colours
+
+chg: #M chat token uses box counts to decide what "low" ammo is
+	before it always used 5, which is useless for LG/PG
+
+chg: #U chat token also shows time remaining on powerups
+
+chg: can only see stats for players in the same arena as you
+
+chg: damage and item counts for \stats not available during game
+	except to players checking their own stats, and referees
+
+chg: low ammo warning based on current weapon only
+	and determined by box counts rather than guesswork
+
+chg: cg_drawAmmoWarning replaced with cg_ammoWarning (default: 1)
+	0 - none
+	1 - "click" only
+	2 - "click" and message
+
+chg: removed everything related to cooldown option
+	now fixed at 100ms (old cooldown 0 setting)
+
+fix: callvote restart didn't cancel timeouts
+
+fix: couldn't unpause a 1v1 if opponent dropped during the pause
+
+fix: playerstate events sounding again after external events
+
+fix: bars on HUDs 1 and 2 were opaque
+
+fix: ProMode sound could occasionally "leak" between arenas
+	if the arenas were right next to each other
+
+
+Notes for version 0.99w5 (5 May 02)
+
+chg: "Duel" armorsystem is now the default for team games as well
+
+chg: quad shell is now always blue
+
+chg: testmodel/testgun cruft removed
+
+chg: all HUD variations show flag status in CTF
+
+chg: popsicle effect is now totally white rather than bluish-white
+	was a bit too close to the Quad effect with some configs
+
+chg: be really agressive about popsicle trajectory tests
+	stops them slipping through seams on maps like DM6
+
+chg: max number of demos on menu increased to a real 240
+	rather than an id-math 128, which is about 40  :P
+
+chg: creepcam_smoothfactor renamed to creepcamSmoothRate
+	since that's what it actually is
+
+fix: no blood effect when SG'ing popsicles
+
+fix: cg_enemycolors default should be "", not "0"
+
+fix: coaches were being blacked out in speclocked games
+
+
+Notes for version 0.99w4 (1 May 02)
+
+add: linked/unlinked flag, marshal flag, and counts to \entitylist
+
+add: "you defrosted xyz" and "defrosted by xyz" messages in FT
+	(can be disabled with ch_fragMessage 0)
+
+add: thawed popsicles explode into ice cubes
+	(many if cg_gibs 1, otherwise just one)
+
+add: crosshairnames for popsicles
+
+add: players given assist reward for thawing teammates
+
+add: cg_noProjectileTrail (0|1, default 0)
+	only affects the underwater bubble trails
+
+add: 3D heads on scoreboard and status bar use player colours
+
+add: support "armorsystem"/"armoursystem" in config files
+	just for bleader  :P
+
+chg: preserve reward counts for temporary specs, i.e. dead CA/FT players
+	means you won't see rewards when following other players
+	but your own reward counts will stay correct no matter what
+
+chg: "general" entities default to unmarshalled
+	!!! note: I have no idea what problems this might cause.
+	it seems to be fine so far, and on some maps it removes
+	THOUSANDS of entities from client consideration every second
+	so I figure it's well worth trying it for a while.
+
+chg: ProMode voting rules
+	can always be voted on
+	can be voted off only if vote_allow_promode is 1, or
+	server_promode is 0, or
+	the player is a "true" referee (i.e. password, not election)
+
+chg: removed the never-used "alternate standard" demo naming format
+
+chg: closing doors bounce off popsicles, crushers thaw them
+
+chg: overhauled a few things in the ProMode sound code
+	sound radius is now 1400 units
+	s_occfactor has been removed  :(((
+	the behaviour is now always as it was with s_occfactor 0
+	i REALLY didn't want to do that, but there seem to be some
+	pathological cases where the true position of an entity is
+	unavailable to us, so any on-entity sounds get messed up
+
+chg: \color defaults to 9779 - tshirt and faded jeans  :)
+
+chg: no time penalty added for \kill in DM/TDM
+
+chg: players get 1 point for each second spent defrosting teammates
+	rather than just crediting whoever finished the thaw
+	to balance, teamkills cost players <thawtime> points
+
+fix: q3w2 train; dm11 quad room!
+
+fix: arena playercounts unavailable sometimes
+
+fix: GTV can change arenas again
+
+fix: strip filename-illegal chars from player names for demo record
+
+fix: drowning timer was being reset during pauses
+
+fix: could get impressives from shooting teammates
+
+fix: players who died in water (inc lava/slime) gurping on respawn
+
+fix: item pickup sounds not played reliably if you respawn ON an item
+
+
+Notes for version 0.99w3 (23 Apr 02)
+
+add: say_teamnl - doesn't add your location to the message
+
+add: support "maxplayers" in config files (per-arena)
+
+add: avoid popsicles like real players when choosing a spawnpoint
+
+add: instagib modes to the game settings menu
+
+add: callvote startweapon and vote_allow_startweapon (default 1)
+	Freeze-only, sets an additional weapon to give spawnees
+	comes with a BOX of ammo rather than stock weapon ammo
+
+add: callvote allcaptain and vote_allow_allcaptain (default 1)
+	default set by team_allcaptain (default 1)
+
+add: accept "armour" and "armoursystem" (i.e. English) votes
+
+add: cg_lagometer 2 - colours the netgraph background as well
+	lpbs can't notice rate delays otherwise
+	because the graph itself is only 2 pixels high
+
+chg: players with Batsuit don't "gasp" when coming out of water
+
+chg: force "fullsize" popsicles rather than using the player bounds
+
+chg: split FTDM (mode 10) into FTEU (mode 10) and FTUS (mode 11)
+	FTEU has startrespawn 1, spawn with MG
+	FTUS has startrespawn 0, spawn with MG + SG
+	both use teammaps.txt for the maplist
+
+chg: uncouple cg_shadows 1 from cg_marks and nomip them
+
+chg: show CPMA players colors on player model screen as well
+
+chg: put all the promode skins first in the model screen
+
+chg: matchmode no longer requires even teams
+
+chg: cool new credits page
+
+chg: no auto MOTD window after connecting
+	it's already shown on the connection screen itself
+
+chg: standard demo name format for 1v1
+	if a player records, it's "ThisGuy(POV)-vs-ThatGuy"
+	if a spec records, it's just "Player1-vs-Player2"
+
+chg: removed many referee commands that also exist as votes
+
+fix: cg_predictitems 1 sound echo
+
+fix: corpses on MA maps couldn't be gibbed sometimes
+
+fix: not spawning only the TDM itemset on some maps (rdogdm4) in freeze
+
+fix: non-MG ammo counts reset to 0 after each round in EU freeze
+
+fix: autothaw timer not halted during pauses
+
+fix: viewpos as a spec after dying in CA/FT was offset by cg_thirdPersonRange
+
+
+Notes for version 0.99w2 (10 Apr 02)
+
+add: Freeze Tag TDM! as g_gametype 6 (mode 10, bitmask 1024)
+	based on Darrell "Doolittle" Bircsak's original (thanks man)
+	vote_allow_thaw (default 1)
+	callvote thawauto (seconds, default 120)
+	callvote thawtime (seconds, default 3)
+	callvote startrespawn (0|1, default 1)
+	ON (default) = EU rules:
+	all players reset to base attributes + loadouts after each point
+	OFF = semi-US rules: losing team is thawed; winning team is NOT
+	but the living players on the winning team keep their current h/a
+	(note that this may well be LESS than the spawn h/a) and weapons
+
+add: CPMA colours can now be used in names, crosshairs, etc
+	(everywhere that's under my control, basically, which
+	is anything game-related but not the console)
+	some of the numeric colours have been changed as a result
+	0: was white, now black
+	7: was orange, now white
+	8: was purple, now orange - T is the closest to the old 8
+	id have always had 5 and 6 backwards. since I can't fix the
+	console, they're now wrong in CPMA as well, for compatibility
+	(note to id: ever heard of constants?)
+
+add: ch_crosshairAlpha (0.0 to 1.0, default 1.0)
+
+add: \kill adds 5 seconds to respawn time
+
+add: Swelt's "Guide To Configuring CPMA" to readme.txt
+
+add: Drex's Q3DM12CPM
+
+add: cg_oldCTFSounds (0|1, default 0)
+	no voiceovers on captures, flag pickups, etc
+	also controls non-leadchange FTDM end-of-round announcements
+
+chg: cg_crosshairColor renamed yet again to ch_crosshairColor
+	default changed to 7 since 0 is now black
+
+chg: cg_crosshairPulse renamed to ch_crosshairPulse
+
+chg: item scaleup time on respawns changed from 1000 to 250
+	items also start at half size and scale up from there
+
+chg: BFG shots are now 1200ups (was 2000)
+	reload is 800ms (was 200)
+	damage is 120 (was 100)
+	splash damage is 120 (was 100)
+	splash radius is 144 (was 120)
+	knockback scale is 120% (144% relative, given the higher dmg)
+	rocket running boost is 120% absolute (to match RL)
+	warmup/CA ammo 5
+	initial/box ammo 5
+	enabled by default in all gametypes except CA/DA
+
+chg: cg_errordecay clamped at 0-200
+
+chg: after bouncing, grenades no longer pass through whoever fired them
+	so if you spam, you're a threat to yourself too
+
+chg: your own grenades do FULL damage to you, not 1/2
+
+chg: PG splash radius is now 10 units instead of 20
+
+chg: server_availmodes default changed to -1 (all modes)
+
+chg: RG selected automatically when respawning in instagib
+
+chg: remove g_quadfactor - we override it anyway
+
+chg: coaches don't viewcycle to other team even with speclocks off
+
+chg: team damage enabled for CTF mode and default
+
+chg: stats window removed after intermission
+
+chg: CQ3 powerup respawns match ProMode
+	this also means that they're now votable
+
+chg: CQ3 ammo box counts for \drop match ProMode
+
+chg: cg_lightningImpact enabled for CQ3
+
+chg: timeout allocations were ridiculous
+	new rules are: 2 @ 60s for DM; 3 @ 120s for team games
+
+chg: ITDM/ICTF show Net/O/D stats on the scoreboard rather than Acc
+
+chg: bot AI adjusted for the new BFG
+
+fix: "picked up" stats were counting the killer's current weapon
+	not the one that was actually in the backpack
+
+fix: coach chat going to other specs rather than coached team
+
+fix: gauntlet would "fire" on occasion even if it wasn't actually hitting
+
+fix: id bugs and stupidities in the team overlay location code
+
+fix: multiview could make Q3 segfault when a viewed player died
+
+fix: team overlay restored in CA if freefloat after following enemy
+
+
+Notes for version 0.99w1 (18 Mar 02)
+
+add: total health and armour taken and RA/YA/GA/MH counts to stats
+
+add: "picked up" and "died with" counts to weapon stats
+	note: "died with" rather than "died and dropped"
+	so it's good for CA as well
+
+add: ch_3waveFont - thanks to the Threewave guys for permission
+
+add: OSP coach functionality
+	/coach, /coachinvite, /coachdecline, /coachkick
+
+add: scoreboard shows per-team spectators and coaches
+
+add: "callvote random n" and vote_allow_random
+	where n is a number from 2 to 100
+	2 is the equivalent of flipping a coin
+	6 is like rolling a die
+	handy for choosing maps etc
+
+add: "callvote ot" synonym for "callvote overtime"
+
+add: server version shown on loading screen
+
+chg: vstr now enabled in CQ3 as well
+
+chg: CQ3 clocks match ProMode
+	(count down, not up; no seconds in 1v1 play)
+
+chg: players spawn with 100 armour during warmup
+
+chg: auto-join if it's an FFA game
+
+chg: auto-join if it's a team game and g_teamAutoJoin is on
+
+chg: mode TDM now enables weapon dropping by default (CPM and CQ3)
+
+chg: shots during the match_windelayCA period don't affect stats
+	so you don't "lose accuracy" when gibbing bodies etc
+
+chg: g_weaponRespawnCTF defaults to 5
+
+chg: CTF mode sets weapon respawn to 5
+
+chg: 1v1 mode disables holdables (PT, MK) as well
+	never understood why OSP leaves them enabled
+
+chg: "restart arena" item removed from UI menu
+
+chg: timed overtime in 1v1/FFA uses 2-minute rounds
+
+chg: item respawns are absolute
+	gameplay rules > map-specified ones
+	for ALL items now, not just weapons
+
+chg: s_occlude removed - s_occfactor 0 is equivalent
+	(always has been, actually)
+
+chg: s_ambient 0 now more aggressive (fixes T2, WCP15)
+
+chg: s_ambient changes now take effect immediately
+	(no longer needs a client restart)
+
+chg: target_speakers don't use the ProMode sound system
+	helps cut down on noise even for s_ambient 1 clients
+	(and saves small amounts of bandwidth)
+
+chg: updated version of DM12TMP - cheers Drex
+	doors still don't behave the way we'd really like,
+	but at least it's playable again now
+
+fix: starting a server through "practice" preserves g_spSkill
+	(id code resets it to "Bring It On" *cough*)  :)
+
+fix: "minutes played" wasn't getting reset reliably on map changes
+
+fix: couldn't see your damage stats mid-round when dead in CA
+
+fix: several multiview bugs
+
+fix: gauntlet hits weren't shown unless there was a kill as well
+
+fix: players could make multiple gauntlet hits in a single frame
+	(yet another id bug, only happened with pmove on)
+	Menace gets a cookie for finding it  :)
+
+
+Notes for version 0.99w (14 Jan 02)
+
+!!! Important - CPMA no longer supports VQ3 !!!
+
+The non-ProMode option in the mod is now "Challenge Q3".
+After two years, Q3's newbie population is now essentially non-existent,
+and the original justifications for certain design decisions are long
+since obsolete. It's time the base game grew up to match the skill level
+of the people playing it today rather than the target audience of those
+who created it.
+Where ProMode redefines all major aspects of the game: player movement;
+melee/weapons; and strategy, CQ3 addresses only the strategic elements
+and a few things that are very poorly implemented in VQ3 (think of
+these as bugfixes on steroids).
+
+The Challenge Q3 changes are as follows:
+
+Strategic:
+
+Hit tones match ProMode
+	Four tones, each with a 25-damage range
+	Lower pitches indicate higher damage
+
+Player spawns match ProMode
+	100 health; 50 bullets for the MG
+
+Player respawn times are reduced
+	Minimum limbo time is 1 second
+	Maximum limbo time is 10 seconds
+
+Weapon respawns match ProMode
+	15 seconds in DM; 30 in TDM; 10 in CTF; weaponstay in FFA
+
+Item respawns match ProMode
+	Ammo boxes - 30 seconds
+	Health - 30 seconds
+	DM MegaHealth - 20 seconds after it "runs out"
+
+Initial powerup spawns match ProMode
+	15-30 seconds into the game
+
+Powerup factors match ProMode
+	Quad is "true", i.e. 4x damage. Be very afraid.  :)
+	Batsuit protects at 75%
+
+Armour system matches ProMode (the "CPMA Duel" system)
+	Armour does not "decay" over time
+	GA protects 1:1, first pickup 50,  second adds 50
+	YA protects 2:1, first pickup 100, second adds 50
+	RA protects 3:1, first pickup 150, second adds 50
+
+MG matches ProMode
+	5 damage per shot in all games, 25 bullets per ammo box
+
+Railgun ammo boxes match ProMode
+	5 slugs
+
+Maximum ammo counts match ProMode
+	SG 100; GL 100; RL 100; RG 100
+
+Item sizes match ProMode
+	Items can be picked up while strafejumping
+
+Water speeds match ProMode
+	Faster wading and swimming
+
+Fixes:
+
+Damage from the "world" matches ProMode
+	Lava and slime cause a steady flow of damage
+
+SG matches ProMode
+	Max damage now only 96, but aim actually matters
+
+Other enhancements:
+
+Grenade model matches ProMode
+
+
+Notes for version 0.99v9 - private build
+
+add: update g_gametype on mode changes (non-MA maps only)
+	handy for server browsers
+
+add: scorebot helpers to serverinfo
+	Score_Time, Score_Red, Score_Blue
+	Players_Active, Players_Red, Players_Blue
+
+add: #F chat token - nearest Friendly player, i.e. teammate
+
+add: new meaning for #P chat token - last Pickup
+
+add: com_maxfps is capped at 125 for online play
+
+add: enable a bunch of ProMode-only features in CQ3 as well
+	cg_smoke_sg; cg_muzzleFlash; cg_damageDraw; cg_drawGun 2;
+
+add: "Net" column on TDM scoreboard
+
+add: "O/D" column on CTF scoreboard
+	O (orange) is runs+caps+assists
+	D (yellow) is returns+escortD (NOT base D)
+
+Demos from older versions will show strange numbers in those fields,
+as they were used for damage until now.
+
+add: "Dmg" column on CA scoreboard
+
+add: Show "Net" when playing back OSP demos
+
+chg: "Lag" and "Min" replace "Ping" and "Time" on scoreboard
+	needed every bit of space I could wrangle  :)
+
+chg: "Score" column for CA now just frags rather than "total impact"
+	yes, I know it's lame
+
+chg: new rules for #I
+	you must have a clear line of sight to the center of the item
+	you must be looking in the appropriate direction
+	and it must be within your (potential) fov
+	this helps a LOT if you want to say "RG up" but you're nearer YA/PG
+	if you run past the item THEN hit your bind, that's your fault
+
+chg: old #P chat token now #U (Utterly Useless powerUps list :P)
+
+chg: remove cg_teamrails - it was unnecessary complexity
+	thus, cg_enemycolors is now *always* RHBL
+
+chg: armour class for ProMode CA is now YA
+
+chg: weaponrespawn is absolute again
+	we gave map-specified respawn times priority way back when,
+	because id "pro" maps would use still 5 secs by default in VQ3.
+	of course, that meant you *couldn't* get 5 sec spawns on them.
+	Poland > VQ3, so it's back to being mod-controlled
+
+chg: FFA default and mode weapon respawn is weaponstay
+
+chg: ProMode changes do NOT reset ANY other options
+
+chg: elected referees can't disable ProMode on PM 1 servers
+
+chg: remove arenatype vote - people should be using MODE
+
+chg: update the vote UI to use MODE rather than arenatype
+
+chg: remove mapcfg from the vote UI
+
+chg: remove r_reset command
+
+chg: remove reset vote
+	this was originally implemented so that people could use a
+	single vote to get the server back to default (i.e. match)
+	settings. MODE provides a better solution to that problem
+
+chg: remove a bunch of useless cruft from server info
+	(doesn't actually make a difference, because as usual
+	id have bodgejobbed the damn thing so it doesn't work)
+
+chg: corpse sink time changed from 5000 to 1000 (except CA/DA)
+
+chg: DA implemented as a mode (bitmask 512)
+	if used on a non-MA map it will select the CA maplist
+
+fix: MH was using DM rules in FFA as well
+
+fix: weapon pickup sounds not played if weaponstay was on
+
+fix: couldn't pick up dropped weapons in VQ3 if weaponstay was on
+
+fix: weaponstay weapons always give full default ammo
+
+fix: two-pass spawns at "true" game start were confusing Q3
+	if you were holding fire at end of warmup
+	client and server would disagree on which weapon you had
+	which led to some very strange behaviour at times
+
+fix: poweruprespawn added to mode settings
+
+fix: teams are preserved on map changes, as is the queue for 1v1
+	only for non-MA maps, obviously
+
+
+Notes for version 0.99v8
+
+add: use \color2 for rail rings as well as rail spiral
+
+add: demo menu version autodetect updated for Q3 1.31 / dm_67
+
+fix: mode CTF turns off team damage
+
+fix: double item-give on first spawn of game
+	(have to spawn items first then players, or you can respawn an item
+	under a player who already picked it up on their respawn)
+
+
+Notes for version 0.99v7
+
+Important! The armor systems have been tweaked in this build for playtesting
+	YA now protects at 66% instead of 60%
+	Since that moves the breakeven point for RA/YA transitions from 120 to 133,
+	the value of a single RA in the Duel system also needed to be increased.
+	These changes mean that the Duel armor rules are now:
+	GA protects 1:1, first pickup 50,  second adds 50
+	YA protects 2:1, first pickup 100, second adds 50
+	RA protects 3:1, first pickup 150, second adds 50
+	Wow - a clean, consistent set of armor rules  :)
+	Let's hope it playtests well...  :)
+
+add: match_maxsuicides (default 0 - disabled)
+	players who /kill more than this many times will be auto-banned
+	stops them screwing up TDM games and forcing draws in DA
+
+add: map_delay (seconds, default 30)
+	no map voting allowed for this long after a map change
+	unless everyone's loaded the new map and is ready to play
+	stops one lamer with a fast machine forcing changes to a map
+	by voting it in before anyone else has managed to reconnect
+
+add: MA maps can be rotated after a timelimit
+	either a hard tl, which rotates no matter what's going on
+	or a soft one, which waits until the "dominant" arena is ready
+
+add: map_cfgdir (default "cfg-maps")
+	sets where the maplists etc are read from
+	(for running multiple servers on a single install)
+
+add: cf_Vote (default 10x14)
+
+add: block the bobup cheat
+
+add: nomip blood (128), nomip smoke (256)
+
+add: \topshots (ffs rhea...) as a synonym for \accuracy
+
+add: per-weapon minimum shot counts to be eligible for \accuracy
+	MG: 50, SG: 100, GL: 10, RL: 15, LG: 150, RG: 10, PG: 45
+
+add: PureCTF grapple model - thanks to Kilderean
+
+chg: ProMode colours aren't normalised any more
+	in English, that means they're ALL really bright now.  :)
+
+chg: remove the vstr vote and cvars - they're always available in ProMode
+
+chg: allow \maplist during intermission
+
+chg: mode changes on MA maps don't load a new maplist
+	this kinda sucks for servers that switch between MA and non-MA maps
+	AND different gametypes (e.g. a server is on ra3map1 and people want
+	to play CPM3) because you have to call the mode, then call a map that's
+	on the CURRENT list to get the new list loaded before you can call the
+	map that you really want. But that's just the way it goes sometimes.  :(
+
+chg: damage efficiency calc is no longer rounded
+
+chg: removed ch_scoreStyle
+	OSP's "total impact" score is always used: (damage given + 100 * frags) / 100
+
+chg: back to the old-style crosshairname fadeout
+	the OSP one is too distracting for a lot of people, including me  :)
+
+chg: allow cg_nomip in VQ3
+
+chg: offhand crutch no longer silent
+
+chg: fov clamped to 130, and you're damn lucky i didn't make it 120  :)
+
+fix: per-map configs (e.g. CPM1A) now go in map_cfgdir/ as well
+	and this time, I mean it. DOH!  :)
+
+fix: skinned scoreboxes keep team colors when following enemies while dead in CA
+
+fix: "#" (no token) chat bug
+
+fix: "callvote items +" (no item) bug
+
+fix: not always getting the first "spawn weapon to non-spawn weapon" switch
+without penalties
+
+
+Notes for version 0.99v6
+
+Important:
+This version contains some experimental netcode+prediction tweaks.
+While I'm pretty confident they make for better play, especially
+for the common 35-100 ping case, it may take you a couple of games
+to get used to them.
+
+add: maplist support!  :)
+	added cfg-maps/ subdirectory and standard maplists
+	moved cpm1a.cfg to cfg-maps/
+
+add: map_rotate (0|1, default 0)
+	if non-zero and a MODE is enabled, server will rotate to
+	the next map in the list for that mode when fl/tl/cl/rl is hit
+	map_rotate is ignored if the server is in 1v1 mode
+	or is running a multiarena map
+
+add: mode_start (default -1 (no mode))
+	which mode to start with (or switch to if server is idle)
+
+add: mode_idletime (minutes, default 10)
+	how long before idle servers reset to default mode+map
+
+add: \maplist - shows maps available for current mode
+
+add: "callvote map n" where n is a map id from \maplist
+
+add: ch_skinScores (0|1, default 0)
+	colors the scoreboxes with the body+legs of your/enemy colors
+	also for the "players remaining" boxes in CA
+
+chg: removed the cfg/ dir
+	modes should be used instead for those, for all standard play
+	per-map configs (e.g. CPM1A) now go in cfg-maps/ as well
+
+chg: removed the "mapcfg" vote - combined with normal map votes now
+	just use a ! at the start of the "map" name instead
+	e.g. "callvote map !q3dm14tmp"
+
+chg: the penalty for switches from G/MG to non-spawn weapons
+	no longer applies on the first switch
+	so you can grab a weapon after respawning and use it immediately
+
+chg: pmove_msec has been removed (now always 8)
+
+chg: cg_nomip for weapon effects/marks matches OSP
+           1 - Lightning
+           2 - Plasma
+           4 - Rocket explosions
+           8 - Grenade explosions
+          16 - Bullets (machinegun and shotgun)
+          32 - Railgun
+          64 - BFG
+
+chg: the instagib mode bits have been moved down
+	so that they're next to the others. the new values are:
+	Instagib FFA - 64
+	Instagib TDM - 128
+	Instagib CTF - 256
+
+chg: respect cg_forcemodel 0 for in-eyes POV in demo playback
+	just for you, JL  :)
+
+fix: dropped clients would hang around on the scoreboard sometimes
+
+fix: stats dumps at end of matches
+
+fix: description for chatflood vote
+
+
+Notes for version 0.99v5
+
+Important:
+I've kept compatibility with Q3 1.27 until now because 1.29 was so awful.
+Since 1.30 actually works, this build has some changes to exploit some of
+the features in it, and may not work reliably on older versions.
+
+Interesting trivia:
+the assorted cleanups of the code over time mean that if you use hudstyle 0
+(the baseq3 hud) then CPMA timedemos "four" faster than baseq3 does.  :)
+
+add: \statsall, \statsblue, \statsred
+
+add: non-SD overtimes - callvote overtime <0|1|2>
+	default set by match_overtime (default 0)
+	0 - Sudden Death (first score decides)
+	1 - Timed Overtime (additional rounds of 5 mins each until a winner)
+	2 - No Overtime (can end in tie)
+	for MODES: FFA and DM use 0, TDM uses 1, CTF uses 2
+
+add: #C chat token - where your corpse is
+	ProModers tend to respawn instantly - this lets them still use
+	"enemy at #c" / "#c lost" binds
+
+add: #I chat token - nearest (potentially) visible item
+	including backpacks and dropped weapons  :)
+
+add: new meaning for #L - Q2-style locations (nearest armor/weapon/MH spawn)
+
+add: mode altca (mode value 4) - ra3-style loadout and damage settings
+
+add: if a matchmode is in effect
+	automatically record demos and take screenshots at the end of the game
+	if it's CA, player stats are reset at start
+
+add: all matchmodes mute specs; all normal modes unmute them
+
+add: better handling of demo playback from broken OSP versions
+
+add: cf_Following (default 24x24)
+
+add: cf_FragMessage (default 16x16)
+
+add: cf_CrosshairNames (default 12x12)
+	and that cute little scaling fadeout OSP uses for them  :)
+
+chg: ch_drawFollow now sets the y-position of the message
+
+chg: ch_fragMessage (0|1, default 1)
+	used to be: 0 - off, 1 - small font, 2 - normal font
+
+chg: cg_drawCrosshairNames
+	used to be: 0 - off, 1 - small font, 2 - normal font
+	now: 0 - off, 1 - all players, 2 - teammates only
+
+chg: player icon and armor type no longer shown in crosshairTeamInfo
+	(it was wrong before, actually: showed your armortype instead)
+
+chg: the "pickup names" and #L descriptions for armors
+	now Red/Yellow/Green rather than Heavy/unqualified/Jacket
+
+chg: \scores doesn't show damage mid-round in CA matchmode
+
+chg: \stats on speclocked players doesn't show damage
+
+chg: cg_autoaction bits match OSP's
+	1 - Automatically save stats to a local text file at the end of a match
+		Logs are stored in: <cpma_root>/stats/<date>/<logname>.txt
+	2 - Automatically take an end-level screenshot
+	4 - Automatically record the game (requires warmup to be on)
+
+chg: remove match_overtimelength, match_overtimecount, type 3 overtime (tie-timed)
+
+chg: remove all references to QTV (long since dead)
+
+chg: remove old #L (health and armor) - it's pointless. use #h #a
+
+chg: passworded refs can unref themselves
+
+chg: say_team in CA when dead goes to all specs if the other team is not speclocked
+	so dead people can chat with each other in pickup games
+	but you can still talk privately to your teammates in matches
+
+chg: predict the grapple trail start point as you move
+	looks MUCH better - thanks Kilderean
+
+fix: messages for team/self damage changes were going to all arenas
+
+fix: ignore "save stats" commands etc if just playing back a demo
+
+fix: player counts were updating instantly if someone joined a CA team mid-round
+
+
+Notes for version 0.99v4
+
+add: the Q3Comp scoreboard. finally!  :)
+	when players die in CA, their line is darkblended
+
+add: Khaile's 1337 hack to keep the scoreboard accurate during demo playback
+	(players time+ping don't update, but the actual scores do)
+
+add: time+date stamp to intermission screen
+
+add: ch_weaponListSeparator (length, default: 74)
+	controls the lines that separate sections on the vertical weaponlist
+
+add: callvote mode <mode_name>
+	changes to a configuration that is always the same on any server
+
+add: callvote match <mode_name>
+	execs a mode config
+	requires even teams to start the game (if it's a team mode)
+	100% of players must rup for a game to start (if mode uses warmup)
+	locks/speclocks teams when match starts (if mode uses warmup)
+
+add: server_availmodes (bitmask, default 63)
+	1 - FFA
+	2 - 1v1 / DM
+	4 - reserved - currently ignored
+	8 - TDM
+	16 - CTF
+	32 - CA
+	256 - Instagib FFA
+	512 - Instagib TDM
+	1024 - Instagib CTF
+
+add: ch_scoreStyle (0|1, default 0) - only used by the CA scoreboard
+	0 - "raw skill" (damage efficiency)
+	1 - "total impact" (damage given + 100 * frags: the OSP style)
+
+chg: instagib warmup now only gives players gauntlet and RG
+
+chg: default CA loadouts now match OSP
+
+fix: HUD CTF flag status reset at start of games
+
+fix: wrong message when referees \removed players
+
+fix: rounds played count for DA
+
+
+Notes for version 0.99v3
+
+add: mimic the behaviour of some of the no-longer-supported A3D functions
+	s_occlude and s_occfactor (ProMode only)
+
+add: \accuracy [weapon]
+	with no args, shows "best" players with each weapon
+	with "RL" etc as arg, shows stats with that weapon for all players
+	minimum of 10 shots to qualify for the title (except for SG)
+
+add: in DA, \stats and +wstats will show your stats if you're a freespec
+
+add: OSP Hook control vars
+	hook_enable (0|1|2, default 0)  0 - disabled, 1 - offhand, 2 - onhand
+	hook_delaytime (ms, default 750)  minimum time between hooks
+	hook_holdtime (secs, default 3)  how long you can stay hooked
+	hook_sky (0|1, default 0)  sky/noimpactsurf hooking enabled
+	hook_speed (ups, default 1200)  rate hook travels
+	hook_speedpull (ups, default 950)  rate at which player is pulled
+If you want a more Alliance-style hook, the values are hook_speed 1250,
+hook_speedpull 650 (thanks fredo) and hook_delaytime 100 (I think).
+
+add: match_dropitems (1-3, bitfields, default 0, TDM and CTF only)
+	1 - can drop weapons+ammo
+	2 - can drop flags
+	\drop - drops the current weapon and all ammo for it (SG to PG only)
+	\drop <SG|GL|RL|LG|RG|PG> - drops that weapon and all ammo for it
+	\drop <bullets|shells|grenades|rockets|lightning|slugs|cells> - drops a "box" of ammo
+	\drop flag
+	\drop ammo - drops a "box" of the current weapon's ammo
+	note: a "box" IS a box, as determined by the gameplay rules
+	in OSP, certain "drop" box ammo counts are wrong (LG, PG)
+
+add: callvote dropitems and vote_allow_dropitems
+
+add: cg_followpowerup
+
+add: a bunch of semi-gimmicky things to the connection screen
+
+add: cg_noTeamchatBeep (0|1, default 0)
+
+add: \addstr <cvar1> <cvar2>
+	combines strings - very handy for complex team messages
+
+add: support "selfdamage" in config files and update cfgs
+	0 - none
+	1 - health only
+	2 - armor only
+	3 - both
+
+add: callvote selfdamage and vote_allow_selfdamage
+
+chg: callvote teamdamage is now 0 to 3, not 0 or 1
+	so that it matches the cfgfile entry and the selfdamage vote
+
+chg: remove armordamageteam and armordamageself votes, and vote_allow_armordamage
+
+chg: all cg_hud_* cvars renamed to ch_*
+	e.g. crosshairColor, fragMessage, weaponList, etc
+	yes, this means you'll have to edit your config  :)
+	but it's long since time we made both mods consistent on these
+
+chg: remove the "demo is from a broken OSP version" button on demos menu
+	it auto-senses them now
+	there are still a few OSP demos that simply can't be played back
+	but there's nothing I can do about that right now
+
+chg: server_chatfloodprotect now controls the max # of msgs per second
+	e.g. server_chatfloodprotect 2 means you can talk every 500ms
+
+chg: spectators used to get credit for "time served"
+	if they'd been waiting in one arena and changed to another
+	it confused RA3 players though (much like almost everything seems to)
+
+chg: speconly now also does a "team s" automatically
+
+chg: weapon respawn delays set by mappers now have priority
+	so the id "pro" maps default to 15 sec weapspawns even in VQ3
+
+chg: finally remembered: server_vstr now defaults to 1
+	there's still no justification for them, but...
+
+chg: damagekick is now always off, in VQ3 as well as ProMode
+	since id bugs make it unreliable on servers w/high uptime
+	cg_damagekick cvar removed
+
+chg: g_powerupRespawn replaced by
+	g_powerupRespawnFFA (default: 60)
+	g_powerupRespawnTDM (default: 60)  (quadruns > VQ3 RA campout lameness)
+	g_powerupRespawnCTF (default: 120)
+	batsuit still always 120 in all gametypes
+
+chg: listen servers automatically disable some of the OSP protection
+	stops the flickering players problem
+	listen servers are just BAD though - nothing like real servers  :(
+
+chg: player teams aren't reset on config exec's unless they have to be
+	"callvote exec cpm1a" when in DM would rotate players, which was annoying
+
+chg: first-round warmup for CA now 5 if start_respawn is off
+	(was 15 before: now matches other rounds)
+
+fix: re-enable OSP windows (+wstats, motd, etc)
+
+fix: GTV clients are automatically speconly
+	stops the "next in line" code of 1v1 arenas putting them in the game
+
+fix: force a userinfo update for spectators when they change arenas
+
+fix: oops - "respawns needed" was propogating to all higher-numbered arenas
+
+fix: DM games can vote refs in
+
+fix: certain types of mover (bs plat on dm14) would keep moving during pauses
+	made for some very Wile Coyote moments...  :)
+
+fix: the config parser could fail to apply settings on MA maps
+
+fix: dead players wouldn't respawn for pre-match warmup after CA matches
+
+heh: cg_followkiller has been in the code for months - forgot to doc it  :)
+
+
+Notes for version 0.99v2
+
+Private build
+
+
+Notes for version 0.99v1
+
+add: auto-detect Q3 version and filter dm_48 or dm_66 demos accordingly
+
+add: "demo is from a broken OSP version" option to demos menu
+	need this to get OSP 99v2 and 99v3 demos to show opponents properly
+
+add: instagib_reload (in milliseconds, default 1500, range 100-5000)
+
+add: callvote reload and vote_allow_reload
+
+add: s_ambient (0|1, default 1)
+	disable ambient sounds like the gongs on q3wcp2 and the
+	void/wind/water background noise on a ton of maps
+	requires a client-side restart to take effect if you change it
+
+add: cg_hud_drawWeaponSelect (0|1, default 1)
+	this used to be hardcoded based on hudstyle
+
+add: server_chatfloodprotect (0|1, default 0)
+	command floodprotect uncoupled from chat floodprotect
+	sv_floodprotect has to be 0 or Q3 loses auth responses sometimes
+	but that means people can chatspam, which is lame
+	the related "callvote flood" and "vote_allow_flood" are unchanged
+
+add: callvote warmup (value, default set by g_dowarmup and g_warmup)
+	lets each arena have its own warmup setting
+	0 disables, otherwise warmup is enabled and the value sets its length
+	also add vote_allow_warmup (0|1, default 1)
+
+chg: ProMode skins now available in VQ3 even in team games
+	if you're too stupid to get them to work, don't whine to me about it
+
+chg: instagib changes no longer restart the arena
+
+chg: rail spiral fadeout now Q3 1.29 style (i.e. slower)
+
+chg: no delay when forceswitched from freefloat to follow
+
+chg: splash thru floors no longer an absolute decision: back to 1.17 style
+
+chg: cg_hud_drawWarmup now defaults to 0
+
+chg: warmup panel cleaned up a bit:
+	ProMode-only settings (fastrail, cooldown, etc) removed in VQ3 arenas
+	Enhanced Sound removed (always on in ProMode, always off in VQ3)
+	damage settings for health and armour show as "none/self/team/all"
+
+fix: teamoverlay background off by one line in CA when dead
+
+fix: \vote and \arenavote with no actual vote string in them defaulted to "no"
+
+fix: use the OSP implementation of SpotWouldTelefrag
+	Q3 apparently has a bug in trap_EntitiesInBox prior to 1.29h
+
+fix: invalid command times for respawned players
+
+fix: proper lerping for non-default sv_fps values
+
+fix: in vq3, initial powerup spawns are 45+-(0-15), not 45+(0-15)
+
+
+Notes for version 0.99v rebuild, about 10 minutes after I released it  :(
+
+fix: Don't send tinfo for dead players in CA
+
+
+Notes for version 0.99v
+
+With the 99v builds of CPMA and OSP, we've decided to enable several
+ProMode enhancements in VQ3 as well. This includes ProMode skins,
+team rails, colored crosshairs, custom font sizes, and yes, ProMode HUDs!
+ProMode skins will stay disabled in team games for now, since the last
+time we tried it they were apparently too complicated for some people.  :)
+
+
+add: server_CPMA_armor (0|1, default 1)
+	use the CPMA armorsystems and auto-select duel/team by the arena type
+
+add: onhand grapple (callvote hook 2)
+	when used as a weapon does 25 damage per hit
+
+add: support "teamdamage" in config files and update teamgame cfgs
+	0 - none (CTF)
+	1 - health only
+	2 - armor only (CA)
+	3 - both (TDM)
+
+add: config file for cpm1a to set weaponrespawn to 5
+
+add: log_default (0|1, default 0) - use baseq3 logging rather than OSP-style
+
+add: log_stat (0|1, default 0) - log health/armor changes and their cause
+	very handy for CA servers  :)
+
+add: tell players the h+a of whoever just killed them in CA/DA
+	(only if there's no speclock active)
+
+add: match_winDelayCA (default 4000)
+
+add: cg_teamRails 2 - changes the format of cg_enemyColors to RHBL
+	should have been like this from day one, TBH. wp Rhea  :)
+
+add: cg_crosshairPulse (0|1, default 1)
+	crosshair size changes when picking up items
+
+add: cg_hud_drawFollow (0|1|2, default 1)
+	where to put the "Following ..." text when speccing
+	0 - off, 1 - top, 2 - bottom
+
+add: enabled the ammo parser for config files
+	ammo line HAS to be formatted as "MG SG GL RL LG RG PG BFG"
+	even if the weapons line disables some
+
+add: smarter flagrunning by bots on maps with a team_CTF_neutralflag
+	thanks to Johnny Law
+
+add: cf_Teamoverlay (WxH, default 6x11) - size of font for team overlay
+
+add: cf_Teamchat (WxH, default 8x12) - size of font for team chat
+
+chg: cg_hud_crosshairColor renamed to cg_crosshairColor
+	sorry. needed to make it consistent with OSP
+
+chg: remove a tied vote if everyone has voted
+
+chg: hook voting enabled by default
+
+chg: map config files now reside in cpma/cfg/ NOT cpma/
+	if you added cfg files for any maps, you need to move them
+
+chg: LG knockback upped from 1.2 to 1.3
+
+chg: shards are +5 in CPMA armorsystems and +2 in the Q2 one
+
+chg: SUI, TK, TD removed from \scores in CA
+
+chg: lateral self-knockback of RL in ProMode now matches "normal" PM RL knockback
+	(vertical self-knockback still same as VQ3 so RJ's behave the same)
+
+chg: redid the way player team info and rounds won/lost are handled in CA
+	saves a LOT of ClientUserInfoChanged messages, especially at round start/end
+
+chg: match_startrespawn now defaults to 0
+
+chg: scoreboxes not drawn if the limit is 1 (handy for DA)
+
+chg: frags not reset in DA
+
+fix: occasional dups of other clients' events
+
+fix: couldn't reuse a banned client's slot
+
+fix: high-numbered clients not always getting stats sent+logged at end of match
+
+fix: couldn't unlock teams sometimes
+
+fix: target_gives (YA on spawn on T5)
+
+fix: if all gametype entries on an entity are Q3-invalid, discard it
+
+fix: LG "firing" flag cleared if console is down or player is talking
+
+fix: behaviour of missiles when timeouts expire
+
+
+Notes for version 0.99u3   !!! SPECIAL CLIENT-ONLY BUILD !!!
+
+With the CotT finals being played on 1.27, the 99u2 menus won't show the demos
+This pk3 is just to make life easier for people who want to watch the games
+
+add: creepcam (still pretty rough) for specs and demos
+	thanks to Mandrake for his work on this
+
+chg: demos menu back to dm_48 files
+
+
+Notes for version 0.99u2
+
+add: callvote unreferee
+
+add: OSP messages and logging for CTF events
+
+add: updated player settings menu for CPMA colors
+
+add: can use cg_hud_crosshairTeamInfo even if team overlay is off
+
+add: cg_fallKick (ProMode only)
+
+add: +fire can now chain weapons, but is still atomic
+	e.g. "+fire 5 3" fires RL if poss, else SG if poss, else nothing
+
+add: callvote teamdamage and vote_allow_teamdamage
+
+add: cg_drawGun 2 (ProMode only) - disables the weapon "sway"
+
+add: cg_altLightning
+
+add: cg_hud_drawSpeed
+
+chg: if a referee votes yes or no, the vote instantly passes or fails
+	(that's how OSP does it)
+	(with one exception: an unref vote)  :)
+
+chg: fall damage no longer doubled if crouching (ProMode only)
+
+chg: playback of ProMode demos recorded with OSP is more like for CPMA ones
+	(timer counts down, variable rocket smoke radius, etc)
+
+chg: be more tolerant of broken TA/Q3 maps like q3wcp1
+
+chg: minimum warmup for matchplay now 5 (used to be 10)
+
+chg: demos menu now shows dm_66 files (the format used by 1.29f)
+
+chg: ProMode cg_smoke* options for RL and GL now available to VQ3 players too
+
+fix: color2 can now use CPMA colors as well
+
+fix: enemycolors not working properly unless enemy head color was 0-9
+
+fix: Aph's ceiling-hanging trick. sorry bro.  :)
+
+
+Notes for version 0.99u1
+(Technically 99u, but is being called 99u1 because so many people
+had the 99u beta cgame already that it would be a real hassle)
+
+add: ramp jumps
+
+add: per-arena weaponrespawns in config files
+
+add: match_WinDelayDA (in milliseconds, default 1000)
+	controls how long after the kill a winner is actually declared
+	so if you rail someone but their rocket takes you out right after,
+	the round is ruled a draw
+
+add: cg_railStyle (1-7, bitfields, default 5)
+	1 - rail core
+	2 - rail spiral (color set by "color2" cvar)
+	4 - rail rings
+	gg to the Alliance team for making the spiral code public
+
+add: colors 'a' to 'x' for ProMode skins, rails, etc
+
+add: callvote exec for config files (cpma-specific settings ones, not general ones)
+	controlled by vote_allow_exec
+
+add: thrufloors and fallingdamage/falldmg supported in config files
+
+add: server_lgcooldown (0|1, default 1) and uncouple it from the fastrail switch
+	callvote [lg]cooldown, controlled by vote_allow_lgcooldown (0|1, default 1)
+	(it's actually on the MG as well, but no-one seems to care about that)  :)
+
+chg: "callvote items" no longer restarts the arena
+	includes weapons/powerups/holdables that a player has
+
+chg: show timer seconds in 1v1 games to specs, demos, and in SD OT
+
+chg: spectators no longer have votes if people are playing
+
+chg: for team games, follow1 is the top scorer on blue and follow2 is the top scorer on red
+
+chg: default CTF weapon respawn now 10 secs (was weaponstay)
+
+chg: faster movement in water, and 4 levels of "depth" instead of q3's 2
+
+fix: pmove weirdness on fast machines - lost events and hitsounds etc
+	this was the most significant of the id bugs that pmove 2 fixed
+	so they've been consolidated and pmove is back to only 0 or 1
+
+fix: models playing wrong pain noises
+
+fix: most of the EV_STEP stupidity
+	should stop it pissing away events, especially when predicting
+
+fix: CTF teamstate properly reset
+
+
+Notes for version 0.99t
+
+add: w00t! multiview is back  :)
+
+add: "callvote tdm" etc as shorthand for "callvote arenatype tdm"
+
+add: cg_enemyColors [head][body][legs]
+
+add: new ingame UI menu item: "in-game settings"
+	lets players call votes without using the console (for RA3 morons)
+
+add: new console command "ui_inGameSettings" will take you straight to that screen
+	(a very short comment for a LOT of functionality...
+	if you're a referee, all those votes will pass immediately,
+	so you essentially have a GUI to control pretty much every server
+	setting from)  :)
+
+add: support "instagib 1" in map config files
+
+add: votable powerup times: 60, 90, 120 secs
+	set by g_powerupRespawn (default: 90)
+	vote controlled by vote_allow_poweruprespawn
+	doesn't apply to batsuit, which is always 120
+	applies to ALL modes, not just TDM
+
+add: server_ospauth 1 for latest bot-protection
+
+add: "ungrappleable" surfaces (surfaceflags & 0x10000000)
+
+add: "item running" info added to \stats
+	number of times you had quad, flag, etc, and how long for
+
+add: lg cooldown @ 200ms, except when fastrail is on
+
+add: q3dm6tmp and q3dm6cpl(1v1) mapcfg files
+
+add: server_record and cg_autoAction for tournaments
+	 1 - record demos
+	 2 - take screenshots
+	 4 - add server name to demo/screenshot filenames
+	 8 - add server time when game starts to filenames
+	16 - alternate method: server_name-player_name-[count]
+
+add: playback of osp99t demos
+
+add: referee commands, \players, and \scores accepted from console
+
+add: "yell" console-only command: prints in red and sounds klaxon
+
+add: quick fix for q30wnerz
+
+chg: hard armour cap at 200: IOW, no more getting shards when you already have full RA
+
+chg: major optimisation of \stats bw usage
+
+chg: don't dump \scores at end of 1-round DA games
+
+chg: vote_allow_vstr and vote_allow_hook default to 1
+
+chg: players can be telefragged during CA warmup, but will respawn immediately
+
+chg: suicides while flagrunning do NOT return the flag, unlike TA
+	I've always thought that was a BS change - it means you can't relay the flag
+
+chg: use the railcore for grapple rather than the LG - MUCH prettier
+
+chg+fix: pickups with cg_predictitems 1 play the pickup sound exactly once,
+	but not until the time you REALLY pick up the item
+	unfortunately, playing it at the time you APPEAR to have picked up the item
+	doesn't work out, because not all pickups are predictable  :(
+
+fix: couldn't ready up/resign/etc in CA while dead
+
+fix: a really HORRIBLE problem with pmove. I think.  :)
+	it may actually work properly now. we'll have to see...
+	pmove_fixed 1 means use the id code, for compatibility with vq3 weenies
+	pmove_fixed 2 means use the new code
+
+fix: demos with spaces in the filename
+
+fix: team chat as a spec in 1v1 games is now spec-only
+
+fix: massive duplication of sounds on item pickup with predictitems 1
+	did this ages ago, but the fix got lost at some point
+
+fix: UI client Number now uses the "real" one, not the player that you are following
+	(caused problems when ordering bots as a dead CA player)
+
+fix: render the railtrail as close to the xhair as snapping will allow
+	for some reason, the baseq3 code does it wrong deliberately. I don't know why.
+
+fix: don't uppercase filenames in the demo menu
+	it meant clients with real filesystems couldn't play them back
+
+fix: bots rejoin the game after arena restarts
+
+fix: cg_statScrollTime >0 but <1 still pops up the window
+
+fix: vq3 arenas use the correct dmg beep
+
+
+Notes for version 0.99s1
+
+add: extended sound radius code for promode. gg HighlandeR.  :)
+	modified for "adaptive sound" for better realism:
+	sounds are dampened when underwater or behind walls
+
+add: green/jacket armour  :)
+	in armorsystem 0 (CPM) - 50 units, 50% protection, 100 unit stack
+	in armorsystem 1 (CPMA Duel) - 50 units, 50% protection, 100 unit stack
+	in armorsystem 2 (CPMA Team) - 100 units, 50% protection
+
+add: Q2 armour - callvote armorsystem 3 (I had room for one more)
+	RA is 100, YA is 50, GA is 25, shards are 5
+
+add: OSP filter_file, for banning/protecting player names and clan tags
+
+add: #d chat macro for "last player to cause damage to me"
+
+add: support "tl" (or "timelimit") tokens in map config files for CPMA maps
+
+add: support "armor" (or "armour") and "health" tokens in map config files for CA/DA only (RA3-style) maps
+
+add: match_mutespecs (0|1, default 0) is used to set the default state
+
+add: cache enemy models at map load time
+
+add: cg_hud_drawWarmup (0|1, default 1) to control display of arena settings before a game starts
+
+add: vote_allow_arenatype (0|1, default 1) - whether players can change an arena from 1v1 to DA to TDM etc
+
+add: setting cg_statScrollTime to 0 stops the window coming up automatically at end of match
+
+chg: remove some of the TA cruft from userinfo updates
+
+chg: stats reset when going spec in a non-CA game
+
+chg: show time in game on scoreboard for ffa and all team games (except ctf when carrying flag)
+
+chg: copy a followed player's score for "true" spectators
+
+chg: larger scoreboard in non-team games
+
+chg: gamename set back to just "cpma" - q3 seems to have been getting confused by the space on some platforms
+
+chg: cg_pmove_fixed now lets clients disable pmove if the server has it enabled, but not vice-versa
+
+chg: warmup info is removed at 5 secs rather than at match start
+
+chg: allow black in names. it's lame, but i'm tired of the whining...  :)
+
+chg: assorted other bits and pieces of warmup made less intrusive
+
+chg: cg_teamrails default is now 0
+
+chg: no klaxons at the end of DA games
+
+fix: on DM7, the grate and button are now gone in TDM
+	(likewise, with CPM14 the "secret" tele's destination changes and the MH is accessible)
+
+fix: actually *cough* open the admin log  :)
+
+fix: team selections on arena restarts
+
+fix: accuracy on scoreboard for instagib
+
+fix: accuracy stats fractions at end of matches should be okay on linux servers now
+
+fix: callvote items +all enabled weapons that didnt exist
+
+fix: referees pausing matches during warmup
+
+fix: no respawn sometimes for first round of CA matches if startrespawn was on
+
+fix: doubled pickup sounds when timenudging
+
+fix: second-place score in demo playback
+
+fix: scoreboard in VQ3 demo playback
+
+fix: "players remaining" counts for CA update immediately when players respawn before the start of a round
+
+
+Notes for version 0.99s (Beta 3)
+
+add: in server menu, demo menu and choose arena menu you can now double click on a list item
+
+add: the latest Abuse TMP maps - q3dm6tmp q3dm7tmp q3dm8tmp q3dm12tmp q3dm14tmp
+	use callvote mapcfg to run them
+
+add: CPM skins for ALL standard models  :)
+
+
+Notes for version 0.309
+
+add: \r_ip for referees (but only those with the ref_password)
+
+chg: W/L in CA replaced with rounds played (yellow) and time (cyan)
+
+chg: remove the unnecessary respawn during warmup before the first round of a match for g_dowarmup 0 games
+
+chg: last attacker and last target only updated when damage is actually caused, not just on a hit
+
+chg: colour the status bar (and highlight the player's team in CA) when following
+
+chg: entertime set only on clientconnect, not clientbegin
+
+fix: sigh. DA rotation got messed up by the follow changes
+
+fix: layout of drawattacker and players remaining stuff on the hud in CA
+
+fix: changing arenas while following meant stats didnt get reset
+
+fix: callvoting to/from promode changes the spawn health, armor decay, and weapon respawn immediately
+	for CA and DA, the arena flags and the spawn armor will be reset as well
+
+
+Notes for version 0.308a
+
+chg: only worry about "our" spawnflags bits
+
+chg: team ALWAYS set to spec on clientconnect
+
+
+Notes for version 0.308
+
+add: support the "gametype" spawnvar
+
+add: ca/da respawn scheme vote - controlled by "vote_allow_startrespawn"
+	note the the cvar name change: different to OSP
+
+add: match_carespawn renamed to match_startrespawn
+
+
+Notes for version 0.307
+
+add: match_carespawn (0|1, default 1) - controls respawn at "fight!" time
+	(set it to 0 for ra3 players who are used to it being wrong)  :)
+
+add: match_carespawn setting to the warmup hud
+
+add: log winner and final score in console too for team games 
+
+add: CA spawn code will now use team team_CTF_redspawn and team_CTF_bluespawn if available
+	so well-designed maps can completely avoid the spawn gangrape issue
+	it will fall back to info_player_deathmatch spawns if necessary
+
+add: support config files for MA maps to set default arenatypes, limits, weapons, ammo, etc
+
+chg: make warmup hud text 25% larger
+
+chg: infinite ammo during warmup
+
+chg: switching to/from promode no longer requires an arena restart to make sure the client physics are correct
+
+chg: won/lost record is cleared when player changes arenas
+
+chg: bots "ideal fight distance" is now about twice as far away as it used to be
+
+fix: allow dead CA players to call votes
+
+fix: "Team Orders" menu now works on MA maps and in CA
+
+fix: "Add Bots" menu enabled on MA maps, it now adds bots to the current arena
+
+fix: player counts on the join team menu are totals in CA, not just living
+
+fix: cg_damageKick and cg_damageDraw are only available in promode
+
+fix: a couple of annoying little DA things
+
+
+Notes for version 0.306
+
+add: show inter-arena tele messages in the lobby even as spectator
+
+add: g_weaponRespawnCTF - default is 0, which is weaponstay
+
+chg: g_weaponTeamRespawn renamed to g_weaponRespawnTDM
+
+chg: don't kick followspecs back to freefloat immediately if the player dies
+
+fix: team follow1 clients 999 at intermission
+
+
+Notes for version 0.305
+
+chg: don't put someone in the game if they're dl'ing files
+
+chg: clean up the clientinfo parser
+
+chg: bots with RJ characteristic aren't so afraid to use them in CA games
+
+chg: vq3 hud shows status bar too when following
+
+fix: doh! holes in the client list would mean players didn't get respawned in CA
+
+
+Notes for version 0.304
+
+add: feedback when un/locking an arena
+
+add: locked arenas are marked in red in the choose arena menu
+
+add: update players wins and losses after each round in DA and CA
+
+chg: no pain sound on crash landings if fall damage is off
+
+fix: "damage efficiency" calc for DA and CA
+
+fix: clientinfo changes would occasionally not propogate at the start of rounds
+	if the client had been following the last player to die
+
+fix: AdjustCAScores was polluting the va() buffer
+
+
+Notes for version 0.303
+
+Happy Birthday Josephine! sm00ch!  :)
+
+add: server_armordamageself (0|1, default 0) - controls loss of armor on RJ's etc
+
+add: server_armordamageteam (0|1, default 1) - controls loss of teammates armor when you spam
+
+add: server_realping (0|1, default 0) - whether or not ping is copied for specs following other players
+
+add: IP logged on client connect
+
+add: r_lockarena and r_reset for refs
+
+add: r_putblue/r_putred and r_remove for refs
+
+add: update players won/lost records after each round in CA and add to wstats
+
+chg: show teaminfo (includes players remaining, if CA) even when following
+
+chg: add a delay before intermission kicks in so you can pummel that last guy's body in CA  :)
+
+chg: don't clear stats and scores even after matches in CA
+	they're still cleared if a player changes arenas or if an arena reset vote passes
+
+chg: don't clear stats in DA, but score is still cleared at end of match
+
+chg: don't show weapon respawn time on warmup hud if DA or CA
+
+fix: speclocks by refs were keying off team locks too
+
+fix: votes for reset and restart don't need an argument
+
+fix: falling damage during warmup
+
+fix: powerup spawns were playing in all arenas
+
+
+Notes for version 0.302
+
+add: cg_oversampleMouse - VERY experimental
+
+add: d!ablo's "map item editor" (server-side) - only "/callvote mapcfg x" is supported so far
+
+add: the Abuse teamplay versions of dm6/7/12/14, and the 1v1 version of dm6
+	these should be consolidated and use notteam/notfree flags
+
+add: join team menu shows # of players on each team if not 0
+
+chg: \ready not used for FFA
+
+chg: intermission delay reset properly on changes to/from DA
+
+chg: don't draw warmupinfo in the lobby
+
+fix: occasional problems finding captains
+
+
+Notes for version 0.301
+
+add: "team follow1" and "team follow2" now work on a per-arena basis
+
+add: for team games, the auto-follow choice is based on highest scores
+
+add: DA now supports matches of more than one round  :)
+
+add: per-arenatype intermission delays: none for DA, 10 secs for everything else
+
+chg: allow timelimit and scorelimit to both be 0, but disable team locks if they are
+
+chg: can't pick flags up during warmup
+
+chg: disable any skins except red and blue in VQ3 team games
+
+chg: disable CPM skin colors in VQ3 1v1 games
+
+fix: TDM would always use 30 sec weapon respawns (and the warmup hud was wrong)
+	now it defaults to whatever g_weaponTeamRespawn is, and can be changed by vote
+
+fix: formatting of \scores in CTF
+
+
+Notes for version 0.228b
+
+add: stats logged at end of match
+
+fix: speconly is cleared if you join a team
+
+fix: spec invites are cleared on arena restarts
+	(stops ppl getting invites in one match and spying with them in a later one)
+
+fix: loads of spec stuff: another fake PJ, cycles under assorted speclocks, etc etc
+
+
+Notes for version 0.228
+
+add: \ready and \teamready for first round of CA matches
+
+add: allow players to respawn during pre-match warmup in CA
+
+add: \r_allready for refs
+
+
+Notes for version 0.226b
+
+fix: fake PJ on following players - heh - left some test code in...  :)
+
+fix: don't double-debounce ref commands
+
+
+Notes for version 0.226
+
+add: server_fallingdamage (0|1, default 1) - using dmflags for it is kinda lame
+
+add: callvote reset to get an arena's settings back to the defaults easily, based on its type
+
+add: FIGHT! sound back in, for real this time  :)
+
+add: bots will now hunt enemies down in CA games
+
+add: the rest of the nomip weapons
+
+chg: specs now spawn at the arena's intermission point rather than any old spawnpoint
+
+chg: scoreboard shows "team wins" instead of "team leads" at end of match
+
+chg: command debounce dropped from 5 secs to 2.5
+
+chg: no absolute ban on spectalk during 1v1 games - too many people got confused by it
+
+chg: cg_teamRails affects marks on walls now too
+
+fix: yay! gibbable bodies (complete with death anims)  :)
+
+fix: scores not lost any more if following a player in CA when dead and he dies too
+
+fix: "non-aggressive" bots would sometimes shoot at long-dead enemies until someone more interesting came along
+
+fix: bots would want to retreat for a stupid reason a lot of the time
+
+fix: the nomip PG hit
+
+fix: VQ3 powerups spawn between 45 and 60
+
+
+Notes for version 0.223
+
+urgh... a bunch of changes to improve bandwidth usage
+
+chg: new nades - omfg do they rock! especially with nomip. gg 4nT1.  :)
+
+chg: nomip bitfields are now (1 << weapon), i.e. GL 16, LG 64, PG 256
+
+chg: djumps v2.1  :)
+
+chg: whining gits can now pick items up during warmup
+
+fix: sometimes in 1v1, only one player's score was dumped at the end of the game
+
+fix: rankings would be done across arenas sometimes, causing bad lead-change announcements
+
+fix: stop "sudden death" voice on arena restarts
+
+
+Notes for version 0.222
+
+add: teamkill/teamdmg to wstats
+
+fix: sound bugs. what else?  :)
+
+
+Notes for version 0.221
+
+fix: allow refs to talk to players in 1v1 games
+
+
+Notes for version 0.220
+
+add: blenders and biohazards at intermission  :)
+
+chg: play lead changes even if player gets a reward
+
+fix: yay! the nomip trick means colored xhairs are usable again in mip5
+
+fix: unclamped swapskins values did bad things
+
+fix: changing arenas from ffa to tdm sometimes left teammates in the enemymodel skin
+
+fix: occasional auto-captain problems
+
+fix: promode "no seconds" clock only in 1v1, not FFA as well
+
+fix: about 50 things in the bot code. most notably:
+	they actually realise when they're playing CTF now
+	they don't get confused if you start an arena in CA
+
+?fix: death sound continues to play from respawned players position
+
+fix: powerups tagged SVF_NOCLIENT when not spawned to fix predictitems 1 clients
+
+fix: yet more sound fixes - osp 99s2 - jumppads, mostly
+
+fix: heh - don't use spec scores if player score is negative  :)
+
+
+Notes for version 0.219
+
+add: server_vstr and vote_allow_vstr for CCC to disable scripts
+
+add: "fire n" to switch to a weapon and fire it immediately
+
+add: show time remaining in \scores
+
+chg: in promode, clocks count down to 0:00 instead of up to timelimit
+
+chg: calling a world vote counts towards your vote_limit
+
+chg: no damage or knockback in the lobby, but RJs are okay  :)
+
+fix: deny ready/teamready if insufficient players
+
+fix: red + blue scores are the right way around in vq3 demos
+
+fix: clock shows the right time in vq3 demos
+
+
+Notes for version 0.218
+
+add: allow the skin specified in cg_enemymodel to override the server in team games
+
+add: auto wstats at end of round / match
+
+add: osp motd
+
+chg: in promode duels clock only shows minutes until <30 secs left to play
+
+fix: yet more sound bug fixes from OSP (duplicate sounds, this time)
+
+fix: ui_playersettings crashes
+
+
+Notes for version 0.217
+
+add: # expansions in chat
+
+chg: mondo hud rewrite. hud should actually work fully now in vq3 mode
+
+chg: gone back to cpm1.0 djumps until the stepup problem can be fixed
+
+
+Notes for version 0.213
+
+add: cg_lightningImpact (0|1, default 1)
+
+add: "gameversion" to serverinfo so pingtool etc can pick it up
+
+chg: honour nobots/nohumans spawnflags
+
+fix: quadded mg/pg sound is just too annoying
+
+
+Notes for version 0.212
+
+add: offhand crutch on button5
+
+add: don't cycle to the hook on weapnext/weapprev/outofammo
+
+add: cg_noAmmoChange (0|1, default 1) to avoid selecting a weapon that's out of ammo
+
+chg: default weapon in CA and warmup is RL
+
+fix: move the warmup test for item pickup into BG for clients with predictitems 1
+
+
+Notes for version 0.211
+
+add[MB]: wstats now appear at intermission time. You can use "-wstats" to make it go away.
+	If left alone it stays until the last 3 sec of the countdown,
+
+add: cg_nomip flags to stop weapon fire looking like crap with picmip 5. rhea owns all.  :)
+	1 = LG, 2 = PG, 3 = both
+
+add: wstats from OSP
+
+fix: ctf flag info displayed properly on hud
+
+fix: djump stepup code would stepup mid-rj if you strafed into a horiz plane
+
+fix: server_ratemin works again
+
+fix: lol! got the predictitems sound code BACKWARDS in 210!  *cough* gg me...  :)
+
+
+Notes for version 0.210
+
+add: server_fastrail, default is *off*
+
+chg: use cpma-1 as gametype: should fix some autodl probs
+
+chg: assorted merges with osp 99s
+
+fix: sounds and promode MH should be okay now no matter what predictitems is. i hope.  :)
+
+
+Notes for version 0.209
+
+add: speconly command
+
+add: debounce team commands
+
+add: ref commands - restart, mutespecs, pause, kick, lock, speclock
+
+fix: reset arena delta time properly after pauses/timeouts
+
+fix: player miscounts on choosearena menu
+
+
+Notes for version 0.208
+
+add: callvote armor for CA
+
+chg: rewrote "end of match" code for CA; cleaned up player rotation for DM
+
+fix: double armor-give if first spawn of the game is on top of an armor
+
+fix: global sounds (e.g. klaxons) are now per-arena
+
+fix: "tied" CA rounds never restarted
+
+fix: player miscounts made chasecam unavailable 
+
+
+Notes for version 0.207
+
+add: fight! sound when match starts
+
+add: players remaining counts in CA
+
+add: cg_damagedraw
+
+add: callvote restart to (duh) restart an arena - this replaces map_restart
+
+
+Notes for version 0.206
+
+add: server browser now allows CPMA and OSP gametypes
+
+add: can now specify an arena when adding bots
+
+chg: arenainfo msgs throttled to save bandwidth
+
+chg: choosearena menu improvements
+
+chg: g_weaponrespawn now honoured
+	-1: default to 15 for CPM and 5 for VQ3
+	 0: weaponstay
+
+fix: some messages were being sent to all arenas
+	(ready changes, thrufloors damage changes, captaincy resign, team speclocks)
+
+fix: non-team arenas showed stats from other arenas too in matchinfo
+
+fix: muted spec chat now shows up as spec chat rather than normal
+	note: specs can NOT be unmuted in 1v1 arenas
+
+
+Notes for version 0.204
+
+add: currenttime command
+
+add: per-arena weapon respawn time and weaponstay
+
+add: +/- vstr
+
+fix: rail rings (who the hell uses rings?!) now shaded properly
+
+
+Notes for version 0.201
+
+add: callvote items reinstated
+
+chg: yet more messing around with RemoveTournamentPlayer calls
+
+fix: display your stats at end of non-1v1 games
+
+fix: truelightning rendering was a little bit off
+
+fix: obits only for players in current arena
+
+fix: "other arenas" part of scoreboard now shown in non-teamgames too - oops  :)
+
+
+Notes for version 0.131
+
+fix: players kicked to permanent spec in ca if the player they are following dies
+
+fix: reset client frag/time warnings at each intermission
+
+
+Notes for version 0.130b
+
+add: armordamageself, armordamageteam now votable
+
+chg: g_promode and g_instagib renamed to server_*
+
+chg: tele exit speed upped by 10% in promode
+
+chg: arenasettings menu removed - too gay. it's all done with std votes now
+
+
+Notes for version 0.128a
+
+fix: players sometimes kicked to spec at end of non-1v1 games
+
+
+Notes for version 0.128
+
+add: CPM skins
+
+chg: new-style doublejumps
+
+fix: rocketsmoke 0 bug
+
+
+Notes for version 0.126
+
+add: per-arena intermission
+
+chg: timelimit set by serverop is now used ONLY to set default tl for arena
+
+chg: nextmap now ignored as map changes are only by vote
+
+fix: invite players to team actually allows them to join...  :)
+
+fix: no map_restarts any more. ever. unless callvoted.
+
+fix: "choose arena" menu item working again on MA maps
+
+
+Notes for version 0.122a
+
+add: callvote fastrail and supporting gameplay code
+
+fix: latest soundcode merged from OSP - should fix duped sounds with predict 0
+
+fix: arena fl and tl checks when trying to set both to 0
+
+
+Notes for version 0.122
+
+fix: initsession now sets teams by arenatype, not g_gametype
+
+fix: 1v1 matchinfo dump and player stats: now sent to all clients and ordered
+
+fix: check backpack flag when picking up ammoboxes
+
+fix: register all ammobox models in case we need to use one for a backpack
+
+
+Notes for version 0.121
+
+chg: allow world votes during intermission: handy for map changes etc
+
+fix: cgame draws game clock correctly
+
+fix: check conn state before factoring players into vote counts
+
+fix: nextmap works properly for g_gametype 1 (1v1)
+
+fix: mad serverinfo cess during intermission after 1v1 games
+
+fix: w00t! finally tracked down the "fake pj" problem on map changes/restarts  :)
+(this also fixes the bots losing their "i am a bot" flag at random)
+
+
+Notes for version 0.120
+
+add: all weaps and infinite ammo in warmup
+
+add: "arenatype" now votable
+
+add: "arenavote" command to distinguish from world votes
+
+fix: map and nextmap voting
+
+
+Notes for version 0.118
+
+add: timeout/timein
+
+add: ready/unready
+
+add: some more referee functions: team lock/speclock, pause match, ready all, etc.
+
+add: loads more OSP voting yumminess - \callvote for help
+
+add: callvote armorsystem (CPM (default), CPMA duel (75Y 100R), CPMA team (150Y 200R))
+
+chg: CPM armour system now back to normal (YA 100 (150 max), RA 200)
+
+fix: CPMA votables and OSP votables are now all one "thing"
+
+
+Notes for version 0.114
+
+chg: CPM z-knockback is now 36 - this should mean that it's about the same in 127 now as it used to be in 117
+	it might still need another tweak or two
+
+
+Notes for version 0.111
+
+add: cg_NoChatBeep (0|1, default 0) and cg_ShowPlayerLean (0|1, default 1)
+
+
+Notes for version 0.110
+
+chg: CPM SG knockback of 1.35 reinstated
+
+
+Notes for version 0.109
+WARNING!!! this build is basically just a bunch of tweaks to try stuff with:
+
+chg: SSG_DMG dropped from 7 to 6. So max SG dmg per shot is now 96 rather than the 110 of vq3 and 112 of v1
+
+chg: while i was in there, i fixed that bs with client drawing the wrong pattern for sg
+	which led to you sometimes seeing blood even if you missed
+	or not seeing it but hearing the hit tone.
+	this change is for the vq3 code as well, currently
+	but can be broken again if ppl really want that.
+	since it's a definite bug, i figured it was okay.  :P
+
+chg: just for yuks, i implemented the armour changes i mentioned in the forum (it was only 2 lines) so the deal is:
+	YA==75 with 150 stack
+	RA==100 with 200 stack
+RA/YA breakpoint and conversion factors stay as is (except that there's now an
+inverted conv as well if you have some YA when you pick up RA, obviously)
+since we won't change prot% or YA max, and armour still doesn't count down.
+note: since i'm just messing around, these values are the same for tdm too,
+which they wouldn't be even if we did change the scheme for 1v1.
+
+
+Notes for version 0.108 (note: version numbering scheme changed)  ;)
+
+add: very rough CPM-style warmupinfo
+
+add: support for # expansions in chat
+	e.g. "say_team i just railed #t" will show up as "i just railed a|rhea"
+	i *don't* have the cpm set (health, armour, low ammo, etc) for tdm in there since i can't find the code...
+
+add: promode smoke control for SG (cg_smoke_sg)
+
+chg: CPM z-knockback of 40 replaced with VQ3 z-knockback of 24
+chg: CPM SG knockback of 1.35 replaced with VQ3 SG knockback of 1.0
+chg: CPM LG knockback changed from 1.55 to 1.2
+(i.e. RL and LG are now 1.2; gauntlet and PG are 0.5; other weaps are 1.0 (same as VQ3))
+
+chg: thrufloors now does 100% dmg instead of 50% - gonna leave it for the design team to worry about  :)
+
+chg: cg_drawtimer 1 now shows arena clock instead of world clock; 2 shows both clocks
+
+fix: when followspec-ing, shaft now drawn and dmg tones played
+
+fix: promode means promode gfx; vq3 means vq3 gfx
+
+
+Notes for version 1217
+
+add: splash through floors. this is NOT the same as the 1.17 splash bug
+	it makes an ABSOLUTE decision on splash through thin surfaces,
+	so it's a lot more consistent than the bug version was.
+	also, damage through floors is HALF what it would be for open splash at the same distance.
+
+bug: i've had to force duel arena to roundlimit of 1 - it's too problematic right now otherwise.
+	i'll fix it after the hols. dm is still fine.
+
+fix: fraglimit warnings will play properly each game
+
+fix: team chg msgs only sent to current arena
+
+fix: info for team overlay only sent for current arena
+
+fix: id bug - you can now play 1.27 demos back through the ui  :)
+
+fix: arena votes work again
+
+note: you may get "fake" PJ sometimes as a spec - pressing fire should clear it
+
+
+Notes for version 1216
+
+chg: \matchinfo cmd renamed to \scores to match osp
+
+fix: w00t! sound-dropping code reintroduced by 1.27 merge replaced AGAIN with osp code.
+	now i can use lg again.  :)
+
+fix: swap quadshell colour too if swapskins set
+
+add: promode smoke control vars for rox+pills
+
+chg: promode hit-tones now disabled for non-promode arenas
+
+
+Notes for version 1215
+
+?fix: found old code in spec set for arena chg (c+p from wrong dir - gg me) - should fix the false PJ
+
+?fix: zombie winners in 1v1 games left over when next match started
+
+fix: clients showing scores/warmupinfo/scoreboard etc from wrong arena
+
+fix: speclock not kicking specs from players if they were already following before the lock
+
+add: cg_teamRails flag  :)
+
+
+Notes for version 1214
+
+first 1.27 release
+
+
+----
+
+
+"WONTFIX" issues
+These are problems that we've essentially written off.
+Hopefully they will never be anything other than few and minor.
+
+The doors in the original Abuse Q3DM12TMP are always closed.
+This is basically a problem with the map itself.
+The mapcfg version that comes with CPMA (callvote map !q3dm12tmp)
+works fine, and also saves clients having to DL the 30MB TMP pak.
+
+Callvoting items in CTF duplicates flags if they aren't at the base.
+So don't do it.  :)

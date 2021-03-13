@@ -1,0 +1,18 @@
+
+# the first map will be the one rotated to if the server is idle
+# entries are "mapname [minplayers] [maxplayers] [caplimit] [timelimit]"
+
+cpmctf3 00 12
+cpmctf4 00 12
+cpmctf5 00 12
+cpmctf1	00 12
+cpmctf2 00 12
+
+# entries with minplayers -1 are "banned"
+# and can't be voted in even with map_restrict 0
+# use this for really awful maps that are bundled into a pk3 with others
+# or if you don't want to delete their pk3's for some reason
+# or a map incorrectly claims to support a mode that it doesn't
+# (e.g. specifies CTF but doesn't actually have flags)
+
+q3wcp20	-1

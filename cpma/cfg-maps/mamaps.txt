@@ -1,0 +1,26 @@
+
+# the first map will be the one rotated to if the server is idle
+# format: "mapname [minplayers] [maxplayers] [roundlimit] [timelimit] [arena]"
+
+# the roundlimit field is essentially just for consistency with the
+# normal maplist format: MA maps MUST set their arenas roundlimits in the
+# "mapname.cfg" file
+
+# the arena field is for simple MA maps (like the RA3 ones)
+# if an MA map has a timelimit but there is a match in progress in that arena
+# the server will hold off rotating to the next map until that match is over
+# if there is no "dominant" arena, the map will just rotate at the timelimit
+
+ra3map1		0	99	0	20	4
+ra3map2		0	99	0	20	4
+ra3map3		0	99	0	20	5
+ra3map4		0	99	0	20	4
+ra3map5		0	99	0	20	4
+ra3map6		0	99	0	20	1
+ra3map7		0	99	0	20	4
+ra3map8		0	99	0	20	5
+ra3map9		0	99	0	20	1
+ra3map10	0	99	0	20	4
+ra3map11	0	99	0	20	4
+ra3map12	0	99	0	20	4
+ra3map13	0	99	0	20	5

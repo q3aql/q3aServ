@@ -1,0 +1,240 @@
+
+Challenge ProMode Arena - Custom Modes
+--------------------------------------
+Date: 31 Dec 03
+Audience: Server admins
+
+
+Abstract:
+An explanation of custom modes, which are "groups" of settings that persist
+across map changes. Modes are an extremely powerful mechanism and actually
+very easy to use, but they do have rules that must be followed.
+
+
+Motivation:
+Servers are generally configured through extensive use of CVARS. Aside from
+issues with bloated server.cfg files, this scheme is simply not suitable for
+advanced mods like CPMA that support multiple gametypes, each of which has
+fundamentally different behaviour and thus REQUIRES fundamentally different
+settings for optimum gameplay.
+"Casual" gametypes such as Clan Arena are generally meant to provide newbies
+with a gentle introduction to FPS play and simplify the game to just one or
+two elements; more advanced gametypes such as DM are intended to tax every
+possible aspect of a player's ability, and demand a wider range of "overall"
+skill from them.
+Modes provide a simple way for server admins to address these different
+audiences by localising the rules of each gametype rather than attempting
+to come up with a "best mix" in a global config instead.
+
+
+CPMA ships with several standard modes to facilitate competition play.
+Hopefully, an explanation of how these work will clarify the concept and
+behaviour before getting into how admins can define modes of their own.
+
+Despite the need for variances in settings, there are certain elements of
+gameplay that are common across a large number of gametypes. These form the
+"base" configuration for all modes, and are as follows:
+
+Spawn Health: 100
+Spawn Armour: 0
+Armour Decay: Off in games with items, On in "arena" games
+Self Damage: Full
+Team Damage: Full
+Falling Damage: On
+Maximum Damage: No Limit
+Armour Types: Standard ProMode
+Starting Weapons: Gauntlet and MG
+Weapon Respawn: 15 seconds
+Megahealth Respawn: Wearoff-based
+Weapon Dropping: Off
+Flag Dropping: Off
+Instagib: Off
+Instagib Reload: 1500
+Thaw Time: 3 seconds
+Autothaw Time: 120 seconds
+Cessrail: Off
+Overtime: Sudden Death
+Powerups: On
+Powerup Respawn: 90 seconds
+Holdables: Medkit On, Teleporter Off
+Warmup: Competition (require \ready)
+Player Respawn: At end of warmup
+
+Fraglimit and Timelimit are set to 0 as well, since derived modes generally
+only want one or the other.
+Note that although things like Instagib Reload and Thaw times are not really
+"common" in terms of the number of games that they apply to, they are still
+set here as they don't create a CONFLICT with "normal" play.
+
+To this base configuration, the standard modes apply any changed or
+additional rules needed to acheive optimum gameplay within the context of
+their specific gametype.
+
+As an example, for Deathmatch play those rules are:
+
+Timelimit: 10 minutes
+Overtime: 2-minute periods
+Weapon Respawn: 15 seconds
+Megahealth Respawn: Wearoff-based
+Powerups: Off
+Holdables: Off
+
+For FFA games, the base rules and especially the DM variants are a
+little more brutal and complex than we'd really like. FFA is more of a
+friendly game for fun than a competitive one, so we simplify the
+gameplay by changing a few more of the rules:
+
+Fraglimit: 30
+Overtime: Sudden death
+Weapon Respawn: Use weaponstay
+Powerup Respawn: 60 seconds
+Megahealth Respawn: Fixed interval
+Warmup: None
+
+
+Custom modes are on equal footing with the built-in modes.
+You start with the same "base" settings, and add or change from there.
+You MAY NOT use the "mode" vote inside a custom mode: while it might be
+trivially easier to derive modes from each other, it's too prone to
+people becoming confused and creating cyclical modes.
+You can't try and replace a standard mode with one of your own: the
+system will always try the built-ins first. Hence STANDARD modes.  :)
+
+There are 3 config/mode only "votes": these can never be callvoted by
+players, but still exist as a way to manipulate settings that would
+otherwise be unchangeable: "ammo", "type", "locked".
+TYPE is the "true" underlying gametype for the mode, and MUST be specified
+in your mode config. Accepted values are:
+  -1: HM, 0: FFA, 1: 1v1, 2: DA, 3: TDM, 4: CTF, 5: CA, 6: FTAG, 7: CTFS
+This underlying type is what determines the maplist used by the mode:
+  0: ffamaps.txt
+ -1 and 1: 1v1maps.txt
+  2 and 5: camaps.txt
+  3 and 6: teammaps.txt
+  4 and 7: ctfmaps.txt
+LOCKED is for MA maps only and allows you to make an arena unavailable
+(e.g. you want people to only use the CA arena). It requires an argument
+just for consistency's sake, but the only sensible argument is "1".  :)
+Locked arenas must still be VALID, i.e. have a TYPE entry.
+
+
+Power comes at a price. The settings in your custom mode are subject to
+only the most minimal validation: if you try to do something stupid in them
+it's quite likely that the system will allow it. Be careful.  :)
+
+CPMA ships with a few custom modes of its own in the modes/ directory.
+They can be quite useful as a reference for how to acheive a particular
+style of gameplay. The "base" settings are always applied first, then
+the customisation defined by the mode is added in.
+Modes are matched case-INsensitive to avoid problems on *nix filesystems.
+
+As an example: the RA3 mod uses a form of Clan Arena tailored towards
+spam and rail-whoring even more than standard CA is.  :P
+To mimic that behaviour in CPMA, create a modes/RA3.cfg like this:
+
+type 5					# Clan Arena derivative
+limit 5					# first team to 5 rounds wins
+ammo 200,100,20,50,150,50,100,0		# lots of GL/PG/RG ammo
+armor 100				# 2 rails = YUO AR TEH WINNAR!
+items -BFG
+fallingdamage 1
+startrespawn 0
+selfdamage 2
+teamdamage 0				# no team damage in spamfests
+
+Note the format of the "ammo" line: it MUST NOT contain spaces, since the
+voting system can only support single tokens as arguments.
+
+US-style Freeze Tag play is another somewhat unusual ruleset: since the
+penalties for being frozen are quite severe, spawnees are outfitted with
+extra weapons and a small amount of armour to help avoid simply being
+spawnfragged and thus refrozen immediately. While Freeze is a team game,
+certain level control elements are also reduced to make lockdowns less
+common and harder to maintain.
+
+type 6			# Freeze Tag derivative
+armor 25		# avoid one-shot spawnrapes
+dropitems 1		# share weapons/ammo with teammates
+overtime 1
+simplemega 0
+startweapon 268		# start with MG, SG, and PG
+startrespawn 0		# don't thaw winning team after score
+timelimit 20
+weaponrespawn 15	# make weapons more available
+
+
+IMPORTANT: How modes interact with Multi-Arena maps
+---------------------------------------------------
+
+MA maps REQUIRE each arena's settings to be specified in a config file,
+which is always <mapname>.cfg and is automatically applied when the map
+is loaded. The file is read from the directory that map_cfgdir points to.
+
+The format of MA config files is the same as for custom modes, and arenas
+are initialised to the same "base" configuration that modes use.
+
+Each group of settings MUST be preceded by an "arena n" line so that the
+system knows where to apply them.
+
+Config files CAN use "mode XX" lines, and this is HIGHLY recommended.
+
+As an example: to configure an arena for 1v1 DA play, you CAN just use:
+
+# Thunderstruck
+arena	2
+type	2
+armor	100
+limit	1
+startrespawn	0
+
+and you'll actually get a rather fun game (ironically, one that's more
+interesting and skillful than PingSpam Arena).  :P
+It's probably not what you were after though - to get THAT you need to use
+something more like this:
+
+# Thunderstruck
+arena	2
+type	2
+ammo	200,100,20,50,150,50,100,0
+armor	100
+limit	1
+items	-BFG
+startrespawn	0
+
+After a few of those, the config starts to get rather heavy-looking.
+So instead, you can simply do this:
+
+# Thunderstruck
+arena	2
+mode	DA
+
+Quite a bit cleaner and more concise.  :)
+However, since custom modes are just as valid as standard modes are,
+you can go even further and create exactly the behaviour that you want
+in a single place, then apply it easily to multiple arenas and multiple
+maps. For example, to cut down on spam create a modes/MyDA.cfg like this:
+
+type	2
+ammo	200,100,0,50,150,50,0,0
+armor	100
+limit	1
+items	-BFG
+items	-GL
+items	-PG
+startrespawn	0
+
+Then in ra3map1.cfg just use:
+
+# Evolution
+arena	1
+mode	MyDA
+
+# Thunderstruck
+arena	2
+mode	MyDA
+
+etc.
+Once you've done that, you can change the settings for any arenas and
+any maps that use your custom mode by just changing the definition of
+that mode itself, rather than copying and pasting the settings into
+every individual map's config file.

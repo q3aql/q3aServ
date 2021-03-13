@@ -1,0 +1,43 @@
+
+Challenge ProMode Arena: Hoonymode
+----------------------------------
+Date: 7 Nov 03
+
+
+Hoonymode is a novel form of 1v1 play, loosely based on tennis rules.
+All in-game behaviour (weapons, physics, items, etc) remains the same
+as standard DM: the change is in how the game progresses from one frag
+to the next.
+
+During warmup, two spawnpoints are chosen by the players. One will
+typically be a "stronger" spawn and the other "weaker". When the game
+begins, these are where the players will spawn, with the strong spawn
+considered the equivalent of having the "serve".
+
+Each player death (regardless of source, i.e. a suicide is considered
+a kill for the opponent) is treated as a distinct point. After a point
+is scored, play does not continue as in DM: instead, the players and
+the arena are reset, and a new point is contested for. Players switch
+spawnpoints at this time, so the player who had the weak spawn for the
+previous point now has the strong one, effecting a change of serve.
+Players are given a few seconds between points to reconsider strategies
+etc.
+
+Games are played to a point limit, with the clock not being a factor.
+A player must reach that limit and be at least two points clear of
+his opponent to win, i.e. in a 5-point game, 5-4 is a lead not a win:
+the player still needs another point to clinch it.
+
+
+Implementation Specifics:
+
+Players claim a spawnpoint by moving near it and using the \spawn
+command (via console/bind/etc).
+
+Referees can choose spawnpoints for players by using "\spawn <pid>"
+(Players can also use this when playing bots).
+
+Players are not FORCED to choose a spawnpoint: in the early testing
+stages I discovered that it's a lot of fun even if you just have
+random spawns, but still using the "point" scheme and full resets.
+I certainly wouldn't recommend it for serious play though.

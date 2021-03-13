@@ -1,0 +1,176 @@
+
+Challenge ProMode Arena: arQmode
+--------------------------------
+Date: 28 Nov 03
+
+There is no "arQmode" any more. It's been tweaked and is now the official
+ruleset of Challenge ProMode. This document exists solely for "historical"
+purposes.
+
+
+Date: 18 Feb 03
+
+arQmode is an unofficial version of Challenge ProMode that incorporates some
+of the changes we've discussed over the years but opted NOT to include in
+ProMode itself for one reason or another. It's really just a place for me to
+experiment with gameplay, and unlike ProMode the settings for arQmode can
+(and most likely will) change on a whim without any Design review.
+I'll refer to it as APM from now on to save typing.  :)
+
+The strategic elements of modern ProMode (armour specifics, weaponspawns,
+MH behaviour, sound system, etc) are so close to perfect after the last few
+years of CPMA refinements that changes in that area would provide at best
+miniscule improvement in return for gratuitous differencing from CPM, so
+APM (like CQ3) generally leaves them untouched. Instead it focuses on melee,
+and especially on the behaviour of the "top tier" weapons.
+
+
+The APM changes are:
+
+Biased RL Damage
+Motivation: Reward use of high-skill weaponry.
+Splash damage from the RL now follows a Q1/Q2-like scheme (though nothing
+like as ubernoobed) where ANY hit does a minimum of 15 damage, and the
+damage/distance relationship is biased accordingly, i.e. a shot that does
+50 damage in CPM will do ~60 damage in APM. Note that although the base
+knockback factor remains the same as in CPM, knockback on splash hits
+will also be higher since the base factor is scaled by damage. RL speed,
+base damage, splash radius, and max splash damage remain unchanged.
+
+Decreased Splash Vertical Knockback
+Motivation: Ameliorate the higher RL knockback.
+CPM's vertical knockback base is 150% of CQ3's. APM's is 133% of CQ3's,
+or 89% of CPM's. Since an "average" RL hit in APM is ~20% stronger than
+in CPM, players were thrown around too much. While this change reduces
+the "lift" from a perfect RL shot by a small amount, when coupled with
+the previous change it increases lift on an overall basis for the vast
+majority of shots, and you can still juggle people very nicely.  :P
+
+Increased PG Damage and Knockback, Reduced Speed
+Motivation: Reward use of high-skill weaponry.
+The PG's *direct hit* damage has been raised from 15 to 20. The splash
+damage remains unchanged, and the splash radius is slightly reduced.
+These changes promote the PG to "top tier" / "power trio" weapon status.
+Knockback has been increased implicity along with damage, but only
+slightly: it's now roughly that of the CPM LG.
+The projectile's speed has been reduced from 2000 to 1800.
+This keeps the weapon extremely dangerous at close range (where it's still
+effectively a hitscan weapon) but reduces its utility as a mid-range spam
+weapon since good players will be able to dodge it to some extent as was
+possible in Doom; and greatly reduces its value for "pure spam" cases on
+CTF and other large maps. Speaking of which...
+The one significant issue with a strong PG lies not so much with the
+weapon itself but with the behaviour of a certain class of player: the
+tendency for newbies to simply spam it until they run out of ammo. While
+not really a problem in skill games, it becomes a very obvious one in CA
+and CTFS, as those gametypes not only have 99% of the newbie population
+but also provide the weapon and ammo for free. Fortunately, such people
+are far more likely to play RA3 or Threewave than CPMA.  :P
+Regardless, the ammo limit for the PG has been reduced to 100, which is
+more than enough for DM or even TDM play.
+The size of the plasma graphic has been reduced too, since I REALLY HATE
+the way Q3 does them; and the shots themselves are in reality infinitely
+small, contrary to their appearance (especially in VQ3).
+
+Decreased LG Damage and Knockback
+Motivation: Penalise use of low-skill weaponry.
+The LG is 90% ping and 10% ability. Terrifying in the hands of even the
+most newbie SLPB yet near-useless to HPBs regardless of their skill, it
+has no place as a top tier weapon. The interesting impact of damage
+changes to the LG is how that damage is distributed across health and
+armour. In CPM, the LG damage is always split 2H 6A whether the enemy has
+RA or YA: despite the lower protection percentage of YA, the rounding
+applied to the factors involved makes both armours equivalent. Dropping
+the damage to either 6 or 7 makes the armours distinct again, but the
+health loss is the same whether the LG is 6 or 7: damage is applied as
+1H xA against RA and 2H xA against YA for both.
+I flipped a coin and chose 6.
+To look at that another way: against a YA player, all 3 "total damage"
+factors reduce health at the same rate: the only difference is how fast
+they go through armour. Against an RA player though, either reduction in
+LG damage makes it virtually worthless for actually killing people until
+such time as the enemy's armour has been eroded. As such, the LG's role
+is now very much restricted to that of a finishing weapon and a way to
+"test" the enemy's health and then combo from.
+Knockback has been reduced implicity along with damage, but increased
+explicitly to compensate somewhat. CPM's LG has a knockback of 10 (units
+per hit) and I originally set APM's to 8, which is JUST enough to hold
+someone in the air, but it requires exceptional aim to do so. In the end
+I upped it to 9 simply because it's just so much more fun at that when
+people take jumppads.  :)
+9 Mar 03: The only thing I DON'T like about 6 is that it means LG now
+has the same hit tone with Quad as without, which is a bit of a shame.
+So I got sneaky and increased it to 6.5 instead. Since you can't do
+fractional damage, that means it stays at 6 normally, but with Quad it
+jumps from 24 to 26.
+
+Decreased Rail Damage and Knockback
+Motivation: Penalise passive play.
+Now half of its CPM value, enabling fast players to break through "standy
+railer" defenses. It's extremely tempting to leave the knockback factor
+at 1 but change the actual damage of the RG instead. Reducing it to 75
+for example removes the ability to use it for skill-less spawnrapes but
+leaves it strong enough to be used for "balance of power" shifts or to
+finish an opponent with. It would however diminish the overall power of
+the RG to a level that removes it from the top tier, thus leaving no
+hitscan weapon in that class, which I think would be a mistake. The only
+way to compensate for that would be to reduce the reload penalty or
+reinstate cessrail: of the two, a consistent but faster reload is
+probably still the more desirable option, but with the LG also modified
+the classic cessrail combo is really a non-issue for APM already.
+9 Mar 03: Okay, tempting enough that I'm going to try it.  :)
+Damage is reduced to 80; overall knockback stays at half of CPM/VQ3.
+I found it impossible to decide between a constant faster reload and
+just re-enabling cessrail by default: there are pros and cons to both.
+In the end I went with this: if you enable fastrail, you get the standard
+FR timings of 1000 and 1500; whereas if you leave it disabled (default)
+then the reload is dropped to 1250.
+APM was already strongly RL-dominated, and I think that's even more the
+case after this change. The RG still clearly has an effective role even in
+DM though: it remains the weapon of choice for a couple of key situations,
+so I'm willing to run with this for a while and see how it plays out.
+
+Assorted BFG Tweakage
+Motivation: Avoid Superweapons.
+When I originally set the BFG to be a "120% RL", the plan was that we use
+that as a starting point and then refine it from there. That never happened
+in CPM, and the weapon remains +20% over the RL in all these aspects:
+speed; damage; splash damage; splash radius; and implicitly, knockback.
+(The knockback scale is the same as the RL's, but since the damage is +20%
+the knockback automatically is also).
+APM shrinks the blast radius down to 20% *less* than the RL. Interestingly,
+because of the new bias on the APM RL the two weapons now cause roughly the
+same damage for "average" shots, but the BFG causes more on "good" shots
+and less on "bad" shots.
+
+Biased Spawns (the only strategic change)
+Motivation: Minimise streaks of "cheap luck".
+Biased player respawns mean that a player CAN respawn at any spawnpoint,
+but is more likely to respawn some distance from where he died. While
+clearly still superior to baseq3's utterly predictable respawns, and
+significantly less likely (note: NOT impossible) to result in unpleasant
+"get spawnfragged in the same place 3 times in a row" than the "true
+random" scheme that CPM uses, there are still elements to it that I'm
+not really comfortable with. My personal opinion is that that there IS no
+"best" way to handle respawns, because of the variance in map layouts etc
+and in the events that lead up to the frag in the first place. Still, to
+paraphrase the ELM docs: "All respawn schemes suck. This one just sucks
+less than the others".  :)
+
+
+Changes that STILL didn't make it:
+
+Increased Ground Friction
+Motivation: Improve player agility when on the ground.
+Something that was supposed to be in *pre-CPMA* CPM even, but in reality
+was never changed. Friction is 25% higher, allowing for faster stops and
+increased dodging ability. It has the interesting side-effect of reducing
+"launch speed" (i.e. the speed of the initial CSJ when starting a run) by
+about 30-50ups, which makes certain now-common tricks like stairs->MH on
+CPM3 significantly harder.
+Final Verdict: Had we done this years ago, it arguably would have been
+the better call, but at this stage it just seems limiting.
+Moreover it forces players to relearn the initial CSJ and thus introduces
+a conflict between CPM and APM movement, and a barrier to being able to
+play both. Those factors more than outweigh the slight improvement that it
+makes to the ground game.

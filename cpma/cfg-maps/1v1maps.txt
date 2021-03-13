@@ -1,0 +1,28 @@
+cpm24
+cpm29
+cpm28
+cpm25
+cpm23
+cpm22
+cpm3a
+cpm19
+cpm17
+cpm16
+cpm15
+cpm12
+cpm11a
+cpm10
+cpm8
+cpm7
+cpm6
+cpm5
+cpm2
+cpm1a
+
+cpm1	-1
+cpm3	99
+cpm11	99
+pro-q3tourney2	-1
+pro-q3tourney4	99
+pro-q3tourney7	-1
+pro-q3dm13	-1

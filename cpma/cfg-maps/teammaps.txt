@@ -1,0 +1,40 @@
+
+# the first map will be the one rotated to if the server is idle
+# entries are "mapname [minplayers] [maxplayers] [fraglimit] [timelimit]"
+
+# since CPMA can run the TMP maps *without* anyone needing the pk3 for them,
+# those are used here in preference to the normal id ones
+# (the ! at the start of a map name means the map uses a custom .map)
+
+cpm21
+cpm4a
+cpm18r
+cpm26
+cpm27
+!cpm13b
+!q3dm12cpm
+!q3dm14tmp
+cpm14
+cpm20
+cpm9
+
+cpm6	0	4
+cpm11	0	4
+cpm16	0	4
+cpm19	0	4
+cpm25	0	4
+cpm28	0	4
+cpm29	0	4
+
+cpm4	99
+cpm13	99
+cpm18	99
+
+pro-q3tourney2	-1
+pro-q3tourney4	-1
+pro-q3tourney7	-1
+pro-q3dm13	-1
+pro-q3dm6	99
+q3dm9	-1
+q3dm11	-1
+q3dm15	-1

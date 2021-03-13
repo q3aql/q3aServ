@@ -1,0 +1,78 @@
+
+Challenge ProMode Arena: NTF
+----------------------------
+Date: 3 Dec 06
+
+
+NTF is a class-based form of CTF, somewhat reminiscent of Team Fortress
+but really having very little in common with it.
+Flags, Powerups, and Ammo are all present just as in CTF, but maps have
+no Armour, no Health except for the MegaHealth, and no Weapons.
+
+Players spawn with no armour, and an initial health and weapon loadout
+determined by the class.
+
+Health and armour both regenerate at 5 points per second: health up to
+100, and armour up to the class's maximum.
+
+Backpacks from corpses give one box of ammo for all your weapons and an
+armour shard.
+
+
+Classes are defined by the files in cpma/classes and like modes can be
+customised extensively. The options for class definitions are:
+
+n - name ("Scout", "Fighter", etc)
+
+m - model ("slash", sarge", etc)
+NTF models always use ProMode skins
+
+s - base speed
+320 is standard CPM speed, i.e. VERY fast if the player is skilled enough
+
+h - spawn health
+
+a - maximum armour
+
+ac - armour class
+One of the CPMA armour types: 0 - Green, 1 - Yellow, 2 - Red
+
+ht - hook type (0 - None, 1 - Offhand, 2 - Onhand)
+
+hp - hook pull
+How fast a grappling player moves
+
+hs - hook speed
+How fast the grapple hook itself moves
+
+jd 1 - can double jump
+
+jr 1 - can ramp jump
+
+wX s,m,b,g - weapon loadout and ammo
+w2 is MG, w3 SG, and so on. The four arguments set the ammo counts for
+initial spawn, max, "box" pickup (i.e. a dropped pack), and "gun" pickup
+(i.e. an item pack). They MUST all be specified, and MUST be comma-separated
+with no spaces between them (just like "ammo" lines in mode configs).
+Whether a class has a weapon or not is determined by the presence of a wX
+line, not the spawn ammo, so it's possible to give a class a certain weapon
+but have it be unusable until the player acquires ammo for it from a pack.
+
+sw - starting weapon
+Must be one of the numbers from a wX line (or 1 for gauntlet). Handy for
+classes like Scout that spawn with SG and GL to prevent GL being selected
+just because it's the "higher" weapon
+
+There is basically no checking done on any part of the class definitions.
+If you're not capable of getting them right, you probably shouldn't be messing
+with them in the first place.  :)
+
+
+Although we don't currently enforce it, realistically NTF requires CPM
+settings. PMC lets Fighters and Tanks move faster than Scouts; CQ3 nerfs
+advanced movement so badly that classes which depend on it become almost
+unplayable; and VQ3 simply doesn't work.
+Still, it's the admin's choice to make so...
+
+
+In case you hadn't worked it out yet, NTF stands for "Not Team Fortress".  :)

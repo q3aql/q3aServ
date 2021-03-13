@@ -1,0 +1,276 @@
+
+Challenge ProMode Arena: Commands
+---------------------------------
+Date: 22 Jun 03
+
+
+This document gives information on all available commands (and their
+options) for CPMA, for both clients and at the server console.
+
+All commands that require a parameter can be issued without the
+parameter to gain additional information on the command's current
+setting even if the command itself is disabled.
+
+The notation used in the commands described herein uses the common
+Unix semantics in specifying if a parameter is optional or required:
+
+  - Any parameter description enclosed with < ... > is required.
+  - Any parameter description enclosed with [ ... ] is optional.
+
+Some of the commands given below also specify "player_id" as an optional
+or required parameter.  This "player_id" information is the numeric ID
+number assigned to a player when connecting to the server.  To find
+the associated player_id of a player, issue the "\players" command to
+view a listing of all playernames and their associated "player_id".
+
+Note: all of the commands listed below are in addition to the commands
+      that are shipped with the default Quake3 game.
+
+
+====================================
+General commands (all modes of play)
+====================================
+
+accuracy		Shows best player for each weapon. Adding 
+			<weapon_id> shows all player stats for that
+			specific weapon. (Alias: topshots)
+
+autorecord		Creates demo with consistant naming scheme
+
++button5                Use the offhand hook/grapple, if the server allows it.
+
+callvote <params>       Calls a vote.  The list of available <parameters>
+                        is given later in this document.
+
+currenttime/time        Displays current local time.
+
+help                    List of available commands for the particular
+                        mode of play on the server (Alias: commands).
+
+maplist			Display available maps for current mode
+
+motd                    Views server's current MOTD.
+
+mvd			Create a multiview demo (all players POVs).
+
+players                 Lists all active players and their server ID
+                        (This ID is needed for other commands, as shown
+                        below).  Additional info on client is also given.
+
+ref <password>          Become a referee (admin access).
+
+scores			Shows match stats
+
+speconly                Toggles client's involvement in the 1v1 queue.
+                        If enabled, then clients will never join a 1v1
+                        game.  They will remain spectators the entire
+                        time they are connected.  Disabling "speconly"
+                        will put the client back to the end of the queue
+                        to begin playing again.
+
+stats [player_ID]       Shows weapon accuracy stats for a player. If no
+                        ID is given, shows stats for the current player
+                        (or if following a player, shows the stats of
+                        the player being followed).
+
+statsall		Shows weapon accuracy stats for all players.
+
+statsblue		Shows weapon accuracy stats for the blue team.
+
+statsred		Shows weapon accuracy stats for the red team.
+
+viewall                 Multiviews all active players.
+
+viewnone                Removes all active views.
+
++wstats                 Displays current stats while playing or of the
+                        player being followed (if a spectator).  In
+                        multiview, the stats of the player of the
+                        highlighted window will be displayed.
+
+
+===========================================
+Competition commands (warmup-enabled modes)
+===========================================
+
+ready           	Sets player's status to "ready" to start a match.
+
+notready       		Sets player's status to "not ready" to start a match.
+
+pause/timeout/timein  	Call or cancel a timeout.
+
+
+==========================
+Teamplay-specific commands
+==========================
+
+coach                   Switches to "coach" specator mode (after being
+                        invited to the team), or reinitializes coach's
+                        multi-player view of the coached team.  Coaches
+                        can teamchat, issue timeouts, teamready, etc.
+                        with or for the team just as if they were a
+                        playing member of the team, but they can only
+                        spectate the coached team.
+
+coachdecline            Declines a "coach" invitation, or resigns
+                        coach status for a team if already a coach.
+
+coachinvite <player_id> Invites a player to "coach" the team.
+
+coachkick <player_id>   Removes a previously invited coach from a team.
+
+drop <item>             Drops available weapon/ammo (TDM/CTF only) or
+                        a carried flag (CTF).  Type "\drop" by itself to
+                        drop the current weapon.
+
+team <r|b|s|none>       Chooses a team (r=red, b=blue, s=spectator) or
+                        shows current team (if no param is given).
+
+lock                    Locks a player's team
+
+unlock                  Unlocks a player's team
+
+captains                Shows the names of both team captains.
+
+viewred/viewblue        Adds views of the entire red/blue team.  As
+                        new players join or leave the team, your screen
+                        will be updated.
+
+say_teamnl              Removes the (location) part of a teamchat.
+
+
+==========================================
+Teamplay-specific commands [captains only]
+==========================================
+
+speclock                Toggles locking team from spectators.
+
+specinvite <player_id>  Invites a player to spectate locked team.
+
+teamready               Readies all members on the team to start a match.
+                        (Alias: readyteam)
+
+invite <player_id>      Invites a player to join the captain's team.
+                        (Alias: pickplayer)
+
+remove <player_id>      Removes a player from the captain's team.
+                        (Alias: kickplayer)
+
+resign [player_ID]      Resigns team captaincy. You can optionally
+                        assign captaincy to another teammate by
+                        supplying the teammate's ID.
+
+teamname <name>		Sets a team name for the scoreboard etc to use.
+
+
+========================
+Referee (admin) commands
+========================
+
+ref <password>          Become a referee/admin.
+
+ref <vote> <param>	Works just like callvote settings and info.
+
+abort			Aborts a match that is underway.
+
+allready		Forces all players to start match.
+
+ban <player_id>		Temporarily bans selected player from server.
+
+help			List referee commands.
+
+ip			Shows players' names and IP addresses.
+
+kick <player_id>	Kicks selected player from server.
+
+lock			Locks both teams from more players joining.
+
+lockblue		Locks the blue team
+
+lockred			Locks the red team
+
+promote <player_id>	Promotes a player to captain status.
+
+putblue <player_id>	Puts specified player on the BLUE team.
+
+putred <player_id>	Puts specified player on the RED team.
+
+remove <player_id>	Removes selected player from team.
+
+speclock		Enables spectator locking for both teams.
+
+speclockblue		Enables spectator locking for the blue team.
+
+speclockred		Enables spectator locking for the red team.
+
+unlock			Unlocks both teams to allow more players to join.
+
+unlockblue		Unlocks the blue team.
+
+unlockred		Unlocks the red team.
+
+specunlock		Disables spectator locking for both teams.
+
+specunlockblue		Disables spectator locking for the blue team.
+
+specunlockred		Disables spectator locking for the red team.
+
+
+*NOTE*: All vote options are also available, as any vote a referee calls
+        will ALWAYS pass immediately.  This allows the referee to modify
+        all server settings shown in the \callvote list.
+        The "ref" command can be used to achieve the same effect.
+
+
+==========================
+Voting Commands/Parameters
+==========================
+
+The following options are available under the "callvote" facility of CPMA.
+Most options are called with a parameter of "0" or "1" to signal "OFF" or
+"ON" (0=OFF/DISABLE, 1=ON/ENABLE).
+
+You can get a list of all votable options in the game by typing:
+
+    \callvote ?
+
+by itself with no option name.  This will list all available server
+options to vote upon, based upon the current gametype being played on
+the server.
+
+You can also get the usage, description and current setting info of
+most server variables by simply typing:
+
+    \callvote <option_name> ?
+
+without any parameter.  For example, you can get the server's current
+settings to see which items and weapons are enabled or disabled by typing:
+
+    \callvote items ?
+
+See the docs/Server.txt file for details of all the votes.
+
+
+===============
+Server Commands
+===============
+
+The following command-list describes the commands available on the
+server console.  Note, all console commands that shipped with the
+default Quake3 game are available.
+
+addbot              If issued with a non-default quake3 bot name, CPMA
+                    will deterministically load a bot definition with
+                    a determined skill level.  This selection is based
+                    on the bot's numeric representation of its name.
+                    Thus, the same bot will be selected when its name
+                    is given, every time.
+
+filterlist          Lists all current filters enabled on the server.
+                    (Alias: banlist)
+
+filterload          Loads filter/ban list specified in the
+                    filter_file and player_file server variables.
+                    (Aliases: playernames, banload)
+
+ban <player_id>     Bans a player from the server.

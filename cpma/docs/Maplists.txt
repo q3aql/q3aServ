@@ -1,0 +1,93 @@
+
+Challenge ProMode Arena: Maplists
+---------------------------------
+Date: 12 May 04
+
+Below is a quick description of how to use maplists.
+The example here is for an FFA server.
+
+
+ffamaps.txt
+-----------
+
+# Example of the format of the text file used for specifying maps under
+# Challenge ProMode Arena for Quake3.
+#
+# Format:
+#
+#	<mapname> <min_players> <max_players> <scorelimit> <timelimit>
+#
+#	Note: a missing or < 0 value for either of the limit fields
+#	means use current server settings
+
+pro-q3dm6  0 14 25 20
+cpm9       4 14
+cpm14      4 99
+q3dm1      0  4 20 20
+q3dm17    99 99 20 20
+
+# etc
+
+The map queue will only load a map if its min/max active player counts on
+the current level are within its bounds. Otherwise, the map will NOT be loaded.
+
+There's a useful trick to the min_players field shown in the dm17 entry:
+since you can't have 99 people on a server, the map will NEVER be rotated to
+automatically, but it stays in the maplist and IS available for voting.
+
+Maps that are in the rotation are shown in green in the maplist.
+Maps that are NOT in the rotation but can be voted in are shown in yellow.
+
+If the min_players field is set to -1 the map is "banned" and can't be
+loaded by anything short of an RCON, even if map restrictions are off.
+This is very handy for some of the more atrocious 3W maps, where you can't
+just delete them because they're bundled into a single PK3 with other maps
+that you might actually want to play.
+
+If map_restrict is 0 (the default), any "suitable" maps for the current
+mode will automatically be added to the maplist, but excluded from the
+rotation (i.e. they're added as if specified as "min_players 99").
+There's no need for a map_autoload cvar: it's implicit in map_restrict 0.
+Note that "suitable" is determined by the presence of a correctly-specified
+"arena" script for the map. Ironically, none of the original id maps actually
+qualify :P, though the later "pro" maps are fine. See the notes at the end
+of this file for more information.
+
+If a server is empty for mode_idletime minutes, the first map in the list
+will be rotated to automatically. It should be a popular/common map for
+quick pickup games when people connect initially.
+
+Also, if a [mapname.cfg] file exists, the settings in it will be applied
+automatically when the map is loaded AFTER the mode settings take place:
+this is how we set CPM1A to default to 5-second weapon respawns.
+
+
+Appendix A - Fixing Broken Maps
+
+If you want to sort out the original id maps, create a "scripts"
+subdirectory in baseq3, containing a file called idmaps.arena. The contents
+of that file should look something like this:
+
+{
+map  "q3ctf1"
+type "ffa team ctf"
+}
+{
+map  "q3ctf2"
+type "ffa team ctf"
+}
+
+etc. Yes, the id CTF maps really do have FFA and TDM items.  :)
+You can also use this file to fix up pro-q3dm6 if your server allows CA:
+
+{
+map  "pro-q3dm6"
+type "tourney ffa team arena"
+}
+
+(Most RA3 maps are similarly lacking, which shouldn't surprise anyone :P
+and can be fixed the same way).
+
+Alternatively, you can just add the maps to the appropriate maplist
+explicitly, which will also let you select them for auto-rotation etc.
+Up to you.  :)

@@ -1,0 +1,502 @@
+ Challenge ProMode Arena: Client Settings
+-----------------------------------------
+
+Date: 22-Apr-2009
+
+This document explains some of the clientside support for CPMA. It will
+never be as current as the changelog, so you should always check that
+with each new release.
+http://www.promode.org/wiki/index.php/Client_Settings will almost
+certainly be more up to date.
+
+
+Network Settings
+----------------
+
+cg_lagHax <-1|0> (default = -1)
+    A combination of adaptive prediction and an updated version of the
+    famous "50ms hack" we introduced way back in 99v6 that also does small
+    amounts of lag compensation. Capped at 100ms no matter what: this is
+    intended solely to make European / EastUS v WestUS / etc games a bit
+    less of a hassle, not to hack dialup players into aimgods at the expense
+    of everyone else. 0 disables it, -1 means "as much as I'm allowed": it's
+    naturally adaptive. You'll lose some of your "feel" for lag, which
+    messes up your RL aim, etc. This doesn't suffer from the CS/etc problems
+    of "total BS" shots that piss everyone off; it's not trying to be some
+    panacea for modemers; and I'm honest enough to call it the hack that it
+    is instead of pretending that it magically makes lag suddenly not exist,
+    but all in all it's a pretty nice end result. If you use this, any form
+    of nudging will generally make you LESS accurate if your ping's under
+    100ms, because it'll screw up the adaptive calculations.
+
+cg_nudge <value> (default = 0)
+    An updated and much improved version of
+    id's crippled cl_timenudge. Allows you to use nudges beyond -25, and
+    automatically adjusts them to your ping: if you use -50 with a 20 ping,
+    you get -20. If you spike to 40ms for a few seconds, you get -40 during
+    the spike. This give you a "consistent worldview" that cl_timenudge
+    can't, and generally helps regardless of your connection.
+
+cg_optimiseBW <bitmask> (default = 0)
+  1 - Significantly reduces the amount of non-critical data sent to you.
+    Regrettably, this also makes you unable to see players through portals,
+    thanks to a bug in the Q3 engine. Small price to pay though for the HUGE
+    difference it makes to team games. Servers can, and by default do, force
+    this on for all clients. It's probably worth setting it to 1 anyway
+    though, just in case you end up on a server that's changed it to 0.
+  2 - Use this if your connection is UTTERLY starved for upstream bandwidth
+    (i.e. from you TO the server). Essentially, if you're on dialup or one
+    of those Belgian Warp connections. Understand that if you're warpy and
+    you choose to NOT set this because you like the advantage you get from
+    warping, you're screwing YOURSELF. Your shots will end up with
+    potentially huge random delays on them, so even if you're LPB the server
+    may not see that you fired until up to 100ms after the fact, effectively
+    making your weapons act like you have an unstable and much laggier
+    connection, and without cg_nudge's ability to smooth it out.
+
+cg_predict <0|1|2> (default = 1)
+    Replaces cg_nopredict.
+  0 - off
+  1 - normal
+  2 - optimised
+    The normal prediction path is extremely slow at times (notably around
+    curves) and can cost you 100fps on a GHz machine. This new scheme is
+    MUCH faster, but slightly more prone to errors. Oddly enough, it's still
+    more accurate than the original id prediction code (i.e. before the CPMA
+    fixes). If you have a slow machine, it's definitely worth trying. Note
+    that cg_predict 2 was introduced 9 Sep 2002, the definition of a "slow
+    machine" has changed since then. Today's computers will not notice any
+    difference at all.
+    Note: Do not use cg_predictItems 1 with cg_predict 2.
+
+cg_predictItems <0|1> (default = 1)
+    Toggle client-side item prediction. 0 option to not do local prediction
+    of item pickup. If you get many false pickups (due to lag, packetloss or
+    high ping) you should definitely use 0. It's annoying when the client
+    predicts that you picked up RL, only to notice a bit later that you did
+    not pick up anything.
+    Note: Do not use cg_predictItems 1 with cg_predict 2.
+
+cg_smoothClients
+    Does not exist in CPMA - see cg_xerpClients instead.
+
+cg_xerpClients <-1|0|1> (default = 0)
+    A replacement for id's cg_smoothclients that does something useful. :)
+  1 - Hacked extrapolation: intended for HPBs
+    This smooths players out when you use high timenudges, at the cost of
+    some accuracy. It's typically easier to hit a smooth target that's a few
+    pixels misplaced than it is to hit one that looks like it's teleporting
+    all over the map, so this combined with cg_nudge is the best option for
+    HPBs.
+  0 - No extrapolation. Fine you're LPB.
+  1 - id's smoothclients: fine if you have cg_nudge 0, worthless otherwise.
+    Note that prediction errors, such as players in walls, are likely to
+    occur. Tends to increase how much other players warp to you.
+    Use at your own risk.
+
+cl_maxpackets <30-125> (default = 63)
+    The higher value, the more correct info you send to the server and the
+    more you will hit and the less you will warp - set as high as your
+    connection allows.
+
+cl_packetdup <value> (default = 1)
+    Set to 0 if your connection is fine.
+    Set higher if you experience much packet loss.
+
+cl_timenudge <value> (default = 0)
+    This still exists in CPMA, but should always be 0 unless you're so used
+    to "normal" Q3 netcode that you've become dependent on it. All it really
+    does now is mess up the automatic adaptive nudges.
+
+snaps
+    snaps should NOT be set in your config. CPMA adjusts snaps value
+    according to the server's sv_fps value. If you join a sv_fps 20 server
+    your snaps get set to 20, if you join a sv_fps 30 server your snaps get
+    set to 30 etc...
+
+cl_allowDownload <0|1> (default = 0)
+    Toggle downloading of pk3 files from servers. Should be left at 0 as you
+    rarely reach high download speeds.
+
+
+
+CPMA Colors
+-----------
+
+    CPMA uses a-y to display colors, with a-x being an HSV table and y being
+    white. Colors can be used in \name, \nick, \ch_crosshairText, \say_team,
+    \say_teamnl \ch_crosshairColor and several others.
+    Note these colors do NOT apply to the SuperHud which uses rgba
+
+
+
+Chat Tokens
+-----------
+
+    You can use any number of chat tokens in binds. Would recommend adding
+    [#H/#A] #U to all binds where team mates need to know your current
+    condition - for instance "say_team ^3Need Weapon! ^5[#H/#A] #U".
+
+    But do NOT overdo it as excessive use of tokens can easily cause
+    information overload. For instance, CTF high/low binds should be as
+    simple as possible. The location of EFC is of must importance and your
+    own health/armor/weapon/pu/etc nearly irrelevant.
+
+#A - Armor Current Armor level.
+    #a (lower case) does not change color according to Armor level.
+    say_team "Hurting bad - #H/#A"
+
+#C - Corpse The location where you last died.
+    say_team "Overrun at #C"
+
+#D - Damaged by The last player to score a hit on you.
+    say_team "#D is heavily armed! RUN AWAY! RUN AWAY!"
+
+#E - Enemy presence Detailed information on all enemies in your FOV.
+    "2 enemies", "EFC", "Enemy QUAD plus 1", etc
+
+#F - nearest Friendly player's \name
+    Not the same as #N which uses \nicks when available.
+    It's recommended to use #N instead of #F.
+    bind ? "say_team drop; Dropped weapon for #F"
+
+#H - Health Current Health level.
+    #h (lower case) does not change color according to Health level.
+    say_team "Hurting bad - #H/#A"
+
+#I - nearest Item
+    Shows the nearest "significant" (weapon, armor, powerup, or MH)
+    available item, including dropped items.
+    say_team "#I available"
+
+#L - Location
+    Many maps have terrible target_location entities e.g. PG on PRO-Q3DM6
+    shows as YA. This shows the nearest "significant" item spawn (weapon,
+    armor, powerup, flag or MH), whether the item is there or not.
+    say_team "Took/waiting for #L"
+
+#M - aMMo wanted
+    Lists all types of ammo for weapons you have that are empty or nearly so.
+    say_team "Need #M"
+
+#N - nearest team mate's \nick
+    Uses your nearest team mate's \name should he not have set his \nick.
+    It's recommended to use #N instead of #F.
+    bind ? "say_team drop; Dropped weapon for #N"
+
+#P - last Pickup
+    say_team "Took #P"
+
+#S - item in Sights
+    Item that you are aiming at directly. Distance to the item is irrelevant.
+
+#T - Target The last player you hit.
+    say_team "#T is weak - finish him!"
+
+#U - powerUps Powerups you carry - Includes flags.
+
+#W - Weapon
+    #w (lower case) does not change color according to Ammo level.
+    Lists the current weapon and ammo you have.
+    say_team "Need weapon! I only have #W"
+
+
+
+Player Model & Color Cvars
+--------------------------
+
+color <string> (default = nnyny)
+    Colour string characters 0-9 and a-z.
+    First # is your Railcore color.
+    Second # is your Helmet/Visor color.
+    Third # is your Shirt Color.
+    Fourth # is your Legs Color.
+    Fifth # is your Rail Spiral Color.
+    This also affects your team mates' color if you use cg_forceColors 1.
+
+cg_deadBodyDarken <0|1> (default = 1)
+    Darkens players as soon as they become corpses.
+
+cg_enemyColors <string> (default = "iiiiii")
+    Formatted as RHBLX, same as \color.
+    Requires a PM cg_enemymodel - eg cg_enemyModel sarge/pm.
+
+cg_enemyModel <modelname> (default = "sarge/pm" )
+    Setting this will force all players on the enemy team to appear to
+    have this model.
+    PM model highly recommended.
+
+cg_forceColors <0|1> (default = 0)
+    Force your team to use the same color as you.
+    PM model and cg_forceModel 1 recommended.
+
+cg_forceModel <0|1> (default = 0)
+    Force your team to use the same model as you.
+    PM model and cg_forceColors 1 recommended.
+
+cg_showPlayerLean <0|1> (default = 1)
+    Allows the disabling of viewed model leaning that was introduced in
+    the 1.27x patches. 0 is more accurate in regards to hitboxes.
+
+model <modelname> (default = "mynx/pm" )
+    Your model. It is highly recommended that you choose a pm model.
+    This also affects your team mates' models if you use cg_forceModel 1.
+
+
+
+Audio Cvars
+-----------
+
+cg_ammoWarning <0|1> (default = 1)
+    Toggles the "click" sound.
+    The visual effect can be changed in your HUD config. (see HUD.txt)
+
+cg_nochatbeep <0|1> (default = 0)
+    Allows client to suppress "beeps" heard during normal chat messages.
+    Especially convenient when connected to spam-riddled GTV servers.
+
+cg_nohitbeep <0|1> (default = 0)
+    Disable hit beep. Some like it for LG.
+
+cg_noTaunt <0|1> (default = 1)
+    Disable all taunts, not just voicechat ones.
+
+cg_noteamchatbeep <0|1> (default = 0)
+    Allows client to suppress "beeps" heard during team chat messages.
+
+cg_oldCTFSounds <0|1|2> (default = 2)
+  0 - TA sounds, with voiceovers on captures, flag pickups, ete
+  1 - Near-worthless Q3 1.17 sounds, same for both teams
+  2 - Team-specific sounds, no voiceovers
+    Also controls non-leadchange FTDM end-of-round announcements.
+
+s_ambient <0|1> (default = 1)
+    Disable ambient sounds like the gongs on q3wcp2 and the void/wind/water
+    background noise on a ton of maps.
+
+s_announcer <string> (default = feedback)
+    Set to hellchick for alternative game feedback sounds - requires
+    \snd_restart. If using Challenge Q3 executable you can set s_announcer 0
+    to remove all announcer sounds. Not recommended for original quake3.exe
+    which plays sound/feedback/hit.wav.
+
+
+
+General Cvars
+-------------
+
+cg_altLightning <string> (default = 0)
+  0 - Original (pre-TA) id LG beam
+  1 - CPMA lightning
+  2 - Thin lightning
+  3 - Lightning using 1.44 render
+    Switch between various LG shaft visuals. Example: cg_altLightning 032.
+    First character is player lightning.
+    Second character is enemy lightning.
+    Third character is team lightning.
+    First character is default for enemy and team mate lightning if not
+    specified.
+
+cg_altPlasma <0|1|> (default = 0)
+  0 - Original id plasma
+  1 - CPMA plasma
+
+cg_autoAction <bitmask> (default = 0)
+    Perform game actions such as demo recording and screenshots.
+  1 - save stats to a local text file at the end of a match.
+    logs are stored in: <cpma_root>/stats/<date>/<logname>.txt.
+  2 - take an end-of-game screenshot.
+  4 - record a demo of the game. Requires warmup to be on, i.e. \ready.
+    It will NOT trigger if you join a game that has already started
+    (or you got disconnected). In those cases you should use \autorecord.
+  8 - multiview the game. This also works for GTV even if left unattended!
+    PLEASE use it GTV admins. If put in gtv.cfg the gtv just has to be
+    connected to the q3server, there is NO need for a camera guy as the
+    MV will start once players ready up!
+  16 - only do these things if you're actually playing in the game.
+  32 - follow power up.
+  64 - follow killer.
+
+cg_brasstime <value> (default = 2500)
+    Controls the time shell casings being discharged from MG+SG are visible.
+
+cg_damageDraw <0|1> (default = 1)
+    Obscure player's vision with blood effect when they are hit.
+
+cg_drawGun <0|1|2> (default = 2)
+    Toggles the gun being drawn.
+  0 - gun off
+  1 - gun on
+  2 - gun on, no sway
+
+cg_fallKick <0|1> (default = 1)
+    Toggles the screen bouncing when player falls.
+
+cg_fov <0-130> (default = 102)
+    Field of view. Higher values give better peripheral vision while lower
+    values give better frontal vision.
+
+cg_gibs <0|1> (default = 1)
+    Gibs and blood splatter effect.
+
+cg_gunOffset [x,y,z] (default = "")
+    Moves gun along x,y,z axis. Valid x,y,z values are -9 to 9, for instance
+    cg_gunOffset 5,-9,9.
+
+cg_itemFX <bitmask> (default = 7)
+    Control the cutesy gimmicks on cg_simpleitems 0 items.
+    With cg_simpleitems 1 the only difference is flags as they have no
+    simple model.
+  1 - bob up and down
+  2 - rotate (asymmetric items will always rotate)
+  4 - scale up on respawn
+
+cg_lightningImpact <0|1> (default = 0)
+    Draw the "glowing ball" at the end of the shaft.
+
+cg_marks <value> (default = 2500)
+    Milliseconds marks after explosions are visible.
+
+cg_muzzleFlash <0|1> (default = 1)
+    Specifies if there is a muzzle flash when gun is fired.
+
+cg_noAmmoChange <0|1> (default = 1)
+    Disables the ability to switch to a weapon that doesn't have any ammo.
+    Useful for multiple-weapon binds.
+
+cg_nomip <#bitmask> (default = 1023 - all r_picmip 0)
+    Allows changing graphics to picmip 0 setting, regardless of current
+    r_picmip setting. Changes require vid_restart.
+  1 - Lightning
+  2 - Plasma
+  4 - Rocket and Grenade explosions
+  8 - Grenades (the grenade ITSELF, not the same as 4)
+  16 - Bullets (machinegun and shotgun)
+  32 - Railgun
+  64 - BFG
+  128 - Blood
+  256 - Smoke
+  512 - Rockets (the projectile, not the same as 4)
+
+cg_noProjectileTrail <0|1> (default = 0)
+    Removes underwater bubble trails from weapon fire.
+
+cg_railstyle <0 to 7> (default = 5)
+    Changes the style of the rail trail.
+  0 - no trail
+  1 - straight core (line) only
+  2 - spiral only, no core
+  3 - spiral with straight core
+  4 - dotted core only
+  5 - original id style
+  6 - spiral with dotted core
+  7 - everything
+
+cg_railCoreWidth (default = 2)
+    Width of the Core. BaseQ3 r_rail* cvars are now obsoleted.
+
+cg_railRingWidth (default = 8)
+    Width of the Rings. BaseQ3 r_rail* cvars are now obsoleted.
+
+cg_railRingStep (default = 32)
+    Distance between Rings. BaseQ3 r_rail* cvars are now obsoleted.
+
+cg_railTrailTime (default = 400)
+    Rail time in milliseconds. BaseQ3 r_rail* cvars are now obsoleted.
+
+cg_shadows <0|1> (default = 1)
+    Player shadows.
+
+cg_simpleitems <0|1> (default = 0)
+    Simple 2d items.
+
+cg_smoke_SG <0|1> (default = 1)
+    Controls the smoke on the shotgun blast.
+
+cg_smokeRadius_GL <value> (default = 4)
+    Controls the size of the smoke trail for grenades.
+
+cg_smokeRadius_RL <value> (default = 6)
+    Controls the size of the smoke trail for rockets.
+
+cg_trueLightning <0.0 to 1.0 and negative> (default = 0.75)
+  0 - Default LG feedback as seen in baseq3.
+  1 - Pure client side rendering of LG graphic.
+  Fractional values - Mix between server and client rendering of LG.
+  Negative values - No LG graphic.
+
+cg_useScreenShotJPEG <0|1> (default = 1)
+    Whether cg_autoaction 2 uses tga or jpg format.
+
+cg_viewAdjustments <0|1> (default = 0)
+    Replaces and unifies cg_run* and cg_bob* which are all deleted.
+
+ch_playerNames <0|1> (default = 0)
+    Display player names above model heads. Only works during demo playback.
+
+com_blood <0|1> (default = 1)
+    Show blood when players are hit.
+
+com_hunkmegs <value> (default = 64)
+    Amount of RAM allocated to q3. Generally set to 2/3 of your available
+    memory but anything above 256 is plenty.
+
+com_maxfps <value> (default = 85)
+    Fps cap. Unlike BaseQ3, movement in CPMA is not dependant on FPS. You
+    will jump just as high/far with 30fps as with a million fps. Set to 125
+    or your monitor's maximum display refresh.
+
+r_mode <value> (default = 4, 800x600)
+    Controls game resolution.
+    Type \modelist in console to see exactly what mode each number means.
+    r_mode -1 enables custom resolution.
+
+r_customHeight <value>
+    Game resolution Height when r_mode -1 is used.
+    For instance r_customWidth 1680, r_customHeight 1050.
+
+r_customWidth <value>
+    Game resolution Width when r_mode -1 is used.
+    For instance r_customWidth 1680, r_customHeight 1050.
+
+r_displayRefresh <value> (default = 0)
+    Display refresh rate. Set as high as your monitor supports.
+
+r_ext_max_anisotropy <value> (default = 16)
+    Anisotropic filtering - Challenge Q3 executable only
+
+r_ext_multisample <value 2^n> (default = 4)
+    Anti-aliasing - Challenge Q3 executable only
+
+r_fastsky <0|1> (default = 0)
+    Toggle fast sky.
+
+r_gamma <0.5 to 3> (default = 1)
+    Brightness.
+
+r_intensity <1.0 to infinity> (default = 1.0)
+    Intensity of texture colors.
+
+r_mapoverbrightbits <value> (default = 2)
+    Brightens or darkens the map. Players use values from 1 to 5 depending
+    on the look they want.
+
+r_picmip <0-16> (default = 1)
+    Texture detail. Lower value equals higher detail.
+
+r_swapInterval <0|1>
+    Vertical Synchronisation.
+
+r_textureMode <value> (default = GL_LINEAR_MIPMAP_NEAREST)
+    Texture Filter.
+  GL_LINEAR_MIPMAP_LINEAR - Trilinear
+  GL_LINEAR_MIPMAP_NEAREST - Bilinear
+  GL_NEAREST - None
+
+r_vertexlight <0|1|2> (default = 0)
+  0 - Don't use vertexlight
+  1 - Use vertexlight
+  2 - Use vertexlight and enable dlights on various objects
+    like flag carriers (in vq3, has no effect in cpm)
+    requires r_dynamiclight 1.
+

@@ -1,0 +1,12 @@
+
+# the first map will be the one rotated to if the server is idle
+# entries are "mapname [minplayers] [maxplayers] [roundlimit] [timelimit [arena]]"
+# the arena field is for simple MA maps (like the RA3 ones)
+# if an MA map has a timelimit but there is a match in progress in that arena
+# the server will hold off rotating to the next map until that match is over
+# if there is no "dominant" arena, the map will just rotate at the timelimit
+
+pro-q3dm6	0	12
+cpm4		0	12
+cpm6		0	12
+cpm18		4	16

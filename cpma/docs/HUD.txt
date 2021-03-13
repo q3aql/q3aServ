@@ -1,0 +1,449 @@
+
+Challenge ProMode Arena: Client HUD Settings
+--------------------------------------------
+
+Date: 22-Apr-2009
+
+This is a snapshot of http://www.promode.org/wiki/index.php/Custom_HUDs
+The wiki will almost certainly be more up to date than this document.
+
+Since the release of CPMA 1.34 we have had extremely configurable HUDs.
+This document explains some of the Client HUD settings for CPMA.
+It will never be as current as the changelog, so you should always
+check that with each new release.
+
+Note: cvars such as cg_drawfps, cg_drawtimer plus many others have been
+removed and their functions moved to the custom hud.
+
+Creating a HUD .cfg
+-------------------
+  * ALL hud configs go in Quake3/cpma/hud. CPMA's sample HUDs 1-7 are
+    also in that directory.
+  * You can select a config using \ch_file hud where 'hud' is the file
+    you would like to use (without .cfg). You do NOT \exec hud.
+  * Use \reloadHUD to reload your HUD if you have changed it. Must
+    also be used after \ch_file change.
+  * The default HUD is in the PK3: if you want to customise it, pull it
+    out of there with the unzip utility of your choice, RENAME it, and
+    put the copy in cpma/hud/. Remember to point ch_file at the new version.
+  * The default HUD references (nearly) everything that can be drawn.
+    Hud7 has nice examples of decoration use.
+
+
+Syntax
+------
+    The syntax for CPMA's SuperHud is fairly easy to comprehend, and supports
+    both multi-line and single-line arguments.
+
+ELEMENT
+{
+    ELEMENT_COMMAND VALUE
+    ELEMENT_COMMAND VALUE
+}
+
+ELEMENT { ELEMENT_COMMAND VALUE; ELEMENT_COMMAND VALUE; }
+
+    You can comment using #. // cannot be used.
+    Some Element Commands have optional "," separators.
+
+
+Elements
+--------
+    Each piece of the HUD is called an ELEMENT. Elements are sorted
+    z-layer-wise alphabetically.
+
+!DEFAULT
+    The first element in the hudfile MUST be "!DEFAULT", and every other
+    element inherits from that default: this gives you an easy way to change
+    fonts/colors/etc for a whole bunch of elements at once. !DEFAULT can be
+    reused later in the document affecting every following element but it
+    will not overwrite the parameters set by previous !DEFAULT(s). It is
+    advisable to place Team1-8 and Chat1-8 at the bottom of your hud config
+    so that !DEFAULTs can be used without interfering with other elements.
+
+PreDecorate and PostDecorate
+    Empty elements that can be used to draw separator bars etc. Limit 64 total.
+
+AmmoMessage
+    Low ammo/Out of ammo. The audio feedback "click" can be toggled using
+    cg_ammoWarning.
+
+AttackerIcon
+    Who attacked you last
+
+AttackerName
+    Who attacked you last
+
+Chat1-8
+    Chat area - if you want the order of the messages reversed then reverse
+    the Y coordinates.
+
+Console
+    Replacement for ID's console. Use with con_notifyTime -1.
+
+FlagStatus_NME
+    Status of enemy flag. To get old RED/BLUE use color T and color E, plus
+    bgcolor. Check hud/old.cfg.
+
+FlagStatus_OWN
+    Status of your flag. To get old RED/BLUE use color T and color E, plus
+    bgcolor. Check hud/old.cfg.
+
+FollowMessage
+    Following <Player>
+
+FPS
+    Frames Per Second
+
+FragMessage
+    You fragged <Player>
+
+GameTime
+    Game Clock
+
+GameType
+    Game Type - warmup only. Cannot be omitted. To hide place at off-screen
+    x,y coordinates or set alpha 0.
+
+ItemPickup
+    Text string of whatever item you pick up
+
+ItemPickupIcon
+    Icon of whatever item you pick up
+
+NetGraph
+    Lagometer
+
+NetGraphPing
+    Ping
+
+PlayerSpeed
+    Units Per Second
+
+PowerUp1_Icon to PowerUp4_Icon
+    Powerup Icons. PowerUp1_Icon is also used for the O/D indicator in CTFS
+    - and also for FLAG
+
+PowerUp1_Time to PowerUp4_Time
+    Powerup Time remaining
+
+RankMessage
+    Placed 1st with 30 frags
+
+Score_Limit
+    Frag/Cap/Round limit - if set. Cannot be omitted.
+    To hide place at off-screen x,y coordinates or set alpha 0.
+
+Score_NME
+    Enemy score. Cannot be omitted. To hide place at off-screen x,y
+    coordinates or set alpha 0. To get old RED/BLUE use color T and
+    color E, plus bgcolor. Check hud/old.cfg.
+
+Score_OWN
+    Your score. Cannot be omitted. To hide place at off-screen x,y
+    coordinates or set alpha 0. To get old RED/BLUE use color T and
+    color E, plus bgcolor. Check hud/old.cfg.
+
+SpecMessage
+    SPECTATOR, FRAGGED (in CA/CTFS/FT)
+
+StatusBar_ArmorBar
+    Armor level in bar form
+
+StatusBar_ArmorCount
+    Armor level in number form
+
+StatusBar_ArmorIcon
+    Type of armor - essential in CPM but irrelevant in VQ3
+
+StatusBar_AmmoBar
+    Ammo level in bar form
+
+StatusBar_AmmoCount
+    Ammo level in number form
+
+StatusBar_AmmoIcon
+    Current weapon ammo icon
+
+StatusBar_HealthBar
+    Health level in bar form
+
+StatusBar_HealthCount
+    Health level in number form
+
+StatusBar_HealthIcon
+    Defaults to Mynx icon but can be any model, image or shader found in
+    pk3s (provided that the pk3 is on the pure server you join)
+
+TargetName
+    Current target's playername - requires cg_drawCrosshairNames above 0
+
+TargetStatus
+    Current friendly target's health/armor level - requires
+    cg_drawCrosshairNames above 0
+
+TeamCount_NME
+    Players alive on enemy team (CA/CTFS/FT)
+
+TeamCount_OWN
+    Players alive on your team (CA/CTFS/FT)
+
+TeamIcon_NME
+    Defaults to Sarge icon but can be any model, image or shader found in
+    pk3s (provided that the pk3 is on the pure server you join)
+
+TeamIcon_OWN
+    Defaults to Mynx icon but can be any model, image or shader found in
+    pk3s (provided that the pk3 is on the pure server you join)
+
+Team1-8
+    Teamoverlay
+
+VoteMessageArena
+    Multiarena, ra3maps
+
+VoteMessageWorld
+    Normal votes
+
+WarmupInfo
+    10sec countdown, Waiting for players, etc. Cannot be omitted. To hide
+    place at off-screen x,y coordinates or set alpha 0.
+
+WeaponList
+    The WeaponList has to get a little funky to be able to handle all the
+    legacyhud tricks: W and H are the size of EACH weapon, not the total.
+    For the horizontal weaponlist (textalign C) X is the point to center
+    around.
+    Use FILL to show ammo for weapons you do not have, useful for TDM.
+    Weaponlist wraps at the bottom of the screen so you can sneak a
+    multi-column one in.
+
+
+
+Colors
+------
+    CPMA HUD uses r g b a, which is red green blue alpha. Each channel can have
+    values from 0-1.
+
+    Color 1 1 1 1 is white, full alpha
+    Color 0 0 0 0.5 is black, half transparent
+    Color 0.25 0.25 1 0.75 is blue, somewhat transparent
+
+    Note that colors set in SuperHud do not override colors set elsewhere. For
+    example if your \nick or \name is ^3hello it will be yellow regardless.
+
+
+
+Special Colors
+--------------
+    Color T and color E for elements to use red/blue according to your current
+    team. Useful for flag modes, but not necessesary for tdm/1v1. Set
+    bgcolor for these, even for images - see hud/old.cfg
+
+
+
+Element Commands
+----------------
+    The commands you can use within an element are:
+
+ANGLES <pitch> <yaw> <roll> [+pan | -rotate]
+    Alters the display of MODEL.
+    Note that most Q3 models do not work properly if r_vertexlight is on.
+
+BGCOLOR r g b a
+    Sets the background color for the element
+    The element must have a width and height
+
+COLOR r g b a
+    Sets the foreground color for the element
+
+DOUBLEBAR
+    Makes bars two lines. Obviously only works on BAR elements
+    (StatusBar_ArmorBar etc). Check out hud7 for examples.
+    Note: Gets a little funky if RECT Height is set below 6 as the space
+    between the two bars is 4 pixels and each bar requires 1 pixel
+    (4+1+1=6)
+
+FADE r g b a
+    If the element has a TIME, its text will fade from COLOR to this
+    linearly over TIME millisecons.
+
+FILL
+    If the element has a background color, this fills the area it
+    occupies with that color.
+    The element must have a width and height
+
+FONT name
+    Selects one of three standard fonts:
+ CPMA - Bitstream Vera Bold, which is a high-resolution font best suited
+    to 1024x768 and up - or large font-size on low-resolution
+ ID - which is the standard Q3 font - good for small font-size and/or
+    low-resolution
+ IDBLOCK - only supports numbers, NOT letters
+ THREEWAVE - which is an outlined copy of the id font
+ SANSMAN - Digital Graphics Labs "Enter Sansman"
+
+FONTSIZE pointsize | xsize ysize
+    The CPMA font is correctly aspect-adjusted already, and generally looks
+    best if you just specify a pointsize.
+    The other two fonts are square, and generally look much better if you
+    specify distinct x and y sizes, with y being 25-50% larger than x.
+    Element texts can be mirrored using negative x y. Note this is an
+    unintended and unsupported "hack", so might be a bit buggy.
+
+IMAGE pathname
+    Display the image specified. You can use ANY image or shader found in
+    pk3s. Mostly useful for displaying team/enemy model icons in CA/CTFS/FT.
+
+MODEL
+    Can be any model in the game.
+    Note that most Q3 models do not work properly if r_vertexlight is on.
+
+MONOSPACE
+    By default, all HUD fonts are proportionally spaced, meaning that an
+    "i" takes up less room than an "m". Monospacing forces every character
+    to take up the same amount of space. It's very useful for the team
+    overlay, as it keeps everyone's health and armor in the same columns,
+    but generally looks worse than proportional spacing on everything else,
+    especially chat. It also takes up more room overall.
+
+OFFSET x y z
+    Offset MODEL along x y z axis.
+
+RECT x y w h
+    Sets the position and size of the element. Note that text is NOT
+    "clipped" to this rectangle.
+    Elements can be mirrored using negative w h. Note this is an
+    unintended and unsupported "hack", so might be a bit buggy.
+
+TEXT string
+    Mostly useful for decorations. Requires RECT.
+
+TEXTALIGN l | c | r
+    Justify the text either Left, Centered, or Right within RECT
+
+TEXTSTYLE flags
+    Currently, only one flag is supported: "1", for dropshadowed text
+
+TIME
+    How long the element will be displayed for if it doesn't update again.
+    Generally used for item pickups, frag messages, chat, etc.
+
+
+HUD Related Cvars
+-----------------
+    These cvars do not directly influence the SuperHud but are still related
+    to the HUD in some way.
+
+cg_customLoc <0|1> (default = 1)
+    Use custom locations for a map if possible.
+    Loc files are locs/map.cfg, and must have a "v2" header
+    Can only replace existing locations
+
+cg_drawRewards <0|1> (default = 1)
+    Toggle display of reward icons and the accompanying sounds
+
+cg_teamChatsOnly <0|1> (default = 0)
+    controls what text reaches the HUD Chat elements if set, non-team
+    text still shows up in the console area
+
+ch_3waveFont <0|1> (default = 1)
+    Toggle use of the Threewave font (does not affect SuperHud settings)
+
+ch_drawWarmup (<0|1> (default = 0)
+    Toggle display of arena settings before a game starts
+
+ch_drawWeaponSelect <0|1> (default = 0)
+    Toggle id standard weapon selection
+
+ch_recordMessage <0|1> (default = 1)
+    0 gets rid of the sodding "recording blahblah" message.
+    Must be set before demo record start
+
+ch_selfOnTeamOverlay <0|1> (default = 1)
+    Toggle your own information showing in the team overlay
+
+ch_shortNames <0|1> (default = 0)
+    Toggle use of \nick - set a short name to use for team chat/overlay
+    Limited to 5 visible characters, but allows colors
+    Useful to have your \nick shown instead of [longclantag] in
+    team chat/overlay
+    Note: \nick is only used for team chat/overlay. \name is still
+    used for anything else.
+
+ch_wstatsTime <seconds> (default = 10)
+    How long the auto-wstats window stays up at the end of a game
+
+con_notifyTime <seconds> (default = 3)
+    -1 uses the CPMA "Console" hud element instead of id's.
+    Doesn't affect the console *buffer*, just the text in the top left.
+
+mvw_DM (default "464 48 160 120")
+    x, y, width, height of Picture in Picture window for DM games.
+
+mvw_TDM<1-9>
+    Controls teamplay Multi View layout.
+    Format is the same as mvw_DM, default no child windows. Example:
+
+    seta mvw_TDM1 "480 65 160 120"
+    seta mvw_TDM2 "480 190 160 120"
+    seta mvw_TDM3 "480 315 160 120"
+
+
+Crosshair Cvars
+---------------
+cg_crosshairHealth <0|1> (default = 0)
+    Red crosshair when low on health - must be 0 or ch_crosshairColor
+    will not work
+
+cg_crosshairsize <value> (default = 24)
+    Size of crosshair
+
+cg_drawcrosshair <0-9> (default = 8)
+    Switch between different crosshairs
+
+ch_crosshairAlpha <0.0 to 1.0> (default = 0.8)
+    Controls the transparency of the crosshair
+
+cg_drawCrosshairNames 0-2 (default = 1)
+    Toggles TargetName and TargetStatus.
+  0 - Off
+  1 - On
+  2 - Off in 1v1
+
+ch_crosshairColor <color> (default = y)
+    CPMA_Colors
+    Important note: cg_crosshairHealth overrides this function,
+    turn it off to use colored crosshairs
+
+ch_crosshairPulse <0|1> (default = 0)
+    Controls crosshair size changes when picking up items
+
+ch_crosshairText <string> (default = "" disabled)
+    Use any text string as crosshair
+
+
+Known Issues
+------------
+
+    Limitation: Color fails on elements with color codes embedded in their
+    strings (StatusBar_HealthCount, StatusBar_ArmorCount, NetGraphPing, etc)
+
+    Limitation: Alpha fails on some elements containing images
+    (StatusBar_AmmoIcon, StatusBar_ArmorIcon, etc)
+
+    Limitation: Fade fails on some elements containing images without alpha
+    channels (ItemPickupIcon etc)
+
+    Limitation: If a !DEFAULT sets MONOSPACE, FILL or DOUBLEBAR there is no
+    method to remove it again (so don't do it, unless it's at the end of the
+    document)
+
+    Limitation: Color T and E act funny when in non-teamplay modes such as
+    1v1 (like the #ch_teamBackground hack)
+
+    Limitation: FILL plus bgcolor when used on elements that disappear
+    without having TIME makes bgcolor remain indefinately
+
+    Not implemented: cg_drawRewards element not included in SuperHud
+

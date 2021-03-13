@@ -1,0 +1,394 @@
+
+Challenge ProMode Arena: Server Settings
+----------------------------------------
+Date: 11 Jun 08
+
+
+Recommended dedicated server command-line:
+
+    quake3 +set dedicated 2 +set fs_game cpma +set vm_game 2 +exec <config>
+
+
+mode_start <string>
+	Specify the game type to start the server with.
+	* 1v1  - Duel / "Classic" Deathmatch
+	  FFA  - Free For All
+	  TDM  - Team Deathmatch
+	  CTF  - Capture The Flag
+	  CA   - Clan Arena
+	  FTAG - FreezeTag (European rules)
+	  CTFS - Capture Strike
+	Or a custom mode: see docs/Modes.txt for details.
+
+mode_idletime <minutes>
+	how long before idle servers reset to default mode+map (default: 10)
+
+server_gameplay <CPM|PMC|CQ3|VQ3>
+	Sets the level (speed and strategic depth) of gameplay to use.
+	* CPM - Challenge ProMode II (Modern CPM, 2004+)
+	  PMC - ProMode Classic (2000-2003)
+	  CQ3 - Challenge Quake3
+	  VQ3 - Vanilla Quake3 (OSP)
+
+server_maxpacketsmin <value>
+	Specifies minimum client cl_maxpackets setting (Default = 30,
+	0 = no lower limit on client cl_maxpackets).
+
+server_maxpacketsmax <value>
+	Specifies maximum client cl_maxpackets setting (Default = 125,
+	0 = no upper limit on client cl_maxpackets).
+
+server_motdfile <filename>
+	Defines an external file from which to read MOTD message to
+	display to a client.  This file will override
+	any server_motdX variable setting (defined below).
+	(Default = "none" - No MOTD file defined).
+
+server_motdX <string> (X = 1 through 8)
+	Sets the server MOTD.  Each var is used to display a line in the
+	MOTD.  The message is terminated when the first NULL ("") line is
+	encountered.
+
+server_optimiseBW <0|1>
+	Force the optimiseBW algorithm on for all clients, which greatly
+	reduces the amount of unnecessary data sent out.
+	Regrettably, this also makes you unable to see players through
+	portals, thanks to a bug in the Q3 engine. Regardless, this really
+	should NEVER be set to 0 except when on LAN - the difference is
+	just staggering.
+	  0 - Waste huge amounts of bandwidth for no good reason.
+	* 1 - Don't.  :)
+
+server_timenudgemin <value>
+	Specifies minimum client cl_timenudge setting (Default = 0,
+	no lower limit on client cl_timenudge).
+
+server_timenudgemax <value>
+	Specifies maximum client cl_timenudge setting (Default = 0,
+	no upper limit on client cl_timenudge).
+
+server_ratemin <value>
+	Specifies minimum client rate setting (Default = 0,
+	no lower limit on client rate).
+
+server_record <value>
+	1 - record demos
+	2 - take screenshots
+	4 - add server name to demo/screenshot filenames
+	8 - add server time when game starts to filenames
+
+server_availmodes <string>
+	Restrict the server to a subset of supported game types
+	(Default: "" - all modes available)
+
+server_chatfloodprotect <value>
+	Controls max # of msgs per second (Default = 0)
+	e.g. server_chatfloodprotect 2 means you can talk every 500ms	
+
+ref_password <string>
+	Sets the password for in-game "referee" (admin) access.
+	Setting this password to "none" disables the referee feature
+	(default = "none").
+
+
+========================
+   GENERAL Q3 OPTIONS
+========================
+
+g_inactivity <seconds>
+	Specifies how long a player can idle before being kicked
+	from the server.  A value of "0" disables this feature
+	(default = 0).
+
+g_log <logfilename>
+	Specifies the name of the file to save all in-game
+	information.  Setting this to "" disables logging
+	(default = "games.log").
+	It's worth pointing out that logfiles can get very large,
+	and for public servers there's really not much point in
+	using them. Anything truly important will be written to
+	the admin log instead, which is a separate file.
+
+
+==============================
+   MATCH-RELATED PARAMETERS
+==============================
+
+match_mutespecs <0|1>
+	Enables/disables spectator chat being displayed to active
+	players in the game when a match is in progress (default = 0).
+
+match_readypercent <percentage from 1-100>
+	Specifies the percentage of in-game players who must be
+	"ready" to start a match.  This can also be used to get
+	a match going on an otherwise long "warmup" period
+	(default = 51).
+
+match_maxsuicides <value>
+	players who /kill more than this many times will be auto-banned
+	stops them screwing up TDM games and forcing draws in DA
+	(default = 0).
+
+match_WinDelayDA (in milliseconds, default 2000)
+	controls how long after the kill a winner is actually declared
+	so if you rail someone but then their rocket takes you out,
+	the round is ruled a draw
+
+match_winDelayCA (in milliseconds, default 4000)	
+	same as match_WinDelayDA, but for Clan Arena games
+
+
+==============
+   TEAMPLAY
+==============
+
+team_allcaptain <0|1>
+	  0 - Traditional captaincy assignments (1 per team).
+	* 1 - All players on a team have the ability to invite
+		spectators or to call a time-out.  There is still
+		a single "true" captain.
+
+g_teamAutoJoin <0|1>
+	* 0 - Places connecting players in spectator mode once they
+		have fully connected to the game.
+	  1 - Automatically places a player on the team with the
+		lowest number of players (or score if equal player
+		counts) after fully connecting to the game.
+
+g_teamForceBalance <0|1>
+	* 0 - Allows players to join any team, regardless of player counts.
+	  1 - Forces players to join the team that has fewer players
+		and if equal, then the team with the lower score.
+
+
+============
+   VOTING
+============
+
+g_allowVote <0|1>
+	  0 - Disables all client voting on the server.
+	* 1 - Allows clients to vote on server settings.
+
+vote_limit <value>
+	Maximum # of votes allowed during a map for a non-referee
+	(default = 5).
+
+vote_percent <1-100>
+	Specifies the percentage of accepting clients needed for a
+	vote to pass. Note that a player who does not vote is assumed to
+	be opposed to the change. This saves players being forced to break
+	off actual play simply to "defend" against an unwanted vote.
+
+vote_allow_<setting>
+	All but a few votes have a corresponding vote_allow_<setting> cvar,
+	which enables fine control of players' ability to call votes.
+	Note that a referee may change ANY votable setting, regardless
+	of its vote_allow control, so you should use vote_allow_referee 0
+	as well if you choose to disable any votes.
+	  0 - Disables a particular vote item.
+	* 1 - Allows clients to vote on the item.
+
+allcaptain <0|1>
+	See team_allcaptain.
+
+armor <0-200>
+	Specify amount of armor to give players on spawn.
+
+armorsystem <0-3>
+	Allows different ProMode armor systems to be used.
+		0 - Standard (S:5 GA:50 YA:100 RA:150)
+		1 - Obsolete (S:5 GA:50 YA:100 RA:200)
+		2 - Quake1-ish (S:2 GA:100 YA:150 RA:200)
+		3 - Quake2-ish (S:2 GA:25 YA:50 RA:100)
+
+dropitems <0-3>
+	Ability to drop weapons/ammo/flags
+		0 - None
+		1 - Weapons and ammo
+		2 - Flags
+		3 - All
+
+fallingdamage <0|1>
+	Enables/disables falling damage (duh)
+
+flood <value>
+	Sets maximum number of chat messages per client per second
+	Clients can use this vote to loosen or disable (0) flood control,
+	usually in teamplay games where free communication is crucial.
+
+footsteps <0|1> *CQ3 only*
+	Enables/disables footstep sounds
+
+hook <0|1|2>
+	Sets hook availability and type
+		0 - Disabled
+		1 - Offhand (the "newbie" grapple, or "crutch")
+		2 - Onhand (the "skill" grapple)
+
+instagib <0|1>
+	Enables/disables Instagib gameplay
+
+items +/-<item>
+	Enables/disables items (weapons, powerups, etc)
+	MG Machine Gun		SG Shotgun		GL Grenade Launcher
+	RL Rocket Launcher	LG Lightning Gun	RG Railgun
+	PG Plasma Gun		BFG Big Effin Gun	AMMO Ammunition
+	5H Health Sphere	25H Yellow Health	50H Gold Health
+	MH Megahealth		5A Armor Shard		GA Green Armor
+	YA Yellow Armor		RA Red Armor
+	QUAD Quad Damage	SUIT Battle Suit	HASTE Haste
+	INVIS Invisibility	REGEN Regeneration	FLIGHT Flight
+	MEDKIT Medkit		TELE Personal Tele
+	Grouped items:
+	HEALTH All Health	ARMOR All Armor		RUNES All Powerups
+	ITEMS All Holdables	ALL Everything
+
+kick <player_id>
+	Forces a player to disconnect from the server
+
+map <mapid|mapname|!mapcfg>
+	Changes to a new map and/or itemset
+
+maxdamage <value>
+	Sets the maximum damage shots can do to "friendly" players
+	(yourself and your teammates)
+	0 = no limit: use selfdamage and teamdamage to disable completely
+
+maxpackets_max / maxpackets_min <value>
+	Both controlled by vote_allow_maxpackets
+	See server_maxpacketsmin / server_maxpacketsmax
+
+mode <mode_name>
+	Loads a standard server configuration.
+	Normally used to change game types.
+	Note that there is no vote_allow_mode cvar:
+	server_availmodes is used instead to give admins more control
+
+mutespecs <0|1>
+	See match_mutespecs
+
+overtime <0|1|2>
+	Sets overtime behaviour
+		0 - Sudden Death (first score decides)
+		1 - Timed Periods (2 or 5 minutes each)
+		2 - No Overtime (matches can end in a tie)
+
+poweruprespawn <30-120>
+	Sets power respawn delay in seconds
+
+gameplay <name>
+	See server_gameplay
+
+prosound <0|1> *CQ3 only*
+	Enables/disables ProMode's enhanced sound system
+
+random <value>
+	Picks a number from 1 to <value>
+
+referee <player_id>
+	Gives a player additional admin abilities
+	These can be removed by an unreferee vote
+
+reload <value>
+	Sets RG reload time for Instagib games (in ms, normally 1500)
+
+scorelimit / limit <value>
+	Changes the fraglimit/caplimit/roundlimit/pointlimit
+
+selfdamage <0-3>
+	Controls your ability to hurt yourself
+	0 - None
+	1 - Health only
+	2 - Armor only
+	3 - Health and armor
+
+simplemega <0|1>
+	Controlled by vote_allow_mhstyle
+	Toggles wearoff/periodic MH respawn behaviour
+
+startrespawn <0|1>
+	For CA/DA, toggles players respawning on round start
+	For Freeze Tag, toggles winning team thawing on round start
+
+startweapon <value>
+	Sets players initial armament on respawn
+	Add values together to give multiple weapons
+	MG 4, SG 8, GL 16, RL 32, LG 64, RG 128, PG 256, BFG 512
+
+teamdamage <0-3>
+	Controls your ability to hurt teammates
+	Values are as for selfdamage
+
+thawauto <30-300>
+	Controlled by vote_allow_thaw
+	Sets how long players stay frozen if not defrosted by a teammate
+
+thawtime <1-10>
+	Controlled by vote_allow_thaw
+	Sets how long it takes to defrost teammates (in seconds)
+
+thrufloors <0|1>
+	Toggles splash damage transferring through thin surfaces
+
+timelimit <value>
+	Changes the game's timelimit
+
+timenudge_max / timenudge_min <value>
+	Both controlled by vote_allow_timenudge
+	See server_timenudgemin / server_timenudgemax
+
+warmup <value>
+	Sets the duration of the pre-match warmup
+
+weaponrespawn <value>
+	Sets weapon respawn delay in seconds (0 means weaponstay)
+
+
+==========
+   HOOK
+==========
+
+hook_delaytime <milliseconds>
+	Specifies the minimum number of MILLISECONDS that a player
+	can redeploy a hook after use (default = 750).
+
+hook_holdtime <seconds>
+	Specifies the maximum number of seconds that a player's
+	hook will remain attached (default = 3).
+
+hook_range <units>
+	Specifies the maximum length of the hook cable (default = 1800)
+	
+hook_sky <0|1>
+	* 0 - Players cannot hook the "sky" surface.
+	  1 - Players can hook onto any surface (except other players).
+
+hook_speed <value>
+	The speed at which the hook leaves from the player's position
+	and makes contact with a surface on the map (default = 1200).
+
+hook_speedpull <value>
+	The speed at which a player is pulled along the hook's path
+	after it has landed on a valid map surface (default = 700).
+
+
+
+==================
+    MAP SETTINGS
+==================
+map_cfgdir <value>
+	sets where the maplists etc are read from (default: "cfg-maps")
+
+map_delay <value>
+	no map voting allowed for this long after a map change
+	unless everyone's loaded the new map and is ready to play
+	stops one lamer with a fast machine forcing changes to a map
+	by voting it in before anyone else has managed to reconnect
+	(default: 30)
+
+map_rotate <0|1>
+	if non-zero and a MODE is enabled, server will rotate to
+	the next map in the list for that mode when fl/tl/cl/rl is hit
+	map_rotate is ignored if the server is in 1v1 mode
+	or is running a multiarena mapnd of each match (default: 0)
+

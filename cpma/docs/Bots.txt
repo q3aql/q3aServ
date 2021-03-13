@@ -1,0 +1,146 @@
+
+Challenge ProMode Arena: Enhanced Bots
+--------------------------------------
+Date: 28 Apr 03
+
+Well, go figure...
+Thanks to Qrealka and Diamant, I've put some effort into the bots.
+None of this would have happened if they hadn't been willing to help
+out, because it would have taken more time than I have to spare.
+Pretty much all the DM AI has been improved over CPMA1.1 with new
+decision-making code. The bots are quite a bit smarter than before,
+and at times you can even "see" what they're thinking if you watch
+them. They're still completely ignorant of many things though, and
+unfortunately are still dependent on AAS files, which are invariably
+flat out wrong about level connectivity. Swelt or I may write a guide
+to how mappers can fix some of the worst problems if we ever get time.
+I've ONLY focused on DM, so I expect they're still absolutely awful
+at TDM/CTF/etc.
+
+Fixes are generally for the new bots only, but some have been applied
+to the standard bots as well if the bug is too pathetic to tolerate.
+Those are marked with an 'I' (e.g. the 1.1 RL aim bug was a "fixI")
+and are implicitly id bugs, obviously.
+
+The skill thresholds are:
+79- has pretty sucky aim
+81+ enables evil RL
+86+ tries to avoid "bad" RG shots **
+bot_challenge 1
+  enables evil hitscan at skill 91+ after you're open for 0.5-0.25s
+  doesn't degrade accuracy at close ranges
+  aims faster after using a tele
+  does NOT otherwise affect aim skill
+  uses the "alternate" weapon choices (more hitscan)
+
+** At 86+, you'll see a noticeable jump in hitscan accuracies.
+This DOESN'T mean that they've suddenly become all-aim bots. They
+actually still only hit as many shots as they do at 85, but since
+they FIRE far less often when they know the shot is a "bad" one,
+the percentages become much higher.
+
+Skill level also affects movement speed to some extent.
+
+There are some new bots as well, with slightly better strategic
+play and some "personal" properties. They can only be used at
+skill 6 and above (CPMA AI).
+
+Apheleon
+  faster than all other bots
+  has improved RL
+  uses the "alternate" weapon choices
+
+arQon
+  only slightly faster than normal bots
+  has godlike RL
+  uses RL a LOT
+
+rat (the LPB version)
+  faster than normal bots
+  has godlike RL
+  uses RL a LOT
+
+
+add: strafejumping, yay!
+	Qrealka and Diamant get all the credit for this one
+
+add: tanked bots will hunt you down and spawnrape you  >:)
+
+add: evil RL prediction (quite ratlike at times :P)
+
+add: a bit of dodging and ducking for cover
+
+chg: skill 6-100 uses the new AI (1-5 are the id bots)
+
+chg: rewrote item choice management (esp wrt health and armour)
+
+chg: weapon selection now biased towards killshots
+
+chg: removed bot_boost
+
+fixI: bots completely ignoring enemies 3ft away from them
+
+fixI: bots unable to hit enemies at very narrow angles
+
+
+Date: 20 Mar 03
+
+
+CPMA's bots have undergone several dozen bugfixes and tweaks over the past
+few years, especially wrt melee, but have continued to use the id code for
+the bulk of their "decision" making, which is essentially "wander around
+at random collecting items until we blunder into someone."
+
+I've generally been reluctant to work on the AI as I don't consider it a
+particularly challenging or interesting area, since the vast majority of
+its problems are buried deep within the engine itself and the BSPC/AAS
+process, improvements generally have to be made by fighting against Q3
+every step of the way.
+
+However, the continually decreasing "quality" of my ISP, the staggeringly
+inept Charter Communications, has forced my hand. You can thank their sheer
+incompetence and near-total inability to run a network that functions at
+all, let alone at an acceptable level, for these improvements.  :/
+
+With 1.1, the "strategic" gameplay behaviour of the AI has undergone some
+fairly drastic changes, which is to say it actually exists now.  :P
+
+Bots are aware of armour and health, and will time them to a reasonable
+degree. They also have a basic understanding of the relative value of
+items, i.e. given the choice between an RL and a box of MG ammo they'll
+usually go for the RL; and they will no longer walk within inches of a YA
+and ignore it completely to collect a shard 20ft away instead.
+How well this approach works is however strongly dependent on the map.
+Since bots still use the id code for their movement, they will still play
+fairly poorly on the vast majority of maps, including id's own. In many
+cases, the combination of defective AAS files and limitations of the
+movement code will result in them performing WORSE than before as they
+continually try and fail to reach certain items.
+The CPM maps have always been designed for the most highly-skilled human
+players, and as such are usually something of a "worst case" environment
+for the Q3 bots. CPM3a however (Swelt's remix of jude's classic CPM3) has
+undergone extensive tweaking to make it as bot-friendly as possible,
+while retaining the exact same human-gameplay as the original.
+
+The other key bot-related change in 1.1 is a fix to some defective math in
+their use of projectile weapons. While it's historically been true that
+there is nothing LESS dangerous than a bot with an RL, this is no longer
+the case. While still very much inferior to a good human player, they can
+now be quite a threat.
+
+Bot skill as used by g_spSkill and the addbot command now ranges from 1-15.
+
+1-5 is "vaguely-id" AI, which is to say that it uses the id melee code but
+otherwise doesn't really have much in common with baseq3. I'm not going to
+back out 3 years of bugfixes.
+
+6-10 is "standard" CPMA AI, i.e. what 1-5 was in 1.0
+
+11-15 is "enhanced" CPMA AI, as outlined in this file. Since I've barely
+spent a day on this, it's really only DM-aware so far. When I get time
+I'll teach them about TDM and CTF: splitting the map into zones of
+responsibility; sharing weapons with teammates; etc etc.
+
+Regardless, skill 100 bots will absolutely thrash normal "Nightmare" bots,
+and when combined with friendly maps and bot_boost 1.5 can actually be
+decent opponents rather than mindless cannon fodder. They're fun.  :)
