@@ -107,5 +107,5 @@ _Note: You can change this settings editing the file `q3aServ.sh` or using the c
 * An example command would be the following:
 
  ```shell
- $ ./q3aServ.sh CG 2 10 2 30 100
+ $ ./q3aServ.sh CG 2 TDI 10 2 30 100
  ```
