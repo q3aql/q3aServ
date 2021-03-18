@@ -18,7 +18,7 @@ q3aServ - Create a Quake 3 server easily on Linux
  ```shell
  RUN_PATH="/opt/Games/quake3"
  RUN_BINARY="ioq3ded.x86_64"
- STATUS_PATH=/var/www/html/quake3/status.txt
+ STATUS_PATH="/var/www/html/quake3/status.txt"
  ```
 
 - Finally, execute the script with the appropriate parameters:
@@ -50,6 +50,14 @@ q3aServ - Create a Quake 3 server easily on Linux
  CL  - Clear Logs
  ST  - Stop Current Server
  ```
+ 
+* An example command would be the following:
+
+ ```shell
+ $ ./q3aServ.sh FFA 3
+ ```
+ 
+* The number `3` indicates the map selection group. Each number will automatically choose certain maps.
     
 * Default settings of basic mode are the following:
 
@@ -62,9 +70,11 @@ q3aServ - Create a Quake 3 server easily on Linux
  TOU_FRAGS_LIMIT="50"
  ```
     
-_Note: You can change this settings editing the file `q3aServ.sh`._
+_Note: You can change this settings editing the file `q3aServ.sh` or using the custom game `CG`._
     
 ## Sintax (Custom Game):
+
+* With the option `CG` the syntax of the command is extended to be able to customize more game options:
 
  ```shell
  $ ./q3aServ.sh CG
@@ -92,4 +102,10 @@ _Note: You can change this settings editing the file `q3aServ.sh`._
  - FFAI = Free For All Instagib (OSP)
  - CA   = Clan Arena (OSP)
  - CAI  = Clan Arena Instagib (OSP)
+ ```
+ 
+* An example command would be the following:
+
+ ```shell
+ $ ./q3aServ.sh CG 2 10 2 30 100
  ```
