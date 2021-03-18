@@ -29,7 +29,7 @@ TOU_FRAGS_LIMIT="50"
 RCON_PASSWORD='"secret"'
 
 # Status of server
-STATUS_PATH=/var/www/html/quake3/status.txt
+STATUS_PATH="/var/www/html/quake3/status.txt"
 # Note: Change to '/dev/null' if you want disable it.
 
 # Map selection
