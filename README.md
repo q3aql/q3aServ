@@ -27,7 +27,7 @@ q3aServ - Create a Quake 3 server easily on Linux
  $ ./q3aServ.sh <option> [1-5]
  ```
     
-### Sintax (Basic):
+### Syntax (Basic):
 
  ```shell
  $ ./q3aServ.sh
@@ -72,7 +72,7 @@ q3aServ - Create a Quake 3 server easily on Linux
     
 _Note: You can change this settings editing the file `q3aServ.sh` or using the custom game `CG`._
     
-## Sintax (Custom Game):
+## Syntax (Custom Game):
 
 * With the option `CG` the syntax of the command is extended to be able to customize more game options:
 
