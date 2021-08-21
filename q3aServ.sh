@@ -2,9 +2,9 @@
 
 # --------------------------------------------
 # Quake 3 Server Script                      |
-# Created by q3aql (q3aql@protonmail.ch)     |
+# Created by q3aql (q3aql@duck.com)          |
 # Licensed by GPL v2.0                       |
-# Last update: 13-03-2021                    |
+# Last update: 21-08-2021                    |
 # --------------------------------------------
 VERSION="4.3"
 
