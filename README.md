@@ -3,7 +3,7 @@ q3aServ - Create a Quake 3 server easily on Linux
 
 ### Dependences:
 
-  * Quake 3 Engine -> [https://ioquake3.org/](https://ioquake3.org/)
+  * Quake 3 Engine -> [https://ioquake3.org/](https://ioquake3.org/) or [ec-/Quake3](https://github.com/ec-/Quake3e)
   * OSP Mod `(Included)` -> [http://www.moddb.com/mods/osp/downloads/osp-mod-103a-full](http://www.moddb.com/mods/osp/downloads/osp-mod-103a-full)
   * CPMA Mod `(Included)` -> [https://www.playmorepromode.org/](https://www.playmorepromode.org/)
   * Quake 3 Base -> [http://store.steampowered.com/app/2200/Quake_III_Arena/](http://store.steampowered.com/app/2200/Quake_III_Arena/)
